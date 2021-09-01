@@ -320,10 +320,10 @@
                      <asp:CheckBox ID="chkSelect" runat="server" />
                      </ItemTemplate>
                      </asp:TemplateField>
-                  <asp:TemplateField ShowHeader="true" HeaderText="Approve">
+                  <asp:TemplateField ShowHeader="true" HeaderText="">
                        <ItemTemplate>
                            <asp:LinkButton ID="LinkButton1" runat="server" CommandArgument='<%# Bind("id") %>' 
-                               CausesValidation="False" CommandName="Insert" Text="Approve"></asp:LinkButton>
+                               CausesValidation="False" CommandName="Insert" Text=""></asp:LinkButton>
                        </ItemTemplate>
                        <ControlStyle CssClass="center" />
                        <HeaderStyle CssClass="center" />
@@ -503,7 +503,7 @@
                                 <ItemStyle CssClass="center" />
                             </asp:TemplateField>
 
-
+<%--
                               <asp:TemplateField HeaderText="Archived Doc" SortExpression="ArchDoc">
                                   <EditItemTemplate>
                                       <asp:TextBox ID="TextBox16" runat="server" Text='<%# Bind("ArchDoc") %>'></asp:TextBox>
@@ -514,9 +514,9 @@
                                     <ControlStyle CssClass="center" />
                                 <HeaderStyle CssClass="center" />
                                 <ItemStyle CssClass="center" />
-                              </asp:TemplateField>
+                              </asp:TemplateField>--%>
 
-                              <asp:TemplateField HeaderText="Cabine | Safe Ref" SortExpression="SafeRef">
+<%--                              <asp:TemplateField HeaderText="Cabine | Safe Ref" SortExpression="SafeRef">
                                   <EditItemTemplate>
                                       <asp:TextBox ID="TextBox18" runat="server" Text='<%# Bind("SafeRef") %>'></asp:TextBox>
                                   </EditItemTemplate>
@@ -538,7 +538,7 @@
                                     <ControlStyle CssClass="center" />
                                 <HeaderStyle CssClass="center" />
                                 <ItemStyle CssClass="center" />
-                              </asp:TemplateField>
+                              </asp:TemplateField>--%>
                         </Columns>
                <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />
                <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />

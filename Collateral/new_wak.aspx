@@ -4,6 +4,8 @@
     <div style="height: 120px; padding-left: 45%; border-top: 10px solid #0094ff; margin-top: -20px;" class="alert alert-success" role="alert">
         <h4 class="alert-heading" style="font-family: Bahnschrift;"><strong>
             <asp:Label ID="addLbl" runat="server" Text="Add New VAULT Record"></asp:Label></strong></h4>
+                            <asp:Label ID="lblMessage" Text="" runat="server" ForeColor="Red" EnableViewState="false" />
+
     </div>
     <div style="background-color: #fff; padding: 50px; margin-top: -40px;">
         <style>
@@ -326,9 +328,9 @@
                     <asp:DropDownList ID="DocStatusList" runat="server" CssClass="btn-success" Font-Bold="True" Font-Names="Bahnschrift" Font-Size="Smaller" Font-Strikeout="False" Font-Underline="False" ForeColor="White" Height="40px" Width="196px" TabIndex="11" Enabled="False">
                         <asp:ListItem Value=" ">Document Status</asp:ListItem>
 
-                        <asp:ListItem Selected="True" Value="Available">Available</asp:ListItem>
+                        <asp:ListItem Selected="True" Value="Available">Placed</asp:ListItem>
 
-                        <asp:ListItem>Released</asp:ListItem>
+                        <asp:ListItem>Archieved</asp:ListItem>
 
                     </asp:DropDownList>
                 </td>

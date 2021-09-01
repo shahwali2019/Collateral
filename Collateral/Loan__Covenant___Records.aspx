@@ -39,7 +39,7 @@
                     <td>&nbsp;</td>
                      <td>
                          <asp:DropDownList ID="drop_down_facility_type" runat="server" CssClass="btn-info" Font-Bold="True" Font-Names="Bahnschrift" Font-Size="Small" Height="31px" TabIndex="4" Width="130px">
-                             <asp:ListItem Selected="True" Value="CS">Condition Status</asp:ListItem>
+                             <asp:ListItem Value="FT" Selected="True">Condition Status</asp:ListItem>
                              <asp:ListItem Value="Active">Actived</asp:ListItem>
                              <asp:ListItem Value="Closed">Closed</asp:ListItem>
                  
@@ -49,6 +49,7 @@
                      <td>
                            
             <asp:Button ID="searchBtn" runat="server" CssClass="btn-primary focus" Font-Bold="True" Font-Size="Small" Height="31px" OnClick="searchBtn_Click" Text="Search" Width="67px" Font-Names="Bahnschrift" BorderStyle="None" />
+
 
                      </td>
                  </tr>

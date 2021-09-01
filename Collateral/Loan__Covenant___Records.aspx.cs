@@ -175,7 +175,7 @@ namespace Collateral_int
                 string sqlQuery;
                 SqlConnection sqlCon = new SqlConnection(connectionString);
                 sqlCon.Open();
-                sqlQuery = "SELECT *FROM [LCR] where [Approval Number] like '%" + txtAppNo.Text + "%' AND [Customer Name] LIKE '%" + txtComName.Text + "%'";
+                sqlQuery = "SELECT *FROM [LCR] where [Approval Name] like '%" + txtAppNo.Text + "%' AND [Customer Name] LIKE '%" + txtComName.Text + "%'";
                 SqlCommand cmd = new SqlCommand(sqlQuery, sqlCon);
                 cmd.ExecuteNonQuery();
                 SqlDataAdapter DA = new SqlDataAdapter(cmd);
@@ -251,6 +251,33 @@ namespace Collateral_int
                     resultLbl.Text = "Found " + counter + " Record(s).";
             }
             //-------------------------
+
+            if (!string.IsNullOrEmpty(txtComName.Text) && !string.IsNullOrEmpty(txtAppNo.Text) && drop_down_facility_type.SelectedValue != "FT")
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
+                GridView1.DataSourceID = null;
+                string sqlQuery;
+                SqlConnection sqlCon = new SqlConnection(connectionString);
+                sqlCon.Open();
+                sqlQuery = "SELECT *FROM [LCR] where [Customer Name] like '%" + txtComName.Text + "%' AND [Approval Name] like '%" + txtAppNo.Text + "%' AND [Condition Status] = '" + drop_down_facility_type.SelectedValue + "'";
+                SqlCommand cmd = new SqlCommand(sqlQuery, sqlCon);
+                cmd.ExecuteNonQuery();
+                SqlDataAdapter DA = new SqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                DA.Fill(ds);
+                GridView1.DataSource = ds;
+                GridView1.DataBind();
+                sqlCon.Close();
+                int counter = GridView1.Rows.Count;
+                resultLbl.Visible = true;
+                if (counter <= 1)
+                {
+                    resultLbl.Text = "Found " + counter + " Record.";
+                }
+                else
+
+                    resultLbl.Text = "Found " + counter + " Record(s).";
+            }
 
         }
 

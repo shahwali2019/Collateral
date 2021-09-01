@@ -184,7 +184,7 @@ font-family: "Times New Roman", Georgia, serif;
 					</div>
 					<br />
 					<div class="tdText" style="margin-left:0px">
-						<asp:LinkButton PostBackUrl="~/PendingRecords.aspx" CssClass="linkText" ID="LinkButton5" runat="server">PLEDGE APPROVAL</asp:LinkButton>
+						<asp:LinkButton ID="LinkButton5" PostBackUrl="~/PendingRecords.aspx" CssClass="linkText" runat="server">PLEDGE APPROVAL</asp:LinkButton>
 					</div>
 				</td>
 				<td class="ResTable">
@@ -201,7 +201,7 @@ font-family: "Times New Roman", Georgia, serif;
 					</div>
 					<br />
 					<div class="tdText">
-						<asp:LinkButton PostBackUrl="~/wak_pending.aspx" CssClass="linkText" ID="LinkButton6" runat="server">VAULT APPROVAL</asp:LinkButton>
+						<asp:LinkButton ID="LinkButton6" PostBackUrl="~/wak_pending.aspx" CssClass="linkText"  runat="server">VAULT APPROVAL</asp:LinkButton>
 					</div>
 				</td>
 				<td class="ResTable">
@@ -210,15 +210,15 @@ font-family: "Times New Roman", Georgia, serif;
 					</div>--%>
 					<br />
 					<div class="tdText">
-						<asp:LinkButton PostBackUrl="~/RTDL.aspx" CssClass="linkText" ID="LinkButton3" runat="server">TITLE DEEDS</asp:LinkButton>
+						<asp:LinkButton ID="LinkButton3" PostBackUrl="~/RTDL.aspx" CssClass="linkText"  runat="server">TITLE DEEDS</asp:LinkButton>
 					</div>
 					<br />
 					<div class="tdText">
-						<asp:LinkButton PostBackUrl="~/new_rtd.aspx" CssClass="linkText" ID="LinkButton9" runat="server">NEW DEEDS</asp:LinkButton>
+						<asp:LinkButton ID="LinkButton9" PostBackUrl="~/new_rtd.aspx" CssClass="linkText" runat="server">NEW DEEDS</asp:LinkButton>
 					</div>
 					<br />
 					<div class="tdText">
-						<asp:LinkButton PostBackUrl="~/RTD_pending.aspx" CssClass="linkText" ID="LinkButton8" runat="server">DEEDS APPROVAL</asp:LinkButton>
+						<asp:LinkButton  ID="LinkButton8" PostBackUrl="~/RTD_pending.aspx" CssClass="linkText" runat="server">DEEDS APPROVAL</asp:LinkButton>
 					</div>
 				</td>
 			</tr>
@@ -233,11 +233,11 @@ font-family: "Times New Roman", Georgia, serif;
 					</div>
 					<br />
 					<div class="tdText">
-						<asp:LinkButton PostBackUrl="~/addNEW_acgf.aspx" CssClass="linkText" ID="LinkButton13" runat="server">NEW ACGF</asp:LinkButton>
+						<asp:LinkButton ID="LinkButton13" PostBackUrl="~/addNEW_acgf.aspx" CssClass="linkText" runat="server">NEW ACGF</asp:LinkButton>
 					</div>
 					<br />
 					<div class="tdText">
-						<asp:LinkButton PostBackUrl="~/acfg_pending__records.aspx" CssClass="linkText" ID="LinkButton14" runat="server">ACGF APPROVAL</asp:LinkButton>
+						<asp:LinkButton ID="LinkButton14" PostBackUrl="~/acfg_pending__records.aspx" CssClass="linkText" runat="server">ACGF APPROVAL</asp:LinkButton>
 					</div>
 				</td>
 				<td class="ResTable">
@@ -254,7 +254,7 @@ font-family: "Times New Roman", Georgia, serif;
 					</div>
 					<br />
 					<div class="tdText">
-						<asp:LinkButton PostBackUrl="~/mcu_pending_records.aspx" CssClass="linkText" ID="LinkButton17" runat="server">MANDATORY CLEAN-UP APPROVAL</asp:LinkButton>
+						<asp:LinkButton ID="LinkButton17" PostBackUrl="~/mcu_pending_records.aspx" CssClass="linkText" runat="server">MANDATORY CLEAN-UP APPROVAL</asp:LinkButton>
 					</div>
 				</td>
 				<td class="ResTable">
@@ -263,15 +263,15 @@ font-family: "Times New Roman", Georgia, serif;
 					</div>--%>
 					<br />
 					<div class="tdText">
-						<asp:LinkButton PostBackUrl="~/ldr_records.aspx" CssClass="linkText" ID="LinkButton15" runat="server">Loan Documents Registration  RECORDS</asp:LinkButton>
+						<asp:LinkButton ID="LinkButton15" PostBackUrl="~/ldr_records.aspx" CssClass="linkText" runat="server">Loan Documents Registration  RECORDS</asp:LinkButton>
 					</div>
 					<br />
 					<div class="tdText">
-						<asp:LinkButton PostBackUrl="~/newLRD_records.aspx" CssClass="linkText" ID="LinkButton18" runat="server" OnClick="LinkButton18_Click">NEW Loan Documents Registration </asp:LinkButton>
+						<asp:LinkButton ID="LinkButton18" PostBackUrl="~/newLRD_records.aspx" CssClass="linkText" runat="server" OnClick="LinkButton18_Click">NEW Loan Documents Registration </asp:LinkButton>
 					</div>
 					<br />
 					<div class="tdText">
-						<asp:LinkButton PostBackUrl="~/ldr_pending_records.aspx" CssClass="linkText" ID="LinkButton19" runat="server">Loan Documents Registration  APPROVAL</asp:LinkButton>
+						<asp:LinkButton ID="LinkButton19" PostBackUrl="~/ldr_pending_records.aspx" CssClass="linkText"  runat="server">Loan Documents Registration  APPROVAL</asp:LinkButton>
 					</div>
 				</td>
 			</tr>
@@ -282,15 +282,15 @@ font-family: "Times New Roman", Georgia, serif;
 					</div>--%>
 					<br />
 					<div class="tdText">
-						<asp:LinkButton PostBackUrl="~/Loan__Covenant___Records.aspx" CssClass="linkText" ID="LinkButton20" runat="server">LOAN COVENANT RECORDS </asp:LinkButton>
+						<asp:LinkButton  ID="LinkButton20" PostBackUrl="~/Loan__Covenant___Records.aspx" CssClass="linkText" runat="server">LOAN COVENANT RECORDS </asp:LinkButton>
 					</div>
 					<br />
 					<div class="tdText">
-						<asp:LinkButton PostBackUrl="~/newLCR.aspx" CssClass="linkText" ID="LinkButton21" runat="server" OnClick="LinkButton18_Click">NEW LOAN COVENANT RECORDS</asp:LinkButton>
+						<asp:LinkButton ID="LinkButton21" PostBackUrl="~/newLCR.aspx" CssClass="linkText" runat="server" OnClick="LinkButton18_Click">NEW LOAN COVENANT RECORDS</asp:LinkButton>
 					</div>
 					<br />
 					<div class="tdText">
-						<asp:LinkButton PostBackUrl="~/LCR__Pending___Records.aspx" CssClass="linkText" ID="LinkButton22" runat="server">LOAN COVENANT RECORDS APPROVAL</asp:LinkButton>
+						<asp:LinkButton ID="LinkButton22" PostBackUrl="~/LCR__Pending___Records.aspx" CssClass="linkText" runat="server">LOAN COVENANT RECORDS APPROVAL</asp:LinkButton>
 					</div>
 				</td>
 				<td class="ResTable">
@@ -299,15 +299,15 @@ font-family: "Times New Roman", Georgia, serif;
 					</div>--%>
 					<br />
 					<div class="tdText">
-						<asp:LinkButton PostBackUrl="~/DaytoDay.aspx" CssClass="linkText" ID="LinkButton23" runat="server">Day to Day RECORDS</asp:LinkButton>
+						<asp:LinkButton ID="LinkButton23" PostBackUrl="~/DaytoDay.aspx" CssClass="linkText" runat="server">Day to Day RECORDS</asp:LinkButton>
 					</div>
 					<br />
 					<div class="tdText">
-						<asp:LinkButton PostBackUrl="~/AddnewDaytoDayRecords.aspx" CssClass="linkText" ID="LinkButton24" runat="server" OnClick="LinkButton18_Click">NEW DAY TO DAY</asp:LinkButton>
+						<asp:LinkButton ID="LinkButton24" PostBackUrl="~/AddnewDaytoDayRecords.aspx" CssClass="linkText" runat="server" OnClick="LinkButton18_Click">NEW DAY TO DAY</asp:LinkButton>
 					</div>
 					<br />
 					<div class="tdText">
-						<asp:LinkButton PostBackUrl="~/DaytoDay__Pending___Records.aspx" CssClass="linkText" ID="LinkButton25" runat="server">DAY TO DAY APPROVAL</asp:LinkButton>
+						<asp:LinkButton ID="LinkButton25" PostBackUrl="~/DaytoDay__Pending___Records.aspx" CssClass="linkText"  runat="server">DAY TO DAY APPROVAL</asp:LinkButton>
 					</div>
 				</td>
 				<td class="ResTable">
@@ -316,15 +316,15 @@ font-family: "Times New Roman", Georgia, serif;
 					</div>--%>
 					<br />
 					<div class="tdText">
-						<asp:LinkButton PostBackUrl="~/mtr.aspx" CssClass="linkText" ID="LinkButton26" runat="server">Manual Transaction Records</asp:LinkButton>
+						<asp:LinkButton ID="LinkButton26" PostBackUrl="~/mtr.aspx" CssClass="linkText"  runat="server">Manual Transaction Records</asp:LinkButton>
 					</div>
 					<br />
 					<div class="tdText">
-						<asp:LinkButton PostBackUrl="~/newmtr.aspx" CssClass="linkText" ID="LinkButton27" runat="server" OnClick="LinkButton18_Click">New Manual Transaction Record</asp:LinkButton>
+						<asp:LinkButton ID="LinkButton27" PostBackUrl="~/newmtr.aspx" CssClass="linkText"  runat="server" OnClick="LinkButton18_Click">New Manual Transaction Record</asp:LinkButton>
 					</div>
 					<br />
 					<div class="tdText">
-						<asp:LinkButton PostBackUrl="~/mtr_pending.aspx" CssClass="linkText" ID="LinkButton28" runat="server">Manual Transaction APPROVAL</asp:LinkButton>
+						<asp:LinkButton ID="LinkButton28" PostBackUrl="~/mtr_pending.aspx" CssClass="linkText"  runat="server">Manual Transaction APPROVAL</asp:LinkButton>
 					</div>
 				</td>
 			</tr>

@@ -11,7 +11,7 @@ namespace Collateral_int
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-          
+
             if (!IsPostBack)
             {
                 string fullUsername = User.Identity.Name;
@@ -43,7 +43,7 @@ namespace Collateral_int
 
 
 
-                if (Session["id"] !=null)
+                if (Session["id"] != null)
                 {
                     string id = Session["id"].ToString();
                     string ClientName = Session["ClientName"].ToString();
@@ -84,7 +84,7 @@ namespace Collateral_int
                     //RequiredFieldValidator6.Enabled = false;
                     //RequiredFieldValidator7.Enabled = false;
                     //RequiredFieldValidator8.Enabled = false;
-                  
+
 
                 }
             }
@@ -102,79 +102,99 @@ namespace Collateral_int
             {
                 if (subBtn.Text == "ADD")
                 {
+
                     ArchiveChBox.Visible = false;
                     ImageButton3.Visible = false;
                     string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
+
                     using (SqlConnection sqlCon2 = new SqlConnection(connectionString))
+
+                    using (SqlCommand cmd = new SqlCommand("SELECT * FROM Wak_Tbl WHERE FacilityApproval = @FacilityApproval", sqlCon2))
                     {
-                        ArchiveChBox.Visible = false;
-                        sqlCon2.Open();
-                        string query = "INSERT INTO[dbo].[Wak_Tbl_temp] (" + // temp table for insertion
-                            "[ClientName]," +
-                            "[FacilityApproval]," +
-                            "[FacilityType] ," +
-                            "[FacilityStatus]," +
-                            "[SafeNo]," +
-                            "[drawer]," +
-                            "[FolderNo]," +
-                            "[Extention]," +
-                            "[modification]," +
-                            "[SafeInDate] ," +
-                            "[DocStatus]," +
-                            "[SafeOutDate]," +
-                            "[Remark]," +
-                            "[InsertedBy]" +
-                            ") VALUES" +
-                            "(" +
-                            "@ClientName," +
-                            "@FacilityApproval," +
-                            "@FacilityType," +
-                            "@FacilityStatus," +
-                            "@SafeNo," +
-                            "@Drawer," +
-                            "@FolderNo," +
-                            "@Extention," +
-                            "@modification," +
-                            "@SafeInDate," +
-                            "@DocStatus," +
-                            "@SafeOutDate," +
-                            "@Remark," +
-                            "@InsertedBy)";
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            ArchiveChBox.Visible = false;
+                            sqlCon2.Open();
+                            cmd.Parameters.AddWithValue("@FacilityApproval", this.facilityApptxt.Text.Trim());
+                            DataSet ds = new DataSet();
+                            da.Fill(ds);
+                            if (ds.Tables[0].Rows.Count > 0)
+                            {
+                                this.lblMessage.Text = "sorry, you'er not able to insert deplicate Facility Approval NO!";
+                            }
+                            else
+                            {
+                                using (SqlConnection sqlCon = new SqlConnection(connectionString))
 
-                        SqlCommand sqlcmd = new SqlCommand(query, sqlCon2);
+                                    sqlCon.Open();
+                                string query = "INSERT INTO[dbo].[Wak_Tbl_temp] (" + // temp table for insertion
+                                    "[ClientName]," +
+                                    "[FacilityApproval]," +
+                                    "[FacilityType] ," +
+                                    "[FacilityStatus]," +
+                                    "[SafeNo]," +
+                                    "[drawer]," +
+                                    "[FolderNo]," +
+                                    "[Extention]," +
+                                    "[modification]," +
+                                    "[SafeInDate] ," +
+                                    "[DocStatus]," +
+                                    "[SafeOutDate]," +
+                                    "[Remark]," +
+                                    "[InsertedBy]" +
+                                    ") VALUES" +
+                                    "(" +
+                                    "@ClientName," +
+                                    "@FacilityApproval," +
+                                    "@FacilityType," +
+                                    "@FacilityStatus," +
+                                    "@SafeNo," +
+                                    "@Drawer," +
+                                    "@FolderNo," +
+                                    "@Extention," +
+                                    "@modification," +
+                                    "@SafeInDate," +
+                                    "@DocStatus," +
+                                    "@SafeOutDate," +
+                                    "@Remark," +
+                                    "@InsertedBy)";
 
-                        sqlcmd.Parameters.AddWithValue("@ClientName", txtClient.Text);
-                        sqlcmd.Parameters.AddWithValue("@FacilityApproval", facilityApptxt.Text);
-                        sqlcmd.Parameters.AddWithValue("@FacilityType", FacilityTypeList.SelectedValue);
-                        sqlcmd.Parameters.AddWithValue("@FacilityStatus", FacilityStatusList.SelectedValue);
-                        sqlcmd.Parameters.AddWithValue("@SafeNo", SafeNoList.SelectedValue);
+                                SqlCommand sqlcmd = new SqlCommand(query, sqlCon2);
 
-                        sqlcmd.Parameters.AddWithValue("@Drawer", txtDrawer.Text);
-                        sqlcmd.Parameters.AddWithValue("@FolderNo", txtFolderNo.Text);
-                        sqlcmd.Parameters.AddWithValue("@Extention", txtExtention.Text);
-                        sqlcmd.Parameters.AddWithValue("@modification", txtMod.Text);
+                                sqlcmd.Parameters.AddWithValue("@ClientName", txtClient.Text);
+                                sqlcmd.Parameters.AddWithValue("@FacilityApproval", facilityApptxt.Text);
+                                sqlcmd.Parameters.AddWithValue("@FacilityType", FacilityTypeList.SelectedValue);
+                                sqlcmd.Parameters.AddWithValue("@FacilityStatus", FacilityStatusList.SelectedValue);
+                                sqlcmd.Parameters.AddWithValue("@SafeNo", SafeNoList.SelectedValue);
 
-
-                        sqlcmd.Parameters.AddWithValue("@SafeInDate", txtSafein.Text);
-                        sqlcmd.Parameters.AddWithValue("@DocStatus", DocStatusList.SelectedValue);
-                        sqlcmd.Parameters.AddWithValue("@SafeOutDate", txtSafeout.Text);
+                                sqlcmd.Parameters.AddWithValue("@Drawer", txtDrawer.Text);
+                                sqlcmd.Parameters.AddWithValue("@FolderNo", txtFolderNo.Text);
+                                sqlcmd.Parameters.AddWithValue("@Extention", txtExtention.Text);
+                                sqlcmd.Parameters.AddWithValue("@modification", txtMod.Text);
 
 
-                        sqlcmd.Parameters.AddWithValue("@Remark", txtRemark.Text);
-                        sqlcmd.Parameters.AddWithValue("@InsertedBy", username);
+                                sqlcmd.Parameters.AddWithValue("@SafeInDate", txtSafein.Text);
+                                sqlcmd.Parameters.AddWithValue("@DocStatus", DocStatusList.SelectedValue);
+                                sqlcmd.Parameters.AddWithValue("@SafeOutDate", txtSafeout.Text);
 
 
-                        sqlcmd.ExecuteNonQuery();
-                        msg.Visible = true;
-                        msg.Text = "Inserted to pending table!<br />It needs your admin approval!";
-                        msg.ForeColor = System.Drawing.Color.Green;
-                        Session.Remove("bid");
-                        sqlCon2.Close();
-                        //-------------------------------------
+                                sqlcmd.Parameters.AddWithValue("@Remark", txtRemark.Text);
+                                sqlcmd.Parameters.AddWithValue("@InsertedBy", username);
 
-                        txtClient.Text = facilityApptxt.Text = txtDrawer.Text = txtFolderNo.Text = txtExtention.Text = txtMod.Text = txtSafein.Text = txtSafeout.Text = txtRemark.Text = "";
 
-                        //==========================================
+                                sqlcmd.ExecuteNonQuery();
+                                msg.Visible = true;
+                                msg.Text = "Inserted to pending table!<br />It needs your admin approval!";
+                                msg.ForeColor = System.Drawing.Color.Green;
+                                Session.Remove("bid");
+                                sqlCon2.Close();
+                                //-------------------------------------
+
+                                txtClient.Text = facilityApptxt.Text = txtDrawer.Text = txtFolderNo.Text = txtExtention.Text = txtMod.Text = txtSafein.Text = txtSafeout.Text = txtRemark.Text = "";
+
+                                //==========================================
+                            }
+                        }
                     }
                 }// end of adding new WAK Record
 
@@ -253,7 +273,7 @@ namespace Collateral_int
                                 sqlcmd.Parameters.AddWithValue("@DocStatus", DocStatusList.SelectedValue);
                                 sqlcmd.Parameters.AddWithValue("@SafeOutDate", txtSafeout.Text);
                                 sqlcmd.Parameters.AddWithValue("@Remark", txtRemark.Text);
-                                sqlcmd.Parameters.AddWithValue("@UpdatedBy", Session["Users"].ToString());
+                                sqlcmd.Parameters.AddWithValue("@UpdatedBy", username);
                                 sqlcmd.Parameters.AddWithValue("@archDoc", txtArcDoc.Text);
                                 sqlcmd.Parameters.AddWithValue("@SafeRef", txtCabineRef.Text);
                                 sqlcmd.Parameters.AddWithValue("@archDate", txtArchiveDate.Text);
@@ -348,7 +368,7 @@ namespace Collateral_int
                             sqlcmd.Parameters.AddWithValue("@DocStatus", DocStatusList.SelectedValue);
                             sqlcmd.Parameters.AddWithValue("@SafeOutDate", txtSafeout.Text);
                             sqlcmd.Parameters.AddWithValue("@Remark", txtRemark.Text);
-                            sqlcmd.Parameters.AddWithValue("@UpdatedBy", Session["Users"].ToString());
+                            sqlcmd.Parameters.AddWithValue("@UpdatedBy", username);
                             sqlcmd.Parameters.AddWithValue("@archDoc", txtArcDoc.Text);
                             sqlcmd.Parameters.AddWithValue("@SafeRef", txtCabineRef.Text);
 
@@ -394,7 +414,7 @@ namespace Collateral_int
 
         }
 
-    protected void back_Click(object sender, ImageClickEventArgs e)
+        protected void back_Click(object sender, ImageClickEventArgs e)
         {
             Session.Remove("id");
             //RequiredFieldValidator1.Enabled = true;
@@ -421,7 +441,7 @@ namespace Collateral_int
                 DocStatusList.Enabled = false;
             }
             else
-            DocStatusList.Enabled = true;
+                DocStatusList.Enabled = true;
         }
 
         protected void ArchiveChBox_CheckedChanged(object sender, EventArgs e)
@@ -448,7 +468,7 @@ namespace Collateral_int
                 ArchDateLbl.Visible = false;
                 DocArcLbl.Visible = false;
                 ImageButton3.Visible = false;
-                cabineRefLbl.Visible=false;
+                cabineRefLbl.Visible = false;
                 //RequiredFieldValidator9.Enabled = true;
                 //RequiredFieldValidator10.Enabled = true;
 

@@ -48,7 +48,7 @@
                      <span style="float:left; margin-top:10px; "><img src="image/logo.png" width="45" height="30" /></span>
                     <a class="navbar-brand" runat="server" href="~/Collateral" style="color:#FFF; font-family:Bahnschrift;">Collateral System Management</a>
                 </div>
-                <div class="navbar-collapse collapse">
+                <div class="navbar-collapse collapse" >
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/Collateral" style="color:#FFF; font-family:Bahnschrift;">Home</a></li>
                         <li><a runat="server" href="~/About" style="color:#FFF; font-family:Bahnschrift;">About</a></li>

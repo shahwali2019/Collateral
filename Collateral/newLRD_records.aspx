@@ -121,6 +121,11 @@
    <div style=" height:120px;padding-left: 45%;border-top:10px solid #0094ff; margin-top:-20px;" class="alert alert-success" role="alert">
               <h4 class="alert-heading" style=" font-family:Bahnschrift;"><strong><asp:Label ID="addLbl" runat="server" Text="ADD LDR RECORD" ></asp:Label></strong></h4>  
    </div>
+
+                    <p style="text-align: center; font-size: 15px">
+<%--                    <asp:Label ID="Label1" runat="server" Text="Label" ForeColor="Red" EnableViewState="false"></asp:Label>--%>
+                    <asp:Label ID="lblMessage" Text="" runat="server" ForeColor="Red" EnableViewState="false" />
+                </p>
         <table class="auto-style44" style="padding-bottom:5px; ">
         <tr>
             <td class="auto-style1" colspan="4">
@@ -151,12 +156,12 @@
             </td>
         </tr>
         <tr>
-            <td class="auto-style45"><strong>&nbsp;Company Name<span style="color:red;">*</span></strong></td>
+            <td class="auto-style45"><strong>&nbsp;Company Name<span style="color:red; ">*</span></strong></td>
             <td class="auto-style33">
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="X" Font-Bold="True" Font-Names="Bahnschrift" Font-Size="X-Small" ForeColor="Red" ControlToValidate="txtCompanyName"></asp:RequiredFieldValidator>
             </td>
             <td class="auto-style47">
-                <asp:TextBox ID="txtCompanyName" runat="server" Height="40px" Width="196px" placeholder="  Company Name..." TabIndex="1" CssClass="center"></asp:TextBox>
+                <asp:TextBox ID="txtCompanyName" runat="server" Height="40px" Width="196px"   placeholder="  Company Name..." TextMode="MultiLine" TabIndex="5"  CssClass="center"></asp:TextBox>
             </td>
             <td class="auto-style48">
                 &nbsp;</td>

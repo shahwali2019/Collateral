@@ -183,7 +183,7 @@ namespace Collateral_int
         protected void searchBtn_Click(object sender, EventArgs e)
         {
             GridView1.Visible = true;
-            if (string.IsNullOrEmpty(searchbarTxt.Text) && string.IsNullOrEmpty(txtDino.Text) && string.IsNullOrEmpty(txtPdate.Text) && statusList.SelectedValue=="Status" )
+            if (string.IsNullOrEmpty(searchbarTxt.Text) && string.IsNullOrEmpty(txtDino.Text) && string.IsNullOrEmpty(txtPdate.Text) && statusList.SelectedValue=="status" )
             {
                 string sqlQuery;
                 SqlConnection sqlCon = new SqlConnection(connectionString);
@@ -217,7 +217,7 @@ namespace Collateral_int
             }
             //END of SHOW ALL
             //--------------------------Customer Name---------------------------------------------------------
-            if (!string.IsNullOrEmpty(searchbarTxt.Text) && string.IsNullOrEmpty(txtDino.Text) && string.IsNullOrEmpty(txtPdate.Text) && statusList.SelectedValue == "Status")
+            if (!string.IsNullOrEmpty(searchbarTxt.Text) && string.IsNullOrEmpty(txtDino.Text) && string.IsNullOrEmpty(txtPdate.Text) && statusList.SelectedValue == "status")
             {
                 string sqlQuery;
                 SqlConnection sqlCon = new SqlConnection(connectionString);
@@ -241,7 +241,7 @@ namespace Collateral_int
 
             }
             //--------------------------Customer Name and Dinomination---------------------------------------------------------
-            if (!string.IsNullOrEmpty(searchbarTxt.Text) && !string.IsNullOrEmpty(txtDino.Text) && string.IsNullOrEmpty(txtPdate.Text) && statusList.SelectedValue == "Status")
+            if (!string.IsNullOrEmpty(searchbarTxt.Text) && !string.IsNullOrEmpty(txtDino.Text) && string.IsNullOrEmpty(txtPdate.Text) && statusList.SelectedValue == "status")
             {
                 string sqlQuery;
                 SqlConnection sqlCon = new SqlConnection(connectionString);
@@ -262,7 +262,7 @@ namespace Collateral_int
             }
             ////---------------------------------------------------------
             //--------------------------Customer Name and Dinomination and Pledge Date---------------------------------------------------------
-            if (!string.IsNullOrEmpty(searchbarTxt.Text) && !string.IsNullOrEmpty(txtDino.Text) && !string.IsNullOrEmpty(txtPdate.Text) && statusList.SelectedValue == "Status")
+            if (!string.IsNullOrEmpty(searchbarTxt.Text) && !string.IsNullOrEmpty(txtDino.Text) && !string.IsNullOrEmpty(txtPdate.Text) && statusList.SelectedValue == "status")
             {
                 string sqlQuery;
                 SqlConnection sqlCon = new SqlConnection(connectionString);
@@ -282,7 +282,7 @@ namespace Collateral_int
 
             }
             //--------------------------Status Search---------------------------------------------------------
-            if (string.IsNullOrEmpty(searchbarTxt.Text) && string.IsNullOrEmpty(txtDino.Text) && string.IsNullOrEmpty(txtPdate.Text) && statusList.SelectedValue != "Status")
+            if (string.IsNullOrEmpty(searchbarTxt.Text) && string.IsNullOrEmpty(txtDino.Text) && string.IsNullOrEmpty(txtPdate.Text) && statusList.SelectedValue != "status")
             {
                 string sqlQuery;
                 SqlConnection sqlCon = new SqlConnection(connectionString);
@@ -347,7 +347,7 @@ namespace Collateral_int
                 int id = Int32.Parse(Session["pid"].ToString());
                 //-------------------------------------------
                 //    //= --------------Get data from--------------------
-                string connectionString2 = @"Data Source=AIBW8CAMS02;Initial Catalog=collateral;Persist Security Info=True;User ID=sma;Password=1111";
+                string connectionString2 = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
                 using (SqlConnection sqlCon2 = new SqlConnection(connectionString2))
                 {
                     sqlCon2.Open();

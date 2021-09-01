@@ -172,7 +172,7 @@ namespace Collateral
             //-------------------------
 
 
-            if (!string.IsNullOrEmpty(txtCname.Text) && string.IsNullOrEmpty(txtBD.Text))
+            if (!string.IsNullOrEmpty(txtCname.Text) && !string.IsNullOrEmpty(txtBD.Text))
             {
                 string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
                 GridView1.DataSourceID = null;

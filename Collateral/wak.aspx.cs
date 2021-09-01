@@ -41,8 +41,8 @@ namespace Collateral_int
                 {
                     Response.Redirect("NotAuthorize.aspx?ReturnPath=" + Server.UrlEncode(Request.Url.AbsoluteUri));
                 }
-           
-                    if (Access_role == null)
+
+                if (Access_role == null)
                 {
                     Response.Redirect("Loging.aspx");
                     Session.Remove("loading");
@@ -88,7 +88,7 @@ namespace Collateral_int
                 string sqlQuery;
                 SqlConnection sqlCon = new SqlConnection(connectionString);
                 sqlCon.Open();
-                sqlQuery = "SELECT *FROM wak_tbl where SafeInDate ='"+txtDate1.Text+"'";
+                sqlQuery = "SELECT *FROM wak_tbl where SafeInDate ='" + txtDate1.Text + "'";
                 SqlCommand cmd = new SqlCommand(sqlQuery, sqlCon);
                 SqlDataAdapter DA = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
@@ -112,7 +112,7 @@ namespace Collateral_int
                 string sqlQuery;
                 SqlConnection sqlCon = new SqlConnection(connectionString);
                 sqlCon.Open();
-                sqlQuery = "SELECT *FROM wak_tbl where [ClientName] LIKE '%" + txtSafeNo.Text+"%' AND  SafeInDate between '" + txtDate1.Text + "' AND '"+txtDate2.Text+"'";
+                sqlQuery = "SELECT *FROM wak_tbl where [ClientName] LIKE '%" + txtSafeNo.Text + "%' AND  SafeInDate between '" + txtDate1.Text + "' AND '" + txtDate2.Text + "'";
                 SqlCommand cmd = new SqlCommand(sqlQuery, sqlCon);
                 SqlDataAdapter DA = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
@@ -132,7 +132,7 @@ namespace Collateral_int
                 string sqlQuery;
                 SqlConnection sqlCon = new SqlConnection(connectionString);
                 sqlCon.Open();
-                sqlQuery = "SELECT *FROM wak_tbl where DocStatus='"+StatusListbox.SelectedValue+ "' AND [ClientName] LIKE '%" + txtSafeNo.Text + "%'  AND  SafeInDate between '" + txtDate1.Text + "' AND '" + txtDate2.Text + "'";
+                sqlQuery = "SELECT *FROM wak_tbl where DocStatus='" + StatusListbox.SelectedValue + "' AND [ClientName] LIKE '%" + txtSafeNo.Text + "%'  AND  SafeInDate between '" + txtDate1.Text + "' AND '" + txtDate2.Text + "'";
                 SqlCommand cmd = new SqlCommand(sqlQuery, sqlCon);
                 SqlDataAdapter DA = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
@@ -152,7 +152,7 @@ namespace Collateral_int
                 string sqlQuery;
                 SqlConnection sqlCon = new SqlConnection(connectionString);
                 sqlCon.Open();
-                sqlQuery = "SELECT *FROM wak_tbl where FacilityType='"+FacilityTypeList.SelectedValue+"' AND DocStatus='" + StatusListbox.SelectedValue + "' AND [ClientName] LIKE '%" + txtSafeNo.Text + "%' AND  SafeInDate between '" + txtDate1.Text + "' AND '" + txtDate2.Text + "'";
+                sqlQuery = "SELECT *FROM wak_tbl where FacilityType='" + FacilityTypeList.SelectedValue + "' AND DocStatus='" + StatusListbox.SelectedValue + "' AND [ClientName] LIKE '%" + txtSafeNo.Text + "%' AND  SafeInDate between '" + txtDate1.Text + "' AND '" + txtDate2.Text + "'";
                 SqlCommand cmd = new SqlCommand(sqlQuery, sqlCon);
                 SqlDataAdapter DA = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
@@ -166,7 +166,7 @@ namespace Collateral_int
             }
 
             //---------Case x 2 x x x-----------------------------------------------------------
-            if ( string.IsNullOrEmpty(txtSafeNo.Text) && StatusListbox.SelectedValue == "DocSta" && FacilityTypeList.SelectedValue == "FacType" && txtDate1.Text == "" && txtDate2.Text != "")
+            if (string.IsNullOrEmpty(txtSafeNo.Text) && StatusListbox.SelectedValue == "DocSta" && FacilityTypeList.SelectedValue == "FacType" && txtDate1.Text == "" && txtDate2.Text != "")
             {
                 GridView1.DataSourceID = null;
                 string sqlQuery;
@@ -210,7 +210,7 @@ namespace Collateral_int
                 string sqlQuery;
                 SqlConnection sqlCon = new SqlConnection(connectionString);
                 sqlCon.Open();
-                sqlQuery = "SELECT *FROM wak_tbl WHERE [ClientName] LIKE '%" + txtSafeNo.Text + "%'  AND SafeInDate='" + txtDate1.Text+"'";
+                sqlQuery = "SELECT *FROM wak_tbl WHERE [ClientName] LIKE '%" + txtSafeNo.Text + "%'  AND SafeInDate='" + txtDate1.Text + "'";
                 SqlCommand cmd = new SqlCommand(sqlQuery, sqlCon);
                 SqlDataAdapter DA = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
@@ -230,7 +230,7 @@ namespace Collateral_int
                 string sqlQuery;
                 SqlConnection sqlCon = new SqlConnection(connectionString);
                 sqlCon.Open();
-                sqlQuery = "SELECT *FROM wak_tbl WHERE DocStatus='"+StatusListbox.SelectedValue+"'";
+                sqlQuery = "SELECT *FROM wak_tbl WHERE DocStatus='" + StatusListbox.SelectedValue + "'";
                 SqlCommand cmd = new SqlCommand(sqlQuery, sqlCon);
                 SqlDataAdapter DA = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
@@ -250,7 +250,7 @@ namespace Collateral_int
                 string sqlQuery;
                 SqlConnection sqlCon = new SqlConnection(connectionString);
                 sqlCon.Open();
-                sqlQuery = "SELECT *FROM wak_tbl WHERE DocStatus='" + StatusListbox.SelectedValue + "' and SafeInDate='"+txtDate1.Text+"'";
+                sqlQuery = "SELECT *FROM wak_tbl WHERE DocStatus='" + StatusListbox.SelectedValue + "' and SafeInDate='" + txtDate1.Text + "'";
                 SqlCommand cmd = new SqlCommand(sqlQuery, sqlCon);
                 SqlDataAdapter DA = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
@@ -270,7 +270,7 @@ namespace Collateral_int
                 string sqlQuery;
                 SqlConnection sqlCon = new SqlConnection(connectionString);
                 sqlCon.Open();
-                sqlQuery = "SELECT *FROM wak_tbl WHERE DocStatus='" + StatusListbox.SelectedValue + "' AND SafeInDate BETWEEN'" + txtDate1.Text + "' AND '"+txtDate2.Text+"'";
+                sqlQuery = "SELECT *FROM wak_tbl WHERE DocStatus='" + StatusListbox.SelectedValue + "' AND SafeInDate BETWEEN'" + txtDate1.Text + "' AND '" + txtDate2.Text + "'";
                 SqlCommand cmd = new SqlCommand(sqlQuery, sqlCon);
                 SqlDataAdapter DA = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
@@ -289,7 +289,7 @@ namespace Collateral_int
                 string sqlQuery;
                 SqlConnection sqlCon = new SqlConnection(connectionString);
                 sqlCon.Open();
-                sqlQuery = "SELECT *FROM wak_tbl WHERE FacilityType='"+FacilityTypeList.SelectedValue+"'";
+                sqlQuery = "SELECT *FROM wak_tbl WHERE FacilityType='" + FacilityTypeList.SelectedValue + "'";
                 SqlCommand cmd = new SqlCommand(sqlQuery, sqlCon);
                 SqlDataAdapter DA = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
@@ -308,7 +308,7 @@ namespace Collateral_int
                 string sqlQuery;
                 SqlConnection sqlCon = new SqlConnection(connectionString);
                 sqlCon.Open();
-                sqlQuery = "SELECT *FROM wak_tbl WHERE FacilityType='" + FacilityTypeList.SelectedValue + "' AND SafeInDate='"+txtDate1.Text+"'";
+                sqlQuery = "SELECT *FROM wak_tbl WHERE FacilityType='" + FacilityTypeList.SelectedValue + "' AND SafeInDate='" + txtDate1.Text + "'";
                 SqlCommand cmd = new SqlCommand(sqlQuery, sqlCon);
                 SqlDataAdapter DA = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
@@ -328,7 +328,7 @@ namespace Collateral_int
                 string sqlQuery;
                 SqlConnection sqlCon = new SqlConnection(connectionString);
                 sqlCon.Open();
-                sqlQuery = "SELECT *FROM wak_tbl WHERE FacilityType='" + FacilityTypeList.SelectedValue + "' AND SafeInDate BETWEEN '" + txtDate1.Text + "' AND '"+txtDate2.Text+"'";
+                sqlQuery = "SELECT *FROM wak_tbl WHERE FacilityType='" + FacilityTypeList.SelectedValue + "' AND SafeInDate BETWEEN '" + txtDate1.Text + "' AND '" + txtDate2.Text + "'";
                 SqlCommand cmd = new SqlCommand(sqlQuery, sqlCon);
                 SqlDataAdapter DA = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
@@ -368,7 +368,7 @@ namespace Collateral_int
                 string sqlQuery;
                 SqlConnection sqlCon = new SqlConnection(connectionString);
                 sqlCon.Open();
-                sqlQuery = "SELECT *FROM wak_tbl WHERE FacilityType='" + FacilityTypeList.SelectedValue + "' AND DocStatus='"+StatusListbox.SelectedValue + "'";
+                sqlQuery = "SELECT *FROM wak_tbl WHERE FacilityType='" + FacilityTypeList.SelectedValue + "' AND DocStatus='" + StatusListbox.SelectedValue + "'";
                 SqlCommand cmd = new SqlCommand(sqlQuery, sqlCon);
                 SqlDataAdapter DA = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
@@ -409,7 +409,7 @@ namespace Collateral_int
                 string sqlQuery;
                 SqlConnection sqlCon = new SqlConnection(connectionString);
                 sqlCon.Open();
-                sqlQuery = "SELECT *FROM wak_tbl WHERE FacilityType='" + FacilityTypeList.SelectedValue + "' AND DocStatus='" + StatusListbox.SelectedValue + "' AND [ClientName] LIKE '%" + txtSafeNo.Text + "%' AND SafeInDate='" + txtDate2.Text+"'";
+                sqlQuery = "SELECT *FROM wak_tbl WHERE FacilityType='" + FacilityTypeList.SelectedValue + "' AND DocStatus='" + StatusListbox.SelectedValue + "' AND [ClientName] LIKE '%" + txtSafeNo.Text + "%' AND SafeInDate='" + txtDate2.Text + "'";
                 SqlCommand cmd = new SqlCommand(sqlQuery, sqlCon);
                 SqlDataAdapter DA = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
@@ -508,7 +508,7 @@ namespace Collateral_int
                 string sqlQuery;
                 SqlConnection sqlCon = new SqlConnection(connectionString);
                 sqlCon.Open();
-                sqlQuery = "SELECT *FROM wak_tbl WHERE FacilityType='" + FacilityTypeList.SelectedValue + "' and SafeNo='"+txtSafeNo.Text+"'";
+                sqlQuery = "SELECT *FROM wak_tbl WHERE FacilityType='" + FacilityTypeList.SelectedValue + "' and SafeNo='" + txtSafeNo.Text + "'";
                 SqlCommand cmd = new SqlCommand(sqlQuery, sqlCon);
                 SqlDataAdapter DA = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
@@ -546,12 +546,12 @@ namespace Collateral_int
 
         protected void txtSafeInDate_TextChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         protected void StatusListbox_SelectedIndexChanged(object sender, EventArgs e)
         {
-       
+
         }
 
         protected void chkb1_CheckedChanged(object sender, EventArgs e)
@@ -597,7 +597,7 @@ namespace Collateral_int
                 var chkSelect = gw.FindControl("chkSelect") as CheckBox;
                 if (chkSelect.Checked)
                 {
-                     string Val16 = (gw.FindControl("Label19") as Label).Text;//
+                    string Val16 = (gw.FindControl("Label19") as Label).Text;//
                     string Val1 = (gw.FindControl("Label2") as Label).Text;//
                     string Val2 = (gw.FindControl("Label3") as Label).Text;//
                     string Val3 = (gw.FindControl("Label4") as Label).Text;//
@@ -611,8 +611,8 @@ namespace Collateral_int
                     string Val12 = (gw.FindControl("Label12") as Label).Text;//
                     string Val13 = (gw.FindControl("Label13") as Label).Text;//
                     string Val14 = (gw.FindControl("Label14") as Label).Text;//
-     
-                    dt.Rows.Add(Val16,Val1, Val2, Val3, Val4, Val5, Val6, Val7, Val8, Val9, Val11, Val12, Val13, Val14);
+
+                    dt.Rows.Add(Val16, Val1, Val2, Val3, Val4, Val5, Val6, Val7, Val8, Val9, Val11, Val12, Val13, Val14);
                 }
             }
 
@@ -645,7 +645,7 @@ namespace Collateral_int
             }
 
         }
-     
+
 
         protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
         {

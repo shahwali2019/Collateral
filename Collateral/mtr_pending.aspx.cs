@@ -232,7 +232,7 @@ namespace Collateral
                         Val14 = (gw.FindControl("Label14") as Label).Text;   //Remark
                         Val15 = (gw.FindControl("Label15") as Label).Text;   //InsertedBy
                         Val16 = (gw.FindControl("Label16") as Label).Text;   //ApprovedBy
-                        Val17 = (gw.FindControl("Label16") as Label).Text;   //UpdatedBy
+                        Val17 = (gw.FindControl("Label17") as Label).Text;   //UpdatedBy
                         sqlCon.Open();                                       
 
                         string query = "insert into  [mtr]" +

@@ -50,11 +50,26 @@ namespace Collateral_int
                     
                 }
                 
-                 else if (Access_role == "1")
+                 else if (Access_role == "2"  || Access_role == "3")
                 {
                     //Server.Transfer("register.aspx");
-                    Newuser.Visible = true;
+                    LinkButton28.Visible = false;
+                    LinkButton25.Visible = false;
+                    LinkButton22.Visible = false;
+                    LinkButton19.Visible = false;
+                    LinkButton17.Visible = false;
+                    LinkButton14.Visible = false;
+                    LinkButton8.Visible = false;
+                    LinkButton6.Visible = false;
+                    LinkButton5.Visible = false;
+                    Newuser.Visible = false;
                 }
+
+                // else if (Access_role == "1")
+                //{
+                //    LinkButton28.Visible = false;
+                //    //this.LinkButton28.Attributes.Add("disabled", "disabled");
+                //}
             }
 
             //Label1.Text = "Welcome: " + username;

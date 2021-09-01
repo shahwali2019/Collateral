@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -35,11 +36,11 @@ namespace Collateral_int
                     Response.Redirect("NotAuthorize.aspx?ReturnPath=" + Server.UrlEncode(Request.Url.AbsoluteUri));
                 }
 
-                if (Access_role == null)
-                {
-                    Response.Redirect("Loging.aspx");
-                    Session.Remove("loading");
-                }
+                //if (Access_role == null)
+                //{
+                //    Response.Redirect("Loging.aspx");
+                //    Session.Remove("loading");
+                //}
             }
                 if (!IsPostBack)
             {
@@ -102,56 +103,77 @@ namespace Collateral_int
             {
                 if (Button2.Text == "ADD")
                 {
-                    
-                    string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
-                    using (SqlConnection sqlCon = new SqlConnection(connectionString))
-                    {
-                        sqlCon.Open();
-                        string query = "INSERT INTO[dbo].[LoanReg_tbl_insert] " + // temp table for insertion
-                      " (" +
-                      "[Received Date]" +
-                      " ,[Company Name]" +
-                       ",[Approval Number]" +
-                       ",[Facility Type]" +
-                      " ,[Document Received]" +
-                       ",[Enter By]" +
-                     // " ,[Second Verifier]" +
-                      //" ,[Completion Date]" +
-                      ",[Remark]" +
-                      " ,[Inserted By]" +
-                      ")" +
-                            " VALUES" +
-                            "(" +
-                            "@rd," +
-                            "@cn," +
-                            "@an," +
-                            "@ft," +
-                            "@dr," +
-                            "@eb," +
-                           // "@sv," +
-                           // "@cd," +
-                            "@rem," +
-                            "@InsertedBy)";
-                        SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
-                        sqlcmd.Parameters.AddWithValue("@rd", txtRecDate.Text);
-                        sqlcmd.Parameters.AddWithValue("@cn", txtCompanyName.Text);
-                        sqlcmd.Parameters.AddWithValue("@an", txtAppNo.Text);
-                        sqlcmd.Parameters.AddWithValue("@ft", drop_down_facility_type.SelectedValue);
-                        sqlcmd.Parameters.AddWithValue("@dr", txtDocrRec.Text);
-                        sqlcmd.Parameters.AddWithValue("@eb", txtEnterby.Text);
-                       // sqlcmd.Parameters.AddWithValue("@sv", txt2ndverifier.Text);
-                       // sqlcmd.Parameters.AddWithValue("@cd", txtCompleteDate.Text);
-                        sqlcmd.Parameters.AddWithValue("@rem", txtRemark.Text);
-                        sqlcmd.Parameters.AddWithValue("@InsertedBy", username);
-                        sqlcmd.ExecuteNonQuery();
-                        msg.Visible = true;
-                        msg.Text = "Inserted to inserted pending table!<br />It needs your admin approval!";
-                        msg.ForeColor = System.Drawing.Color.Green;
-                        // Session.Remove("acgf_id");
-                        sqlCon.Close();
-                    }
-                }// end of adding new acgf Record
 
+                    string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
+
+
+                    using (SqlConnection sqlCon = new SqlConnection(connectionString))
+
+                    using (SqlCommand cmd = new SqlCommand("SELECT * FROM LoanReg_tbl_insert WHERE ApprovalNumber = @ApprovalNumber", sqlCon))
+                    {
+                        
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            sqlCon.Open();
+                            cmd.Parameters.AddWithValue("@ApprovalNumber", this.txtAppNo.Text.Trim());
+                            DataSet ds = new DataSet();
+                            da.Fill(ds);
+                            if (ds.Tables[0].Rows.Count > 0)
+                            {
+                                this.lblMessage.Text = "sorry, you'er not able to insert deplicate Approval Number!";
+                            }
+                            else
+                            {
+                                using (SqlConnection sqlCon2 = new SqlConnection(connectionString))
+
+                                    sqlCon2.Open();
+                                string query = "INSERT INTO[dbo].[LoanReg_tbl_insert] " + // temp table for insertion
+                              " (" +
+                              "[Received Date]" +
+                              " ,[Company Name]" +
+                               ",[ApprovalNumber]" +
+                               ",[Facility Type]" +
+                              " ,[Document Received]" +
+                               ",[Enter By]" +
+                              // " ,[Second Verifier]" +
+                              //" ,[Completion Date]" +
+                              ",[Remark]" +
+                              " ,[Inserted By]" +
+                              ")" +
+                                    " VALUES" +
+                                    "(" +
+                                    "@rd," +
+                                    "@cn," +
+                                    "@an," +
+                                    "@ft," +
+                                    "@dr," +
+                                    "@eb," +
+                                    // "@sv," +
+                                    // "@cd," +
+                                    "@rem," +
+                                    "@InsertedBy)";
+                                SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
+                                sqlcmd.Parameters.AddWithValue("@rd", txtRecDate.Text);
+                                sqlcmd.Parameters.AddWithValue("@cn", txtCompanyName.Text);
+                                sqlcmd.Parameters.AddWithValue("@an", txtAppNo.Text);
+                                sqlcmd.Parameters.AddWithValue("@ft", drop_down_facility_type.SelectedValue);
+                                sqlcmd.Parameters.AddWithValue("@dr", txtDocrRec.Text);
+                                sqlcmd.Parameters.AddWithValue("@eb", txtEnterby.Text);
+                                // sqlcmd.Parameters.AddWithValue("@sv", txt2ndverifier.Text);
+                                // sqlcmd.Parameters.AddWithValue("@cd", txtCompleteDate.Text);
+                                sqlcmd.Parameters.AddWithValue("@rem", txtRemark.Text);
+                                sqlcmd.Parameters.AddWithValue("@InsertedBy", username);
+                                sqlcmd.ExecuteNonQuery();
+                                msg.Visible = true;
+                                msg.Text = "Inserted to inserted pending table!<br />It needs your admin approval!";
+                                msg.ForeColor = System.Drawing.Color.Green;
+                                // Session.Remove("acgf_id");
+                                sqlCon.Close();
+                            }
+                        }// end of adding new acgf Record
+                    }
+
+                }
                 else // it means update interface is shown now
                 {
 
@@ -159,7 +181,7 @@ namespace Collateral_int
                     using (SqlConnection sqlCon = new SqlConnection(connectionString))
                     {
                         sqlCon.Open();
-                        string query = "INSERT INTO[dbo].[LoanReg_tbl_update] " + // temp table for insertion
+                        string query = "INSERT INTO[dbo].[LoanReg_tbl_Update] " + // temp table for insertion
                       "(id," +
                       "[Received Date]" +
                       ",[Company Name]" +
@@ -199,7 +221,7 @@ namespace Collateral_int
                         sqlcmd.Parameters.AddWithValue("@sv", txt2ndverifier.Text);
                         sqlcmd.Parameters.AddWithValue("@cd", txtCompleteDate.Text);
                         sqlcmd.Parameters.AddWithValue("@rem", txtRemark.Text);
-                        sqlcmd.Parameters.AddWithValue("ib", Session["IB"].ToString());
+                        sqlcmd.Parameters.AddWithValue("ib", username);
                         sqlcmd.Parameters.AddWithValue("@ub", username);
                         sqlcmd.ExecuteNonQuery();
                         msg.Visible = true;
@@ -209,7 +231,8 @@ namespace Collateral_int
                         sqlCon.Close();
                     }
                 }
-                //end of else
+                    //end of else}
+                
             }
         }
         protected void txtRecDate_TextChanged(object sender, EventArgs e)

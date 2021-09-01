@@ -60,7 +60,7 @@
 				<td>&nbsp;</td>
 				<td>
 					<asp:DropDownList ID="statusList" runat="server" CssClass="btn-success" Height="31px" Font-Bold="True" Font-Names="Bahnschrift" Font-Size="Small" TabIndex="5">
-						<asp:ListItem Value="Status" Selected="True">Status</asp:ListItem>
+						<asp:ListItem Value="status" Selected="True">Status</asp:ListItem>
 						<asp:ListItem Value="Pledged">Pledged</asp:ListItem>
 						<asp:ListItem Value="Released">Released</asp:ListItem>
 					</asp:DropDownList>

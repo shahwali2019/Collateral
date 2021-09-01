@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ldr_pending_records.aspx.cs" Inherits="Collateral_int.ldr_pending_records" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
- <style>
+    <style>
             .center
             {
                 text-align:center;
@@ -47,7 +47,7 @@
 
                     <asp:TemplateField HeaderText="All">
                      <HeaderTemplate>
-                    <asp:CheckBox ID="chkb2" runat="server" Text="All" OnCheckedChanged="chkb2_CheckedChanged1" AutoPostBack="true" />
+                    <asp:CheckBox ID="chkb2" runat="server" Text="All" OnCheckedChanged="chkb2_CheckedChanged" AutoPostBack="true" />
                     </HeaderTemplate>
                      <ControlStyle CssClass="center" />
                      <HeaderStyle CssClass="center" />
@@ -57,7 +57,15 @@
                      </ItemTemplate>
                     <ItemStyle HorizontalAlign="center" />
                      </asp:TemplateField>
-
+<%--                       <asp:TemplateField ShowHeader="true" HeaderText="">
+                       <ItemTemplate>
+                           <asp:LinkButton ID="DeleteLbl" runat="server" CommandArgument='<%# Bind("id") %>' 
+                               CausesValidation="False" CommandName="delete" Text="delete"></asp:LinkButton>
+                       </ItemTemplate>
+                       <ControlStyle CssClass="center" />
+                       <HeaderStyle CssClass="center" />
+                       <ItemStyle CssClass="center" />
+                   </asp:TemplateField>--%>
                    <asp:TemplateField HeaderText="id" InsertVisible="False" SortExpression="id">
                        <EditItemTemplate>
                            <asp:Label ID="Label1" runat="server" Text='<%# Eval("id") %>'></asp:Label>
@@ -90,10 +98,10 @@
                    </asp:TemplateField>
                    <asp:TemplateField HeaderText="Approval Number" SortExpression="Approval Number">
                        <EditItemTemplate>
-                           <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("[Approval Number]") %>'></asp:TextBox>
+                           <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("ApprovalNumber") %>'></asp:TextBox>
                        </EditItemTemplate>
                        <ItemTemplate>
-                           <asp:Label ID="Label4" runat="server" Text='<%# Bind("[Approval Number]") %>'></asp:Label>
+                           <asp:Label ID="Label4" runat="server" Text='<%# Bind("ApprovalNumber") %>'></asp:Label>
                        </ItemTemplate>
                        <HeaderStyle CssClass="center" />
                        <ItemStyle CssClass="center" />
@@ -201,17 +209,22 @@
                <SortedDescendingHeaderStyle BackColor="#002876" />
         </asp:GridView>
          <asp:SqlDataSource ID="SqlCon2" runat="server" ConnectionString="<%$ ConnectionStrings:DBCon %>"
-            SelectCommand="SELECT * FROM [LoanReg_tbl_insert]" >
+             SelectCommand="SELECT * FROM [LoanReg_tbl_insert]">
+               <DeleteParameters>
+                  <asp:Parameter Name="id" Type="Int32" DefaultValue="0" />
+             </DeleteParameters>
+
         </asp:SqlDataSource>
+
              <div style="margin-top:-5px;">
                     <asp:GridView ID="GridView3" OnRowCommand="GridView3_RowCommand"   runat="server" ShowHeaderWhenEmpty="True"
                AllowSorting="True" CssClass="auto-style1" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC"
-               BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="SqlConUpdate" PageSize="7" Width="1172px" Visible="False" GridLines="Horizontal">
+               BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="SqlConUpdate" PageSize="7" Width="1172px" Visible="False" OnSelectedIndexChanged="GridView3_SelectedIndexChanged" GridLines="Horizontal">
                         <AlternatingRowStyle BackColor="#CCFFFF" />
                       <Columns>
                             <asp:TemplateField HeaderText="All">
                      <HeaderTemplate>
-                    <asp:CheckBox ID="chkb1" runat="server" Text="All" OnCheckedChanged="chkb1_CheckedChanged1" AutoPostBack="true" />
+                    <asp:CheckBox ID="chkb1" runat="server" Text="All" OnCheckedChanged="chkb1_CheckedChanged" AutoPostBack="true" />
                     </HeaderTemplate>
                      <ControlStyle CssClass="center" />
                      <HeaderStyle CssClass="center" />

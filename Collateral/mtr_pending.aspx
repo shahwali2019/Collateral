@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="mtr_pending.aspx.cs" Inherits="Collateral.mtr_pending" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
+     ظ<br />
      <style>
             .center
             {
@@ -285,14 +286,13 @@
         <br />
 
                  
-         <asp:SqlDataSource ID="SqlCon2" runat="server" ConnectionString="<%$ ConnectionStrings:DBCon %>"
-            SelectCommand="SELECT * FROM [mtr_insert]" DeleteCommand="DELETE FROM [mtr_insert] WHERE [id] = @id">
+         <asp:SqlDataSource ID="SqlCon2" runat="server" ConnectionString="<%$ ConnectionStrings:DBCon %>" SelectCommand="SELECT * FROM [mtr_insert]" DeleteCommand="DELETE FROM [mtr_insert] WHERE [id] = @id">
 <%--         <asp:SqlDataSource ID="SqlCon2" runat="server" ConnectionString="<%$ ConnectionStrings:DBCon %>" 
             DeleteCommand="DELETE FROM [mtr_insert] WHERE [id] = @id))"--%>
 <%--            InsertCommand="INSERT INTO [mtr_insert] ([Client Name], [Memo Ref], [Debit Account], [Credit Account], [Transaction Code], [Memo Submission], [Amount], [Currency], [Heading], [Transaction Detail], [Booding Date], [Value Date], [Status], [Remark], [InsertedBy], [ApprovedBy], [UpdatedBy]) VALUES (@Client_Name, @Memo_Ref, @Debit_Account, @Credit_Account, @Transaction_Code, @Memo_Submission, @Amount, @Currency, @Heading, @Transaction_Detail, @Booding_Date, @Value_Date, @Status, @Remark, @InsertedBy, @ApprovedBy, @UpdatedBy)"--%>
 <%--            SelectCommand="SELECT * FROM [mtr_insert]" UpdateCommand="UPDATE [mtr_insert] SET [Client Name] = @Client_Name, [Memo Ref] = @Memo_Ref, [Debit Account] = @Debit_Account, [Credit Account] = @Credit_Account, [Transaction Code] = @Transaction_Code, [Memo Submission] = @Memo_Submission, [Amount] = @Amount, [Currency] = @Currency, [Heading] = @Heading, [Transaction Detail] = @Transaction_Detail, [Booding Date] = @Booding_Date, [Value Date] = @Value_Date, [Status] = @Status, [Remark] = @Remark, [InsertedBy] = @InsertedBy, [ApprovedBy] = @ApprovedBy, [UpdatedBy] = @UpdatedBy WHERE [id] = @original_id AND [Client Name] = @original_Client_Name AND [Memo Ref] = @original_Memo_Ref AND [Debit Account] = @original_Debit_Account AND [Credit Account] = @original_Credit_Account AND (([Transaction Code] = @original_Transaction_Code) OR ([Transaction Code] IS NULL AND @original_Transaction_Code IS NULL)) AND [Memo Submission] = @original_Memo_Submission AND (([Amount] = @original_Amount) OR ([Amount] IS NULL AND @original_Amount IS NULL)) AND (([Currency] = @original_Currency) OR ([Currency] IS NULL AND @original_Currency IS NULL)) AND (([Heading] = @original_Heading) OR ([Heading] IS NULL AND @original_Heading IS NULL)) AND (([Transaction Detail] = @original_Transaction_Detail) OR ([Transaction Detail] IS NULL AND @original_Transaction_Detail IS NULL)) AND (([Booding Date] = @original_Booding_Date) OR ([Booding Date] IS NULL AND @original_Booding_Date IS NULL)) AND (([Value Date] = @original_Value_Date) OR ([Value Date] IS NULL AND @original_Value_Date IS NULL)) AND (([Status] = @original_Status) OR ([Status] IS NULL AND @original_Status IS NULL)) AND (([Remark] = @original_Remark) OR ([Remark] IS NULL AND @original_Remark IS NULL)) AND (([InsertedBy] = @original_InsertedBy) OR ([InsertedBy] IS NULL AND @original_InsertedBy IS NULL)) AND (([ApprovedBy] = @original_ApprovedBy) OR ([ApprovedBy] IS NULL AND @original_ApprovedBy IS NULL)) AND (([UpdatedBy] = @original_UpdatedBy) OR ([UpdatedBy] IS NULL AND @original_UpdatedBy IS NULL))" ConflictDetection="CompareAllValues" OldValuesParameterFormatString="original_{0}" >--%>
              <DeleteParameters>
-                 <asp:Parameter Name="id" Type="Int32" />
+                  <asp:Parameter Name="id" Type="Int32" DefaultValue="0" />
 <%--                 <asp:Parameter Name="original_Client_Name" Type="String" />
                  <asp:Parameter Name="original_Memo_Ref" Type="String" />
                  <asp:Parameter Name="original_Debit_Account" Type="String" />

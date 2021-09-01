@@ -15,6 +15,11 @@ namespace Collateral_int
 
         string Val1, Val2, Val3, Val4, Val5, Val6, Val7, Val8, Val9, Val10, Val11,Val12,Val13;
 
+        protected void GridView2_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -210,7 +215,9 @@ namespace Collateral_int
 
         protected void ApproveUpdateBtn_Click(object sender, ImageClickEventArgs e)
         {
-
+            string fullUsername = User.Identity.Name;
+            int index_domain = fullUsername.IndexOf("AIB\\");
+            string username = fullUsername.Substring(fullUsername.IndexOf("\\") + 1);
             string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
             using (SqlConnection sqlConn = new SqlConnection(connectionString))
             {
@@ -245,7 +252,7 @@ namespace Collateral_int
                                   ",[Loan Status]=@val9" +
                                   ",[Remark]=@val10" +
                                   ",[Inserted By]=@val11" +
-                                  ",[Approved By]='" + Session["Users"].ToString() + "'" +
+                                  ",[Approved By]='" + username + "'" +
                                   ",[Updated By]=@val13"+
                                   " WHERE id=@val1";
                         SqlCommand sqlcmd = new SqlCommand(queryy, sqlConn);

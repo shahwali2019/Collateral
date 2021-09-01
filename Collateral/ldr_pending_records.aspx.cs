@@ -14,7 +14,24 @@ namespace Collateral_int
     {
         string Val1, Val2, Val3, Val4, Val5, Val6, Val7, Val8, Val9, Val10, Val11, Val12, Val13;
 
-        protected void chkb2_CheckedChanged1(object sender, EventArgs e)
+        protected void chkb1_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox ChkBoxHeader = (CheckBox)GridView2.HeaderRow.FindControl("chkb1");
+            foreach (GridViewRow row in GridView2.Rows)
+            {
+                CheckBox ChkBoxRows = (CheckBox)row.FindControl("chkSelect");
+                if (ChkBoxHeader.Checked == true)
+                {
+                    ChkBoxRows.Checked = true;
+                }
+                else
+                {
+                    ChkBoxRows.Checked = false;
+                }
+            }
+        }
+
+        protected void chkb2_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox ChkBoxHeader = (CheckBox)GridView2.HeaderRow.FindControl("chkb2");
             foreach (GridViewRow row in GridView2.Rows)
@@ -31,10 +48,18 @@ namespace Collateral_int
             }
         }
 
-        protected void chkb1_CheckedChanged2(object sender, EventArgs e)
+        protected void GridView3_RowCommand(object sender, GridViewCommandEventArgs e)
         {
 
         }
+
+        protected void GridView3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        //SqlConnection con = new SqlConnection("Data Source=AIB03W10WS09\\NEW;Initial Catalog=collateral;User ID=aib;Password=Aib@1234");
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -158,7 +183,7 @@ namespace Collateral_int
                         {
                             string id = Val1;
                             sqlCon2.Open();
-                            string Delquery = "DELETE FROM [LoanReg_tbl_insert] WHERE id='" + id + "'";
+                            string Delquery = "DELETE FROM [LoanReg_tbl_insert] WHERE id= '" + id + "'";
                             SqlCommand sqlcmdDel = new SqlCommand(Delquery, sqlCon2);
 
                             sqlcmdDel.ExecuteNonQuery();
@@ -299,44 +324,17 @@ namespace Collateral_int
             GridView3.DataSourceID = "SqlConUpdate";
             GridView3.DataBind();
         }
-    
+
         protected void GridView2_RowCommand(object sender, GridViewCommandEventArgs e)
         {
 
-        }
-
-        protected void chkb2_CheckedChanged(object sender, EventArgs e)
-        {
 
         }
 
-        protected void GridView3_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
 
-        }
 
-        protected void chkb1_CheckedChanged(object sender, EventArgs e)
-        {
 
-        }
 
-        protected void chkb1_CheckedChanged1(object sender, EventArgs e)
-        {
-            CheckBox ChkBoxHeader = (CheckBox)GridView3.HeaderRow.FindControl("chkb1");
-            foreach (GridViewRow row in GridView3.Rows)
-            {
-                CheckBox ChkBoxRows = (CheckBox)row.FindControl("chkSelect");
-                if (ChkBoxHeader.Checked == true)
-                {
-                    ChkBoxRows.Checked = true;
-                }
-                else
-                {
-                    ChkBoxRows.Checked = false;
-                }
-            }
-
-        }
 
         protected void UpdatedPending()
         {

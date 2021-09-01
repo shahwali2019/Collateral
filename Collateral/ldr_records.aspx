@@ -10,7 +10,7 @@
                  width:auto;
                  padding:0 5px 0 5px;
             }
-         .auto-style2 {
+         /*.auto-style2 {
              display: block;
              padding: 6px 12px;
              font-size: 14px;
@@ -25,7 +25,7 @@
              -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
              -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
              transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-         }
+         }*/
          </style>
      <div style=" text-align:center; height:100px; margin-top:10px; " class="alert alert-success" role="alert">
               <h4 class="alert-heading" style="font-family:Bahnschrift;"><strong>LDR RECORDS</strong></h4>  

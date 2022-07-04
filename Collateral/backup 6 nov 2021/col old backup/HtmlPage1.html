@@ -1,0 +1,1129 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<!-- Title  -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<title>Siawash Hospital</title>
+	<!-- Favicon  -->
+	<link rel="icon" href="img/core-img/logo.ico">
+	<!-- Style CSS -->
+	<link rel="stylesheet" href="style.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Lateef&display=swap" rel="stylesheet">
+	<style>
+		.translate {
+		background-color: #4CAF50; /* Green */
+		  border: none;
+		  color: white;
+		  padding: 5px 10px;
+		  text-align: center;
+		  text-decoration: none;
+		  display: inline-block;
+		  font-size: 16px;
+		}
+		
+		.translate:hover {
+		color: #000 !important;
+		background: #f6b93b;
+		border-color: #f6b93b !important;
+		transition: all 0.4s ease 0s;
+		}
+				h5 {
+		 font-family: 'Lateef', cursive;
+		            text-align:center;
+		}
+		
+		        
+		        h1{
+		            font-family: 'Lateef', cursive;
+		            text-align:center;
+		            font-size:12px;
+		        }
+		        
+		        
+		        			h5 {
+ font-family: 'Lateef', cursive;
+            text-align:right;
+}
+
+        
+        h1{
+            font-family: 'Lateef', cursive;
+            text-align:right;
+            font-size:12px;
+        }
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: right;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
+	</style>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		body {
+		            font-family: 'Lateef', cursive;
+		        }
+		
+		        /* The Modal (background) */
+		        .modal {
+		            display: none; /* Hidden by default */
+		            position: fixed; /* Stay in place */
+		            z-index: 1; /* Sit on top */
+		            padding-top: 100px; /* Location of the box */
+		            left: 0;
+		            top: 0;
+		            width: 100%; /* Full width */
+		            height: 100%; /* Full height */
+		            overflow: auto; /* Enable scroll if needed */
+		            background-color: rgb(0,0,0); /* Fallback color */
+		            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+		        }
+		
+		        /* Modal Content */
+		        .modal-content {
+		            position: relative;
+		            background-color: #fefefe;
+		            margin: auto;
+		            padding: 0;
+		            border: 1px solid #888;
+		            width: 100%;
+		            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+		            -webkit-animation-name: animatetop;
+		            -webkit-animation-duration: 2.4s;
+		            animation-name:animatetop;
+		            animation-duration: 0.4s
+		        }
+		
+		        /* Add Animation */
+		        @-webkit-keyframes animatetop {
+		            from {
+		                top: -300px;
+		                opacity: 0
+		            }
+		
+		            to {
+		                top: 0;
+		                opacity: 1
+		            }
+		        }
+		
+		        @keyframes animatetop {
+		            from {
+		                top: -300px;
+		                opacity: 0
+		            }
+		
+		            to {
+		                top: 0;
+		                opacity: 1
+		            }
+		        }
+		
+		        /* The Close Button */
+		        .close {
+		            display:none;
+		            float:left;
+		            color: white;
+		            font-size: 28px;
+		            font-weight: bold;
+		            top:10px;
+		        }
+		
+		            .close:hover,
+		            .close:focus {
+		                color: #000;
+		                text-decoration: none;
+		                cursor: pointer;
+		            }
+		
+		        .modal-header {
+		            direction:rtl;
+		            text-align:center;
+		            padding: 2px 16px;
+		            background-color: #5cb85c;
+		            color: red;
+		        }
+		
+		        .modal-body {
+		            padding: 2px 6px;
+		        }
+		
+		        .modal-footer {
+		            padding: 2px 5px;
+		            background-color: #5cb85c;
+		            color: white;
+		        }
+	</style>
+</head>
+<script type="text/javascript">
+	var arrLang = new Array();
+	    arrLang['en'] = new Array();
+	    arrLang['fa'] = new Array();
+		arrLang['pa'] = new Array();
+	
+	    // English content
+	    arrLang['en']['home'] = 'Home';
+		arrLang['en']['services'] = 'Services';
+	    arrLang['en']['emerg'] = 'Emergency';
+		arrLang['en']['massage'] = 'Massage';
+		arrLang['en']['orthopedic'] = 'Orthopedic';
+		arrLang['en']['info'] = 'Information';
+		arrLang['en']['contact'] = 'Contact';
+		arrLang['en']['hospital'] = 'The first orthopedic hospital in Afghanistan';
+		arrLang['en']['hosp'] = 'Prof. Dr. SiaWash Hospital';
+		arrLang['en']['infos'] = 'Provides 24/7 with experienced doctors and specialists in the following areas:';
+		arrLang['en']['name1'] = 'Noor al-Habib Haseer'
+		arrLang['en']['info1'] = 'Specialist in serious care'
+		arrLang['en']['name2'] = 'Raaz Muhammad'
+		arrLang['en']['info2'] = 'Specialty in the field of general surgery'
+		arrLang['en']['name3'] = 'Doctor Skandaar Hotk'
+		arrLang['en']['info3'] = 'Specialty in Medical Technology'
+		arrLang['en']['name4'] = 'Doctor Muhammad Yousef Bareki'
+		arrLang['en']['info4'] = 'Specialty in the eye diseases department'
+		arrLang['en']['name5'] = 'Dr. Abdullah Ahmad'
+		arrLang['en']['info5'] = 'Orthopedic Surgery Specialty'
+		arrLang['en']['name6'] = 'Dr. Abdul Samae Yousafzai'
+		arrLang['en']['info6'] = 'Orthopedic Surgery Specialty'
+		arrLang['en']['name7'] = 'Sayyed Navid'
+		arrLang['en']['info7'] = 'Orthopedic Surgery Specialty'
+		arrLang['en']['name9'] = 'Ranhouriar Doctor Asheeq Khan Saadati'
+		arrLang['en']['info9'] = 'Specialist in General Surgery'
+		arrLang['en']['name10'] = 'Dr. Khaled Esmati '
+		arrLang['en']['info10'] = 'Specialty in Orthopedics'
+		arrLang['en']['news'] = 'Prof. Dr. Siawash Hospital, with a specialist and experienced staff in the best location of Kabul'
+		arrLang['en']['news1'] = 'Stay in touch with us'
+		arrLang['en']['news2'] = 'Latest News'
+		arrLang['en']['news3'] = 'specialists Afghan Doctors '
+		arrLang['en']['news4'] = 'It has increased in the number of drug addicts this year'
+		arrLang['en']['news5'] = 'Understanding with Indian doctors at Siavash Hospital'
+		arrLang['en']['news6'] = 'contact us'
+		arrLang['en']['news7'] = 'Submit'
+		arrLang['en']['news8'] = 'subscribe'
+		arrLang['en']['news9'] = 'By subscribing to this section you can get the latest medical news and events'
+		arrLang['en']['news9'] = 'By subscribing to this section you can get the latest medical news and events'		
+		
+		
+		
+	    // Dari Language) 
+	    arrLang['fa']['home'] = 'صفحه';
+		arrLang['fa']['services'] = 'خدمات';
+		arrLang['fa']['emerg'] = 'عاجل';
+		arrLang['fa']['massage'] = 'ماساژ درمانی';
+		arrLang['fa']['orthopedic'] = 'اوتوپدی';
+		arrLang['fa']['info'] = 'معلومات';
+		arrLang['fa']['contact'] = 'تماس';
+		arrLang['fa']['hospital'] = 'اولین شفاخانه اختصاصی اورتوپیدی در افغانستان';
+		arrLang['fa']['hosp'] = 'شفاخانه پروفیسور دوکتور سیاووش';
+		arrLang['fa']['infos'] = 'با دکتران و متخصصان با تجربه به طور بیست وچهار ساعته در بخش های ذیل خدمات صحی ارایه مینماید';
+		
+		arrLang['fa']['name1'] = 'نورالحبیب حصیر'
+		arrLang['fa']['info1'] = 'متخصص در بخش  مراقبت جدی'
+		arrLang['fa']['name2'] = 'رازمحمد'
+		arrLang['fa']['info2'] = 'تخصص در رشته جراحی عمومی'
+		arrLang['fa']['name3'] = 'دوکتور سکندر هوتک'
+		arrLang['fa']['info3'] = 'تخصص در تکنالوژِی طبی'
+		arrLang['fa']['name4'] = 'دوکتور محمد یووسف بره کی'
+		arrLang['fa']['info4'] = 'تخصص در بخش امراض چشم'
+		arrLang['fa']['name5'] = 'عبدالله احمد'
+		arrLang['fa']['info5'] = 'تخصص جراحی اورتوپیدی'
+		arrLang['fa']['name6'] = 'عبدالسمیع یوسفزی'
+		arrLang['fa']['info6'] = 'تخصص جراحی اورتوپیدی'
+		arrLang['fa']['name7'] = 'سید نوید'
+		arrLang['fa']['info7'] = 'تخصص جراحی اورتوپیدی'
+		arrLang['fa']['name9'] = 'رنحوریار دوکتور عاشق خان سعادتی'
+		arrLang['fa']['info9'] = 'متخصص جراحی عمومی'
+		arrLang['fa']['name10'] = 'خالد عصمتی ولد محمد طاهر'
+		arrLang['fa']['info10'] = 'تخصص در رشته اورتوپیدی'
+		arrLang['fa']['news'] = 'شفاخانه سیاوش , با کادری متخصص و مجرب در بهترین نفطه شهر کابل'
+		arrLang['fa']['news1'] = 'با ما در ارتباط باشید'
+		arrLang['fa']['news2'] = 'آخرین اخبار'
+		arrLang['fa']['news3'] = '........ دست متخصصان افغان'
+		arrLang['fa']['news4'] = 'افزایش شمار معتادان به مواد مخدر طی سال جاری'
+		arrLang['fa']['news5'] = 'اخذ تفاهم نامه با دکتران هندی در شفاخانه سیاوش'
+		arrLang['fa']['news6'] = 'تماس با ما'
+		arrLang['fa']['news7'] = 'ارسال'
+		arrLang['fa']['news8'] = 'عضو شوید'
+		arrLang['fa']['news9'] = 'با عضویت در این بخش شما میتوانید از آخرین اخبار و رویداد های مهم طبی با خبر شوید'
+	
+		
+	    // Pashto
+		arrLang['pa']['home'] = 'مخ';
+		arrLang['pa']['services'] = 'خدمتونه';
+		arrLang['pa']['emerg'] = 'اضطراري';
+		arrLang['pa']['massage'] = 'ارتوپيديک';
+		arrLang['pa']['orthopedic'] = 'ارتوپيديک';
+		arrLang['pa']['info'] = 'معلومات';
+		arrLang['pa']['contact'] = 'اړیکه';
+		arrLang['pa']['hospital'] = 'په افغانستان کې لومړنی ارتوپيديک روغتون';
+	    arrLang['pa']['hosp'] = 'پروفیسور ډاکټر سیاوش روغتون';
+		arrLang['pa']['infos'] = 'د پروفیسور سیاوش روغتون په لاندې څانګو کې د ناروغانو په چوپړ کې دی';
+		arrLang['pa']['name1'] = 'نورالحبیب حصیر'
+		arrLang['pa']['info1'] = 'په جدي پاملرنې کې متخصص'
+		arrLang['pa']['name2'] = 'رازمحمد'
+		arrLang['pa']['info2'] = 'د عمومي جراحي په ساحه کې ځانګړتیا'
+		arrLang['pa']['name3'] = 'دوکتور سکندر هوتک'
+		arrLang['pa']['info3'] = 'په طبي ټیکنالوژۍ کې ځانګړتیا'
+		arrLang['pa']['name4'] = 'دوکتور محمد یووسف بره کی'
+		arrLang['pa']['info4'] = 'د سترګو ناروغیو څانګه کې ځانګړتیا'
+		arrLang['pa']['name5'] = 'عبدالله احمد'
+		arrLang['pa']['info5'] = 'د ارتوپیډیک جراحي ځانګړتیا'
+		arrLang['pa']['name6'] = 'عبدالسمیع یوسفزی'
+		arrLang['pa']['info6'] = 'د ارتوپیډیک جراحي ځانګړتیا'
+		arrLang['pa']['name7'] = 'سید نوید'
+		arrLang['pa']['info7'] = 'د ارتوپیډیک جراحي ځانګړتیا'
+		arrLang['pa']['name9'] = 'رنحوریار دوکتور عاشق خان سعادتی'
+		arrLang['pa']['info9'] = 'د عمومي جراحي متخصص'
+		arrLang['pa']['name10'] = 'خالد عصمتی ولد محمد طاهر'
+		arrLang['pa']['info10'] = 'په ارتوپیډیک کې ځانګړتیا'
+		arrLang['pa']['news'] = 'سیاوش روغتون ، د کابل په غوره حویلیو کې د متخصص او تجربه لرونکي کارمندانو سره'
+		arrLang['pa']['news1'] = 'زموږ سره په اړیکه کې اوسئ'
+		arrLang['pa']['news2'] = 'وروستي خبرونه'
+		arrLang['pa']['news3'] = '........ افغان متخصصینو لاس په کار شو'
+		arrLang['pa']['news4'] = 'سږکال په مخدره توکو د روږدو کسانو په شمیر کې زیاتوالی'
+		arrLang['pa']['news5'] = 'په سیاوش روغتون کې د هندي ډاکټرانو سره تفاهم'
+		arrLang['pa']['news6'] = 'له موږ سره اړیکه'
+		arrLang['pa']['news7'] = 'پوسټ'
+		arrLang['pa']['news8'] = 'غړی شئ'
+		arrLang['pa']['news9'] = 'پدې برخه کې د ګډون سره تاسو کولی شئ وروستي طبي خبرونه او پیښې ترلاسه کړئ'
+	    // Process translation
+	    $(function() {
+	      $('.translate').click(function() {
+	        var lang = $(this).attr('id');
+	
+	        $('.lang').each(function(index, item) {
+	          $(this).text(arrLang[lang][$(this).attr('key')]);
+	        });
+	      });
+	    });
+</script>
+
+<body oncontextmenu="return false">
+	<!-- Preloader -->
+	<div id="">
+		<div class=""></div>
+	</div>
+	<!-- ***** Header Area Start ***** -->
+	<header class="header-area">
+		<!-- Top Header Area -->
+		<div class="top-header-area">
+			<div class="container h-100">
+				<div class="row h-100">
+					<div class="col-12 h-100">
+						<div style="font-family: 'Lateef', cursive;">
+							<p style="font-size:25px; text-align:center;line-height: 1.8;letter-spacing: -0.025em;font-weight: 500;">وَإِذَا مَرِضْتُ فَهُوَ يَشْفِينِ</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Main Header Area -->
+		<!-- Main Header Area -->
+		<div class="main-header-area" id="stickyHeader" style="font-family: 'Lateef', cursive;">
+			<div class="container h-100">
+				<div class="row h-100 align-items-center">
+					<div class="col-12 h-100">
+						<div class="main-menu h-100">
+							<nav class="navbar h-100 navbar-expand-lg" dir="rtl">
+								<!-- Logo Area  -->
+								<a class="navbar-brand" href="index.html">
+									<img src="img/core-img/logo.jpeg" alt="Logo" style="width: 50px; height:50px; margin-left:40px;   ">
+								</a>
+								<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#medilifeMenu" aria-controls="medilifeMenu" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+								</button>
+								<div class="collapse navbar-collapse" id="medilifeMenu">
+									<!-- Menu Area -->
+									<ul class="navbar-nav ml-auto">
+										<li class="nav-item active"> <a class="lang nav-link" key="home" href="index.html">صفحه <span class="sr-only">(current)</span></a>
+										</li>
+										<li class="nav-item">	<a class=" lang nav-link" key="info" href="about-us.html">خدمات</a>
+											<li class="nav-item">	<a class=" lang nav-link" key="info" href="about-us.html">معلومات</a>
+											</li>
+											<li class="nav-item">	<a class="lang nav-link" key="contact" href="contact.html">تماس</a>
+											</li>
+									</ul>
+									<!-- languageES------->
+									<ul>
+										<li>
+											<button id="en" class="translate">English</button>
+											<button id="pa" class="translate">پښتو</button>
+											<button id="fa" class="translate">دری</button>
+										</li>
+									</ul>
+								</div>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- ***** Header Area End ***** -->
+	<!-- ***** Hero Area Start ***** -->
+	<section class="hero-area">
+		<div class="hero-slides owl-carousel" style="font-family: 'Lateef', cursive;">
+			<!-- Single Hero Slide -->
+			<div class="single-hero-slide bg-img bg-overlay-white" style="background-image: url(img/bg-img/doc13.jpeg);">
+				<div class="container h-100">
+					<div class="row h-100 align-items-center">
+						<div class="col-12">
+							<div class="hero-slides-content" style="margin-top: 110px; height:500px;">
+								<h2 data-animation="fadeInUp" data-delay="100ms" class="lang" key="hosp" style="background-color:rgba(40, 78, 125, 0.72); text-align: center; color:#fff">شفاخانه پروفیسور دوکتور سیاووش</h2>
+								<h2 data-animation="fadeInUp" class="lang" key="hospital" style="text-align:center">اولین شفاخانه اختصاصی اورتوپیدی در افغانستان</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Single Hero Slide -->
+			<div class="single-hero-slide bg-img bg-overlay-white" style="background-image: url(img/bg-img/doc7.jpeg);">
+				<div class="container h-100">
+					<div class="row h-100 align-items-center">
+						<div class="col-12">
+							<div class="hero-slides-content" style="text-align:center;">
+								<h2 data-animation="fadeInUp" data-delay="100ms" class="lang" key="hospital">شفاخانه پروفیسور دوکتور سیاووش<br>اولین و مجهزترین شفاخانه اختصاصی اورتوپدی در افغانستان</h2>
+								<a href="contact.html" class="btn medilife-btn mt-50" data-animation="fadeInUp" data-delay="700ms" class="lang" key="contact">تماس<span>+</span></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Single Hero Slide -->
+			<div class="single-hero-slide bg-img bg-overlay-white" style="background-image: url(img/bg-img/doc9.jpeg);">
+				<div class="container h-100">
+					<div class="row h-100 align-items-center">
+						<div class="col-12">
+							<div class="hero-slides-content" style="text-align:center;">
+								<h2 data-animation="fadeInUp" data-delay="100ms" class="lang" key="hospital"> پروفیسور دوکتور سیاووش<br>فوق تخصص اورتوپدی از کشور ترکیه</h2>
+								<a href="contact.html" class="btn medilife-btn mt-50" data-animation="fadeInUp" data-delay="700ms" class="lang" key="contact">تماس<span>+</span></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- ***** Hero Area End ***** -->
+	<!-- ***** Services Area Start ***** -->
+	<div class="medilife-services-area section-padding-100-20">
+		<h2 style="text-align:center; height:60px; line-height:1.5;  background-color:rgba(40, 78, 125, 0.72); text-align: center;color:#fff; position: relative; font-family: 'Lateef', cursive;" class="lang" key="infos"> با دکتران و متخصصان با تجربه به طور بیست وچهار ساعته در بخش های ذیل خدمات صحی ارایه مینماید</h2>
+		<div class="container" style="direction:rtl;">
+			<div class="row">
+				<!-- Single Service Area -->
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="single-service-area d-flex">
+						<div class="service-icon"> <i class="icon-doctor"></i>
+						</div>
+						<div class="service-content" style="padding-right:10px;">
+							<a href="#" id="myBtn">
+								<h5 class="lang" key="name1">نورالحبیب حصیر</h5>
+							</a>
+							<!-- The Modal -->
+							<div id="myModal" class="modal">
+								<!-- Modal content -->
+								<div class="modal-content">
+									<div class="modal-header"> <span class="close">&times;</span>
+										<h2></h2>
+									</div>
+									<div class="modal-body">
+										<table cellpadding="25">
+											<tr>
+												<td style="text-align:center; border-left:1px solid green;">نورالحبیب حصیر فارغ التحصیل فاکولته طب معالجوی پوهنتون کابل سال 1365 میباشد.ایشان دوره تخصص خود را در سرویس داخله شفاخانه علی آباد بعد از سپری نمودند. وی دوره تخصص و اخذ سند تخصص از شفاخانه به صفت متخصص در بخش مراقبت جدی سند تخصص در رشته ایکو کاردیوگرافی, التراسوند, و داخله مدت بالاتر از 24 سال بصفت سر طبیب پولی کلینیک موسسه MDL مربوط ملل متحد. استاد پوهنتون دعوت پوهنحی طب Email:mdc.hasir@gmail.com</td>
+												<td style="text-align:center;border-left:1px solid green;">نورالحبیب حصیر: نورالحبیب حصیر په کال 1365 کی د کابل پوهنتون طب پوهنځی څخه فارغ شوی. د تخصص دوره یی د علی اباد روغتون په داخله بخش کی ترسره او د تخصص د دوری د تکمیلولو وروسته یی د روغتون څخه د جدی پاملرنی د متخصص داکتر په صفت خپل سند تر لاسه کړ. دایکوکاردیوګرافی، التراسوند، او داخلی په برخه کی د تخصص سند ترلاسه کولو سربیره د ملګرو ملتونو د MDL موسسه په پولی کلینک کی د 24 کلنو څخه هم ډیر د سرطبیب یا مشر داکتر په هیڅ‎ پاتی شوی. د دعوت پوهنتون د طب پوهنځی استاد Email:mdc.hasir@gmail.com Phone:0788880364</td>
+												<td style="text-align:center">Noor-ul-Habib Haseer Graduated from Kabul University Faculty of Medicine Therapist in 1986. Specialization in internist services Ale-Abaad and I got Specialty in Echo Cardiography, Ultrasound and internist from the hospital. I had worked more than 24 years at the United Nations MDL Institute Polyclinic as head of doctors. Teacher in the University of Dawat in Faculty of Medicine. Email:mdc.hasir@gmail.com Phone: +93(0)788880364</td>
+											</tr>
+										</table>
+									</div>
+									<div class="modal-footer" style="height:10px"></div>
+								</div>
+							</div>
+							<script>
+								// Get the modal
+								var modal = document.getElementById("myModal");
+								
+								// Get the button that opens the modal
+								var btn = document.getElementById("myBtn");
+								
+								// Get the <span> element that closes the modal
+								var span = document.getElementsByClassName("close")[0];
+								
+								// When the user clicks the button, open the modal 
+								btn.onclick = function() {
+								  modal.style.display = "block";
+								}
+								
+								// When the user clicks on <span> (x), close the modal
+								span.onclick = function() {
+								  modal.style.display = "none";
+								}
+								
+								// When the user clicks anywhere outside of the modal, close it
+								window.onclick = function(event) {
+								  if (event.target == modal) {
+								    modal.style.display = "none";
+								  }
+								}
+							</script>
+							<h1 class="lang" key="info1">
+								متخصص در بخش  مراقبت جدی 		
+							</h1>
+						</div>
+					</div>
+				</div>
+				<!-- Single Service Area -->
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="single-service-area d-flex">
+						<div class="service-icon"> <i class="icon-doctor"></i>
+						</div>
+						<div class="service-content" style="padding-right:10px;">
+							<a href="#" id="myBtn2">
+								<h5 class="lang" key="name2">رازمحمد</h5>
+							</a>
+							<!-- The Modal -->
+							<div id="myModal2" class="modal">
+								<!-- Modal content -->
+								<div class="modal-content">
+									<div class="modal-header"> <span class="close">&times;</span>
+										<h2></h2>
+									</div>
+									<div class="modal-body">
+										<table cellpadding="25">
+											<tr>
+												<td style="text-align:center; border-left:1px solid green;">اسم:رازمحمد ولد:محمد قاسم سال تولد:۱۳۴۸ تحصیلات: درسال ۱۳۵۵ شامل لیسه محراب الدین کابل درسال ۱۳۶۳ ازحربی شونزی درسال ۱۳۶۶ار حربی شونزی فارغ وشامل فاکولته طب نظامی شد درسال ۱۳۷۹ شامل کادرعلمی اکادمی علوم طبی شده به رتبه پوهنیار در سال ۱۳۸۰ در پروگرام تخصص شامل گردیدم دوره تخصص در رشته جراحی عمومی تخصص اخذ نمودم درسال۱۳۹۵ به رتبه علمی پوهنمل ارتقاع نمودمپ مهارت: اجرا بعضی عملیات های جراحی بطنی اجرا بعضی عملیات های یورولوژی اجرا بعضی عملیات های نسایی ولادی اجرا بعضی عملیات های صدری اوعیه Email: razmohammad484@gmail.com Phone: 0799347565</td>
+												<td style="text-align:center;border-left:1px solid green;">نوم: زار محمد د پلار نوم: محمد قاسم: د زیږیدو کال: 1348 تحصیلات: په کال 1355 کی د کابل ولایت په محراب الدین لیسه کی شامل. په کال 1363 په حربی پوهنتون کی شامل. په کال 1366 د حربی پوهنتون څخه فارغ او نظامی طب پوهنځی ته شامل شوم. په کال 1379 د طبی علومو په اکادمی علمی کادر کی په پوهنیار رتبه شامل او په کال 1380 کی د تخصص په پروګرام کی داخل. په جراحی عمومی کی می خپل تخصص ترلاسه کړل. په کال 1395 کی می د پوهنمل علمی رتبه ته ارتقاع وکړه. مهارتونه د یوتعداد بطنی جراحی عملیاتو تر سره کول. دیو تعداد یورولوژی عملیاتو تر سره کول. د یوتعداد نسایی او ولادی عملیاتو تر سره کول. د یوتعداد صدری او د سترګو عملیاتو تر سره کول. Email: razmohammad484@gmail.com Phone: 0799347565</td>
+												<td style="text-align:center">Name: Raz Muhammad Son of: Muhammad Qasim Date of birth: 1969 Educations; Started High School in Marabudin High School in 1976. In 1987, graduated from Harbi Shonzi and joined faculty of medicine in Military. In 2000, graduated from academy of medical sciences. In 2001, I specialize in the program of medical science. Specialization in general surgery. Skills: It is performing certain operations such as surgical incision. It is performing certain operations such as urology. It is performing certain operations such as Obstetric gynecology unit. It is executing certain operations and presidencies. Email: razmohammad484@gmail.com Phone: 0799347565</td>
+											</tr>
+										</table>
+									</div>
+									<div class="modal-footer" style="height:10px"></div>
+								</div>
+							</div>
+							<script>
+								// Get the modal
+								var modal = document.getElementById("myModal2");
+								
+								// Get the button that opens the modal
+								var btn = document.getElementById("myBtn2");
+								
+								// Get the <span> element that closes the modal
+								var span = document.getElementsByClassName("close")[0];
+								
+								// When the user clicks the button, open the modal 
+								btn.onclick = function() {
+								  modal.style.display = "block";
+								}
+								
+								// When the user clicks on <span> (x), close the modal
+								span.onclick = function() {
+								  modal.style.display = "none";
+								}
+								
+								// When the user clicks anywhere outside of the modal, close it
+								window.onclick = function(event) {
+								  if (event.target == modal) {
+								    modal.style.display = "none";
+								  }
+								}
+							</script>
+							<h1 class="lang" key="info2"> تخصص در رشته جراحی عمومی</h1>
+						</div>
+					</div>
+				</div>
+				<!-- Single Service Area -->
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="single-service-area d-flex">
+						<div class="service-icon"> <i class="icon-doctor"></i>
+						</div>
+						<div class="service-content" style="padding-right:10px;">
+							<a href="#" id="myBtn3">
+								<h5 class="lang" key="name3">دوکتور سکندر هوتک</h5>
+							</a>
+							<!-- The Modal -->
+							<div id="myModal3" class="modal">
+								<!-- Modal content -->
+								<div class="modal-content">
+									<div class="modal-header"> <span class="close">&times;</span>
+										<h2></h2>
+									</div>
+									<div class="modal-body">
+										<table cellpadding="25">
+											<tr>
+												<td style="text-align:center; border-left:1px solid green;">دوکتور سکندر هوتک فرزند گل آقا در سال 1368 در بگرامی کابل متولد شده در سال 1376 شامل لیسه عالی ابراهیم خلیل الله به درجه عالی در سال 1388 از لیسه متذکره فارغ گردیده در سال 1389 شامل انستیتیوت علوم صحی غضنفر شده و بعد از فراغت به درجه عالی شامل یکی از پوهنتون های خصوصی و به درجه لیسانس در رشته تکنالوژِی طبی سند فراغت بدست دارد مدت هفت سال میشود که موصوف در شفاخانه های خصوصی و دولتی جهت خدمات صحی برای هم وطنان عزیز مصروف خدمت میباشد</td>
+												<td style="text-align:center;border-left:1px solid green;">داکتر سکندر هوتک: داکتر سکندر هوتک د ګل اقا زوی چه په کال 1368 کی د کابل په بګرامی سیمه کی زیږیدلی او په کال 1376 کی د ابراهیم خیل په عالی لیسه کی شامل او په کال 1388 کی د نموړی لیسه څخه په عالی درجه فارغ شوی. په کال 1389 د غضنفر روغتیایی علومو په انستیتیوت کی شامل او هغه په تعقیب یی ځان په خصوصی پوهنتون کی شامل او وروسته د هماغه پوهنتون د طبی تکنالوژی په برخه کی د لیسانس سند ترلاسه کړ. او همدارنګه تقریبا 7 کاله کیږی چه خپل وطنوالو ته په عامه او خصوصی روغتونونو کی خدمت تر سره کوی.</td>
+												<td style="text-align:center">Dr. Sakandar Hotak, son of Gul Agha, was born in 1989 in Bagram, Kabul. Started Ibrahim Khalilullah High School in 1997. Graduated from high school in 2009. In 2010 he joined Ghazanfar Institute of Health Sciences. Graduated with a bachelor's degree in private university and he got a bachelor's degree in medical technology. Currently I working in the private and governoment hospital to serve dear patients.</td>
+											</tr>
+										</table>
+									</div>
+									<div class="modal-footer" style="height:10px"></div>
+								</div>
+							</div>
+							<script>
+								// Get the modal
+								var modal = document.getElementById("myModal3");
+								
+								// Get the button that opens the modal
+								var btn = document.getElementById("myBtn3");
+								
+								// Get the <span> element that closes the modal
+								var span = document.getElementsByClassName("close")[0];
+								
+								// When the user clicks the button, open the modal 
+								btn.onclick = function() {
+								  modal.style.display = "block";
+								}
+								
+								// When the user clicks on <span> (x), close the modal
+								span.onclick = function() {
+								  modal.style.display = "none";
+								}
+								
+								// When the user clicks anywhere outside of the modal, close it
+								window.onclick = function(event) {
+								  if (event.target == modal) {
+								    modal.style.display = "none";
+								  }
+								}
+							</script>
+							<h1 class="lang" key="info3">تخصص در تکنالوژِی طبی</h1>
+						</div>
+					</div>
+				</div>
+				<!-- Single Service Area 
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="single-service-area d-flex">
+						<div class="service-icon"> <i class="icon-doctor"></i>
+						</div>
+						<div class="service-content" style="padding-right:10px;">
+							<h5 class="lang" key="name3">ر هوتک</h5>
+							<h1 class="lang" key="info3">> تخصص در تکنالوژِی طبی</h1>
+						</div>
+					</div>
+				</div>
+				-->
+				<!-- Single Service Area -->
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="single-service-area d-flex">
+						<div class="service-icon"> <i class="icon-doctor"></i>
+						</div>
+						<div class="service-content" style="padding-right:10px;">
+							<a href="#" id="myBtn4">
+								<h5 class="lang" key="name5">دوکتور محمد یووسف بره کی</h5>
+							</a>
+							<!-- The Modal -->
+							<div id="myModal4" class="modal">
+								<!-- Modal content -->
+								<div class="modal-content">
+									<div class="modal-header"> <span class="close">&times;</span>
+										<h2></h2>
+									</div>
+									<div class="modal-body">
+										<table cellpadding="25">
+											<tr>
+												<td style="text-align:center; border-left:1px solid green;">دوکتور محمد یووسف بره کی رشته :تخصص در بخش امراض چشم دارای دو سند تخصص در رشته چشم در داخل و خارج کشور دارای دیپلوم در بخشHospital manegment از کشور هندوستان شهر ممبای رتبه علمی : رنحوروال –استاد کادر تخصص دوکتوران در شفاخانه نور استاد اکامیک : DHA-PGD-DO-MD-OPHTHOLMOLOGIST EMAIL:moph-noor@yahoo.com</td>
+												<td style="text-align:center;border-left:1px solid green;">داکتر محمد یوسف برکی: رشته: د سترګو د امراضو په برخه کی تخصص دسترګو په برخه کی د افغانستان او خارج څخه د تخصص دوه معتبر سندونو درلونکی. د هندوستان به ممبی ښار څخه د روغتون د مدیریت په برخه کی ډیپلوم. علمی رتبه: رنځوروال په نور روغتون کی د کادر تخصص استاد. استاد اکامیک : DHA-PGD-DO-MD-OPHTHOLMOLOGIST EMAIL:moph-noor@yahoo.com
+													<td style="text-align:center">Doctor Muhammad Yousuf Bareki Specialization: Specialty in Ophthalmology. Has two specialties in the field of ophthalmology from Afghanistan and overseas. I got a diploma in Hospital Manegment from Mumbai, India. Academic Rank: Renhorwal – Head of Specialty Doctors at Noor Hospital. Acacetic Master: DHA-PGD-DO-MD-OPHTHOLMOLOGIST Email Add: moph-noor@yahoo.com</td>
+											</tr>
+										</table>
+									</div>
+									<div class="modal-footer" style="height:10px"></div>
+								</div>
+							</div>
+							<script>
+								// Get the modal
+								var modal = document.getElementById("myModal4");
+								
+								// Get the button that opens the modal
+								var btn = document.getElementById("myBtn4");
+								
+								// Get the <span> element that closes the modal
+								var span = document.getElementsByClassName("close")[0];
+								
+								// When the user clicks the button, open the modal 
+								btn.onclick = function() {
+								  modal.style.display = "block";
+								}
+								
+								// When the user clicks on <span> (x), close the modal
+								span.onclick = function() {
+								  modal.style.display = "none";
+								}
+								
+								// When the user clicks anywhere outside of the modal, close it
+								window.onclick = function(event) {
+								  if (event.target == modal) {
+								    modal.style.display = "none";
+								  }
+								}
+							</script>
+							<h1 class="lang" key="info5">>تخصص در بخش امراض چشم</h1>
+						</div>
+					</div>
+				</div>
+				<!-- Single Service Area -->
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="single-service-area d-flex">
+						<div class="service-icon"> <i class="icon-doctor"></i>
+						</div>
+						<div class="service-content" style="padding-right:10px;">
+							<a href="#" id="myBtn5">
+								<h5 class="lang" key="name5">عبدالله احمد</h5>
+							</a>
+							<!-- The Modal -->
+							<div id="myModal5" class="modal">
+								<!-- Modal content -->
+								<div class="modal-content">
+									<div class="modal-header"> <span class="close">&times;</span>
+										<h2></h2>
+									</div>
+									<div class="modal-body">
+										<table cellpadding="25">
+											<tr>
+												<td style="text-align:center; border-left:1px solid green;">عبدالله احمد سال تولد 1364 دوره ابتدایه و متوسطه: از سال 1372 الی 1381 مکتب متوسطه عربخانه شهر میمنه ولایت فاریاب دوره لیسه: از سال 1382 الی 1385 لیسه عالی خراسان و لیسه عالی ابوعبید جوزجانی شهر میمنه ولایت فاریاب تحصیلات عالی : در سال 1386 شامل پوهنحی طب پوهنتون بلخ گردیده و در اخیر سال 1392 با سپری نمودن دوره ستاژ در شفاخانه سردار محمد داود خان در کابل با اخذ نمرات کدری فارغ گردیده است تخصص : در شروع سال 1393 شامل پروگرام تخصص جراحی اورتوپیدی و تروماتولوژِی در شفاخانه کدری علی آباد پوهنتون علوم طبی کابل ابو علی سینا گردیده و در اخیر سال 1397 مونوگراف خویش را به موفقیت دفاع نموده نموده و با اخذ نمرات عالی به حیث متخصص جراحی اورتوپیدی وتروماتولوژی معرفی گردید از شروع سال 1392 تا کنون منحیث یکی از شاگردان زحمت کش و وفا دار پروفیسور دوکتور سیاووش در کلینیک اورتوپیدی دوکتور سیاووش ایفای وظیفه مینماید در این مدت مغلق ترین عملیات های اورتوپیدی و تروماتولوژی را تحت نظر استاد سیاووش به موفقیت انجام داده و یکی از خدمت گاران واقعی دردمندان کشور میباشند</td>
+												<td style="text-align:center;border-left:1px solid green;">عبدالله احمد: د زیږیدو کال: 1364 ابتدایه او متوسط ښونځی: د1372 څخه تر 1381 پوری د فاریاب ولایت د میمنی ښار په متوسط ښونځی کی. د لیسی دوره: د 1382 کال نه تر 1385 پوری د فاریاب ولایت د میمنی ښار په خراسان او ابوعبید جوزجانی عالی لیسه کی. لوړی زده کړی: په کال 1386 کی د بلخ پوهنتون په طب پوهنځی کی شامل او 1392 کال په ورستیو کی د سردار داود خان په روغتون کی د د ستاژ د دوری په تکمیلیدو سره په کدری نمرو فارغ شو. تخصص: د 1393 په شروع کی کابل طبی پوهنتون د علی اباد کدری روغتون او د ابوعلی سینا روغتون کی د اورتوپیدی او تروماتولوژی تخصص جراحی پروګرام کی شامل شو. او د کال 1397 په اخیر کی د خپل مونوګراف په موافقانه شکل دفاع او په عالی نمراتو اخیستو سره د اورتوپیدی او تروماتولوژی د جراحی د متخصص په هیڅ معرفی شوم. د کال 1392 د شروع نه تر اوسه پوری د پروفیسور داکتر سیاووش په اورتوپیدیک روغتون کی دده د زحمت کش او وفادار شاګرد په صفت وظیفه اجرا کړی. او پدی دوران کی د استاد سیاووش تر نظر لاندی می سخت ترین عملیات په موفقانه شکل سرته رسولی او ددی وطن د واقعی خدمتګارانو د جملی څخه یم.</td>
+												<td style="text-align:center">Name: Abdullah Ahmad Date of Birth: 1985 Graduated High School in 2006 from Abu Abaid High School. Graduated from Bulkh University in 2013 and I did my internship in Shahid Sardar Muhammad Dauad khan excellent marks. In 2014, the program of specializations in surgical and orthopedic and traumatology at the Kadri Aliabad University of Medical Sciences, Abu Ali Sina, and in 2018 the monograph was presented with dedicated defense and specialty surgical treatment. In 2013, It has been a disciple of the hard-working and faithful Professor Dr. Siawash in the Clinical.</td>
+											</tr>
+										</table>
+									</div>
+									<div class="modal-footer" style="height:10px"></div>
+								</div>
+							</div>
+							<script>
+								// Get the modal
+								var modal = document.getElementById("myModal5");
+								
+								// Get the button that opens the modal
+								var btn = document.getElementById("myBtn5");
+								
+								// Get the <span> element that closes the modal
+								var span = document.getElementsByClassName("close")[0];
+								
+								// When the user clicks the button, open the modal 
+								btn.onclick = function() {
+								  modal.style.display = "block";
+								}
+								
+								// When the user clicks on <span> (x), close the modal
+								span.onclick = function() {
+								  modal.style.display = "none";
+								}
+								
+								// When the user clicks anywhere outside of the modal, close it
+								window.onclick = function(event) {
+								  if (event.target == modal) {
+								    modal.style.display = "none";
+								  }
+								}
+							</script>
+							<h1 class="lang" key="info5">تخصص جراحی اورتوپیدی</h1>
+						</div>
+					</div>
+				</div>
+				<!-- Single Service Area -->
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="single-service-area d-flex">
+						<div class="service-icon"> <i class="icon-doctor"></i>
+						</div>
+						<div class="service-content" style="padding-right:10px;">
+							<a href="#" id="myBtn6">
+								<h5 class="lang" key="name6">عبدالسمیع یوسفزی</h5>
+							</a>
+							<!-- The Modal -->
+							<div id="myModal6" class="modal">
+								<!-- Modal content -->
+								<div class="modal-content">
+									<div class="modal-header"> <span class="close">&times;</span>
+										<h2></h2>
+									</div>
+									<div class="modal-body">
+										<table cellpadding="25">
+											<tr>
+												<td style="text-align:center; border-left:1px solid green;">اسم عبدالسمیع یوسفزی مکتب : لیسه عالی انصاری سال فراغت 1367 پوهنتون طبی کابل سال فراغت 1376 شف اورتوپیدی شفاخانه شهید سردار داود خان ترینر متخصص اورتوپیدی و تروماتولوژی (تداوی اممراض سیستم اسکلیتی) عضویت انجمن جراحان اورتوپیدی امریکا AAOS رتبه علمی :رنحورمل Email: drsami72@ yahoo.com Phone: 0799016346</td>
+												<td style="text-align:center;border-left:1px solid green;">نوم: عبدالسمیع یوسفزی مکتب: د انصاری عالی لیسی څخه په 1367 کی فارغ شوی. په کال 1376 کی د کابل پوهنتون د طب پوهنتون څخه فارغ. د شهید سردار داود خان د ارتوپیدیک د ارتوپیدیک او تروماتولوژی متخصص ترینر( د سکلیټی ناروغیو درمنله) د امریکایی AAOS اتحادیه د اورتوپیدیک جراحانو غړی. علمی رتبه: رنځورمل. Email: drsami72@  yahoo.com Phone: 0799016346</td>
+												<td style="text-align:center">Name: Saima Yousafzai High School: Graduated from Ansari High School in 1988. Graduated from Kabul University of Medical Sciences in 1997. Orthopedic Surgeon in Shahid Sardar Davood Khan Hospital. Specialist in Orthopedics and Traumatology (Skeletal System Treatment). Membership of the American Association of Orthopedic Surgeons AAOS Academic Rank:Rhenormal. Email: drsami72@ yahoo.com Phone: 0799016346</td>
+											</tr>
+										</table>
+									</div>
+									<div class="modal-footer" style="height:10px"></div>
+								</div>
+							</div>
+							<script>
+								// Get the modal
+								var modal = document.getElementById("myModal6");
+								
+								// Get the button that opens the modal
+								var btn = document.getElementById("myBtn6");
+								
+								// Get the <span> element that closes the modal
+								var span = document.getElementsByClassName("close")[0];
+								
+								// When the user clicks the button, open the modal 
+								btn.onclick = function() {
+								  modal.style.display = "block";
+								}
+								
+								// When the user clicks on <span> (x), close the modal
+								span.onclick = function() {
+								  modal.style.display = "none";
+								}
+								
+								// When the user clicks anywhere outside of the modal, close it
+								window.onclick = function(event) {
+								  if (event.target == modal) {
+								    modal.style.display = "none";
+								  }
+								}
+							</script>
+							<h1 class="lang" key="name6">تخصص جراحی اورتوپیدی</h1>
+						</div>
+					</div>
+				</div>
+				<!-- Single Service Area -->
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="single-service-area d-flex">
+						<div class="service-icon"> <i class="icon-doctor"></i>
+						</div>
+						<div class="service-content" style="padding-right:10px;">
+							<a href="#" id="myBtn7">
+								<h5 class="lang" key="name7"> سید نوید الله نوید</h5>
+							</a>
+							<!-- The Modal -->
+							<div id="myModal7" class="modal">
+								<!-- Modal content -->
+								<div class="modal-content">
+									<div class="modal-header"> <span class="close">&times;</span>
+										<h2></h2>
+									</div>
+									<div class="modal-body">
+										<table cellpadding="25">
+											<tr>
+												<td style="text-align:center; border-left:1px solid green;">نورالحبیب حصیر فارغ التحصیل فاکولته طب معالجوی پوهنتون کابل سال 1365 میباشد.ایشان دوره تخصص خود را در سرویس داخله شفاخانه علی آباد بعد از سپری نمودند. وی دوره تخصص و اخذ سند تخصص از شفاخانه به صفت متخصص در بخش مراقبت جدی سند تخصص در رشته ایکو کاردیوگرافی, التراسوند, و داخله مدت بالاتر از 24 سال بصفت سر طبیب پولی کلینیک موسسه MDL مربوط ملل متحد. استاد پوهنتون دعوت پوهنحی طب Email:mdc.hasir@gmail.com</td>
+												<td style="text-align:center;border-left:1px solid green;">نورالحبیب حصیر فارغ التحصیل فاکولته طب معالجوی پوهنتون کابل سال 1365 دوره تخصص در سرویس داخله عالی آباد بعد از سپری نمودن دوره تخصص و اخذ سند تخصص از شفاخانه به صفت متخصص در بخش مراقبت جدی سند تخصص در رشته ایکو کاردیوگرافی, التراسوند, و داخله مدت بالاتر از 24 سال بصفت سر طبیب پولی کلینیک موسسه MDL مربوط ملل متحد. استاد پوهنتون دعوت پوهنحی طب Email:mdc.hasir@gmail.com</td>
+												<td style="text-align:center">نورالحبیب حصیر فارغ التحصیل فاکولته طب معالجوی پوهنتون کابل سال 1365 دوره تخصص در سرویس داخله عالی آباد بعد از سپری نمودن دوره تخصص و اخذ سند تخصص از شفاخانه به صفت متخصص در بخش مراقبت جدی سند تخصص در رشته ایکو کاردیوگرافی, التراسوند, و داخله مدت بالاتر از 24 سال بصفت سر طبیب پولی کلینیک موسسه MDL مربوط ملل متحد. استاد پوهنتون دعوت پوهنحی طب Email:mdc.hasir@gmail.com</td>
+											</tr>
+										</table>
+									</div>
+									<div class="modal-footer" style="height:10px"></div>
+								</div>
+							</div>
+							<script>
+								// Get the modal
+								var modal = document.getElementById("myModal7");
+								
+								// Get the button that opens the modal
+								var btn = document.getElementById("myBtn7");
+								
+								// Get the <span> element that closes the modal
+								var span = document.getElementsByClassName("close")[0];
+								
+								// When the user clicks the button, open the modal 
+								btn.onclick = function() {
+								  modal.style.display = "block";
+								}
+								
+								// When the user clicks on <span> (x), close the modal
+								span.onclick = function() {
+								  modal.style.display = "none";
+								}
+								
+								// When the user clicks anywhere outside of the modal, close it
+								window.onclick = function(event) {
+								  if (event.target == modal) {
+								    modal.style.display = "none";
+								  }
+								}
+							</script>
+							<h1 class="lang" key="name7">مدیر اداری</h1>
+						</div>
+					</div>
+				</div>
+				<!-- Single Service Area 
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="single-service-area d-flex">
+						<div class="service-icon"> <i class="icon-doctor"></i>
+						</div>
+						<div class="service-content" style="padding-right:10px;">
+							<h5  class= "lang" key ="name9"></h5>
+							<h1  class= "lang" key ="name9">/h1>
+						</div>
+					</div>
+				</div>
+				-->
+				<!-- Single Service Area -->
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="single-service-area d-flex">
+						<div class="service-icon"> <i class="icon-doctor"></i>
+						</div>
+						<div class="service-content" style="padding-right:10px;">
+							<a href="#" id="myBtn8">
+								<h5 class="lang" key="name10">خالد عصمتی ولد محمد طاهر</h5>
+							</a>
+							<!-- The Modal -->
+							<div id="myModal8" class="modal">
+								<!-- Modal content -->
+								<div class="modal-content">
+									<div class="modal-header"> <span class="close">&times;</span>
+										<h2></h2>
+									</div>
+									<div class="modal-body">
+										<table cellpadding="25">
+											<tr>
+												<td style="text-align:center; border-left:1px solid green;">خالد عصمتی ولد محمد طاهر سال تولد : 1367 قوم : پشتون مکتب: لیسه عالی عبدالهادی داوی سال فراغت 1386 پوهنتون : موسسه طبی چراغ رشته : طب معالجوی سال فراغت : 1393 داکتر سرویس اورتوپیدی شفاخانه شهید سردار داود خان تکمیل پروگرام تخصص در رشته اورتوپیدی در سال 1397 EMAIL:khalidesmat:00786@gmail.com Phone: 0786088090</td>
+												<td style="text-align:center;border-left:1px solid green;">خالد عصمتی ولد محمد طاهر د زیږون کال: 1367 توکم: پښتون ښونځی: د عبدالهادی داوی د عالی لیسی څخه په 2007 ; کی فارغ. پوهنتون: د چراغ طبی موسسه رشته: معالجوی طب. د فراغت کال: 1393 د شهید سردار داود خان د روغتون د ارتوپیدیک د بخش داکتر په کال 1397 د ارتوپیدیک په رشته کی د تخصص ترلاسه کول. EMAIL:khalidesmat:00786@gmail.com Phone: 0786088090</td>
+												<td style="text-align:center">Khaled Esmati son of Mohammad Taher. Date of Birth: 1988 Ethnicity: Pashtun School: In 2010, Abdul Hadi Davi's High School Graduation. University: Cheragh Medical Institution Field: Curative medicine Graduation: In 2014 Doctor of Orthopedic Services, Martyr Sardar Daoud Khan Hospital. Completion of specialty program in orthopedics in 2018 EMAIL:khalidesmat:00786@gmail.com Phone: 0786088090</td>
+											</tr>
+										</table>
+									</div>
+									<div class="modal-footer" style="height:10px"></div>
+								</div>
+							</div>
+							<script>
+								// Get the modal
+								var modal = document.getElementById("myModal8");
+								
+								// Get the button that opens the modal
+								var btn = document.getElementById("myBtn8");
+								
+								// Get the <span> element that closes the modal
+								var span = document.getElementsByClassName("close")[0];
+								
+								// When the user clicks the button, open the modal 
+								btn.onclick = function() {
+								  modal.style.display = "block";
+								}
+								
+								// When the user clicks on <span> (x), close the modal
+								span.onclick = function() {
+								  modal.style.display = "none";
+								}
+								
+								// When the user clicks anywhere outside of the modal, close it
+								window.onclick = function(event) {
+								  if (event.target == modal) {
+								    modal.style.display = "none";
+								  }
+								}
+							</script>
+							<h1 class="lang" key="name10">تخصص در رشته اورتوپیدی</h1>
+						</div>
+					</div>
+				</div>
+				<!-- Single Service Area 
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="single-service-area d-flex">
+						<div class="service-icon"> <i class="icon-doctor"></i>
+						</div>
+						<div class="service-content" style="padding-right:10px;">
+							<h5  class= "lang" key ="name9">    </h5>
+							<h1  class= "lang" key ="name9"></h1>
+						</div>
+					</div>
+				</div>
+				
+				-->
+				<!-- Single Service Area -->
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="single-service-area d-flex">
+						<div class="service-icon"> <i class="icon-doctor"></i>
+						</div>
+						<div class="service-content" style="padding-right:10px;">
+							<a href="#" id="myBtn9">
+								<h5 class="lang" key="name9">رنحوریار دوکتور عاشق خان سعادتی</h5>
+							</a>
+							<!-- The Modal -->
+							<div id="myModal9" class="modal">
+								<!-- Modal content -->
+								<div class="modal-content">
+									<div class="modal-header"> <span class="close">&times;</span>
+										<h2></h2>
+									</div>
+									<div class="modal-body">
+										<table cellpadding="25">
+											<tr>
+												<td style="text-align:center; border-left:1px solid green;">رنحوریار دوکتور عاشق خان سعادتی مکتب: لییسه عالی امانی سال فراغت 1368 فارغ التحصیل پوهنتون طبی شهر کوسپیک روسیه فیدراتیف در سال 1998 اخذ درجواز MD در سال 2000 اخذ جواز MS OF surgery در سال 2005 اخذ تخصص در بخش جراحی اوعیه ترینر متخصص جراحی اوعیه (امراض رگ های خون ) متخصص جراحی عمومی EMAIL: moph.dds@gmail.com Phone: 0799547594</td>
+												<td style="text-align:center;border-left:1px solid green;">رنځوریار دکتور عاشق الله خان سعادتی: ښونځی: د امانی عالی لیسه څخه په کال 1368 کی فارغ. د روسی فیدراتیف کوسپیک ښار د طبی پوهنتون څخه فارغ. په کال 1998 د MD سند تر لاسه کړل. په کال 2000 د جراحی په برخه کی د MS تر لاسه کړل. په کال 2005 کی د سترګو د جراحی په برخه کی د تخصص تر لاسه کول. د سترګو جراحی متخصص ترینر ( د وینی د رګونو د ناروغی) دعمومی جراحی متخصص EMAIL:  moph.dds@gmail.com Phone: 0799547594</td>
+												<td style="text-align:center">Ranhouriar Doctor Ashoq Khan Saadati Graduated from Amani High School in 1989. Graduated from the Medical University of the Russian city of Cosipic Federatiyev. In 1998, getting a MD license. In 2000 I got the MS OF surgery license. In 2005, gained expertise in Ophthalmic Surgery. Ophthalmic Surgery Trainer (Blood vessel diseases), Specialist in Internist Surgery EMAIL: moph.dds@gmail.com Phone: 0799547594</td>
+											</tr>
+										</table>
+									</div>
+									<div class="modal-footer" style="height:10px"></div>
+								</div>
+							</div>
+							<script>
+								// Get the modal
+								var modal = document.getElementById("myModal9");
+								
+								// Get the button that opens the modal
+								var btn = document.getElementById("myBtn9");
+								
+								// Get the <span> element that closes the modal
+								var span = document.getElementsByClassName("close")[0];
+								
+								// When the user clicks the button, open the modal 
+								btn.onclick = function() {
+								  modal.style.display = "block";
+								}
+								
+								// When the user clicks on <span> (x), close the modal
+								span.onclick = function() {
+								  modal.style.display = "none";
+								}
+								
+								// When the user clicks anywhere outside of the modal, close it
+								window.onclick = function(event) {
+								  if (event.target == modal) {
+								    modal.style.display = "none";
+								  }
+								}
+							</script>
+							<h1 class="lang" key="info9">متخصص جراحی عمومی</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ***** Services Area End ***** -->
+	<!-- ***** Gallery Area Start ***** -->
+	<div class="medilife-gallery-area owl-carousel">
+		<!-- Single Gallery Item -->
+		<div class="single-gallery-item">
+			<img src="img/bg-img/doc8.jpeg" alt="">
+			<div class="view-more-btn"> <a style="font-family: 'Lateef', cursive;; font-size:13px;" href="img/bg-img/doc9.jpeg" class="btn gallery-img">معلومات +</a>
+			</div>
+		</div>
+		<!-- Single Gallery Item -->
+		<div class="single-gallery-item">
+			<img src="img/bg-img/doc6.jpeg" alt="">
+			<div class="view-more-btn"> <a href="img/bg-img/doc10.jpeg" class="lang btn gallery-img" key="info">معلومات +</a>
+			</div>
+		</div>
+		<!-- Single Gallery Item -->
+		<div class="single-gallery-item">
+			<img src="img/bg-img/doc4.jpeg" alt="">
+			<div class="view-more-btn"> <a href="img/bg-img/doc11.jpeg" class="lang btn gallery-img" key="info">معلومات +</a>
+			</div>
+		</div>
+		<!-- Single Gallery Item -->
+		<div class="single-gallery-item">
+			<img src="img/bg-img/doc9.jpeg" alt="">
+			<div class="view-more-btn"> <a href="img/bg-img/doc13.jpeg" class="lang btn gallery-img" key="info">معلومات +</a>
+			</div>
+		</div>
+		<!-- Single Gallery Item -->
+		<div class="single-gallery-item">
+			<img src="img/bg-img/doc6.jpeg" alt="">
+			<div class="view-more-btn"> <a href="img/bg-img/doc12.jpeg" class="lang btn gallery-img" key="info">معلومات +</a>
+			</div>
+		</div>
+		<!-- Single Gallery Item -->
+		<div class="single-gallery-item">
+			<img src="img/bg-img/doc7.jpeg" alt="">
+			<div class="view-more-btn"> <a href="img/bg-img/doc14.jpeg" class="lang btn gallery-img" key="info">معلومات +</a>
+			</div>
+		</div>
+		<!-- Single Gallery Item -->
+		<div class="single-gallery-item">
+			<img src="img/bg-img/doc8.jpeg" alt="">
+			<div class="view-more-btn"> <a href="img/bg-img/doc2.jpeg" class="lang btn gallery-img" key="info">معلومات +</a>
+			</div>
+		</div>
+	</div>
+	<!-- ***** Footer Area Start ***** -->
+	<!-- ***** Footer Area Start ***** -->
+	<footer class="footer-area section-padding-100">
+		<!-- Main Footer Area -->
+		<!-- Bottom Footer Area -->
+		<div class="bottom-footer-area">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="bottom-footer-content">
+							<!-- Copywrite Text -->
+							<div class="copywrite-text" style="font-family:Bahnschrift; text-align:center">
+								<div class="footer-social-info" style=""> <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+									<a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+									<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+									<a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="bottom-footer-area">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="bottom-footer-content">
+							<!-- Copywrite Text -->
+							<div class="copywrite-text" style="font-family:Bahnschrift; text-align:center">
+								<p>Copyright &copy;
+									<script>
+										document.write(new Date().getFullYear());
+									</script>&nbsp;&nbsp;All rights reserved by <a href="#">Asian Code</a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- ***** Footer Area End ***** -->
+	<!-- ***** Footer Area End ***** -->
+	<!-- jQuery (Necessary for All JavaScript Plugins) -->
+	<script src="js/jquery/jquery-2.2.4.min.js"></script>
+	<!-- Popper js -->
+	<script src="js/popper.min.js"></script>
+	<!-- Bootstrap js -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Plugins js -->
+	<script src="js/plugins.js"></script>
+	<!-- Active js -->
+	<script src="js/active.js"></script>
+	<script>
+		var coll = document.getElementsByClassName("collapsible");
+		var i;
+		
+		for (i = 0; i < coll.length; i++) {
+		  coll[i].addEventListener("click", function() {
+		    this.classList.toggle("active");
+		    var content = this.nextElementSibling;
+		    if (content.style.maxHeight){
+		      content.style.maxHeight = null;
+		    } else {
+		      content.style.maxHeight = content.scrollHeight + "px";
+		    } 
+		  });
+		}
+	</script>
+</body>
+
+</html>

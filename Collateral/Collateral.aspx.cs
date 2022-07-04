@@ -37,48 +37,95 @@ namespace Collateral_int
                     Response.Redirect("NotAuthorize.aspx?ReturnPath=" + Server.UrlEncode(Request.Url.AbsoluteUri));
                 }
 
-                //if (Access_role == null)
-                ////if (Session["sid"] == null)
-                //{
-                //    //Response.Redirect("Loging.aspx");
-                //    Session.Remove("loading");
-                //}
-                 if (Access_role == "4")
+                 if (Access_role == "Supper Admin")
                 {
-                    Server.Transfer("register.aspx");
+                    LinkButton28.Visible = true;
+                    LinkButton25.Visible = true;
+                    LinkButton22.Visible = true;
+                    LinkButton19.Visible = true;
+                    LinkButton17.Visible = true;
+                    LinkButton14.Visible = true;
+                    LinkButton8.Visible = true;
+                    LinkButton6.Visible = true;
+                    LinkButton5.Visible = true;
+                    LinkButton31.Visible = true;
+                    LinkButton35.Enabled = false;
+                    LinkButton36.Enabled = false;
+                    LinkButton37.Visible = true;
+                    LinkButton32.Enabled = false;
+                    LinkButton33.Enabled = false;
+                    LinkButton34.Enabled = true;
+                    LinkButton32.Enabled = true;
+                    LinkButton35.Enabled = true;
+                    LinkButton29.Enabled = true;
+                    LinkButton30.Enabled = false;
+                    LinkButton27.Enabled = false;
+                    LinkButton24.Enabled = false;
+                    LinkButton21.Enabled = false;
+                    LinkButton18.Enabled = false;
+                    LinkButton16.Enabled = false;
+                    LinkButton13.Enabled = false;
+                    LinkButton9.Enabled = false;
+                    LinkButton7.Enabled = false;
+                    LinkButton10.Enabled = false;
                     Newuser.Visible = true;
-                    
+
                 }
                 
-                 else if (Access_role == "2"  || Access_role == "3")
+                 else if (Access_role == "Users")
                 {
                     //Server.Transfer("register.aspx");
-                    LinkButton28.Visible = false;
-                    LinkButton25.Visible = false;
-                    LinkButton22.Visible = false;
-                    LinkButton19.Visible = false;
-                    LinkButton17.Visible = false;
-                    LinkButton14.Visible = false;
-                    LinkButton8.Visible = false;
-                    LinkButton6.Visible = false;
-                    LinkButton5.Visible = false;
+                    LinkButton28.Enabled = false;
+                    LinkButton25.Enabled = false;
+                    LinkButton22.Enabled = false;
+                    LinkButton19.Enabled = false;
+                    LinkButton17.Enabled = false;
+                    LinkButton14.Enabled = false;
+                    LinkButton8.Enabled = false;
+                    LinkButton6.Enabled = false;
+                    LinkButton5.Enabled = false;
+                    LinkButton31.Enabled = false;
+                    LinkButton34.Enabled = false;
+                    LinkButton37.Enabled = false;
                     Newuser.Visible = false;
-                }
 
-                // else if (Access_role == "1")
-                //{
-                //    LinkButton28.Visible = false;
-                //    //this.LinkButton28.Attributes.Add("disabled", "disabled");
-                //}
+                }
+                else if (Access_role == "Admin")
+                {
+                    LinkButton28.Visible = true;
+                    LinkButton25.Visible = true;
+                    LinkButton22.Visible = true;
+                    LinkButton19.Visible = true;
+                    LinkButton17.Visible = true;
+                    LinkButton14.Visible = true;
+                    LinkButton8.Visible = true;
+                    LinkButton6.Visible = true;
+                    LinkButton5.Visible = true;
+                    LinkButton31.Visible = true;
+                    LinkButton35.Enabled = false;
+                    LinkButton36.Enabled = false;
+                    LinkButton37.Visible = true;
+                    LinkButton32.Enabled = false;
+                    LinkButton33.Enabled = false;
+                    LinkButton34.Enabled = true;
+                    LinkButton32.Enabled = true;
+                    LinkButton35.Enabled = true;
+                    LinkButton29.Enabled = true;
+                    LinkButton30.Enabled = false;
+                    LinkButton27.Enabled = false;
+                    LinkButton24.Enabled = false;
+                    LinkButton21.Enabled = false;
+                    LinkButton18.Enabled = false;
+                    LinkButton16.Enabled = false;
+                    LinkButton13.Enabled = false;
+                    LinkButton9.Enabled = false;
+                    LinkButton7.Enabled = false;
+                    LinkButton10.Enabled = false;
+                    Newuser.Visible = false;
+
+                }
             }
 
-            //Label1.Text = "Welcome: " + username;
-            // Code to secure Homepage accessing by other user
-            //if (Session["Sid"].ToString() != "1")
-            //{
-            //    Response.Redirect("Loging.aspx");
-            //}
-            //-----------------------Count Pledge Pending Records-----------------------------------
 
             string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
@@ -87,7 +134,6 @@ namespace Collateral_int
                 string RowCounter = "SELECT COUNT(*) FROM Loanadder_tbl3";
                 SqlCommand cmd = new SqlCommand(RowCounter, sqlCon);
                 double counter = Convert.ToUInt32(cmd.ExecuteScalar());
-                //PledgeLblForUpdate.Text = counter.ToString();
                 sqlCon.Close();
             }
 
@@ -134,5 +180,7 @@ namespace Collateral_int
             Response.Redirect("signout.aspx");
 
         }
+
+
     }
 }

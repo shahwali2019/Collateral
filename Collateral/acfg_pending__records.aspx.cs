@@ -12,6 +12,8 @@ namespace Collateral_int
 {
     public partial class acfg_pending__records : System.Web.UI.Page
     {
+        string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
+
         string Val1, Val2, Val3, Val4, Val5, Val6, Val7, Val8, Val9, Val10, Val11;
 
         protected void chkb1_CheckedChanged(object sender, EventArgs e)
@@ -55,11 +57,6 @@ namespace Collateral_int
                     Response.Redirect("NotAuthorize.aspx?ReturnPath=" + Server.UrlEncode(Request.Url.AbsoluteUri));
                 }
 
-                if (Access_role == null)
-                {
-                    Response.Redirect("Loging.aspx");
-                    Session.Remove("loading");
-                }
             }
         
         }
@@ -75,6 +72,88 @@ namespace Collateral_int
                 ApproveBtnImg.Enabled = true;
                 updateLbl.Visible = false;
                 insertedPending();
+            }
+        }
+
+        protected void GridView3_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            string fullUsername = User.Identity.Name;
+            string username = fullUsername.Substring(fullUsername.IndexOf("\\") + 1);
+
+            SqlDataAdapter sda = new SqlDataAdapter("select * from [userMng] where username= '" + username + "'", connectionString);
+            DataTable dtResult = new DataTable();
+            sda.Fill(dtResult);
+
+            string userType = dtResult.Rows[0]["Access_role"].ToString();
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                if (userType == "Supper Admin")
+                {
+                    e.Row.Cells[0].Enabled = true;
+                    //ApproveBtnImg.Enabled = true;
+                    //ApproveUpdateBtn.Enabled = true;
+
+                }
+                if (userType == "Admin")
+                {
+                    e.Row.Cells[0].Enabled = false;
+                    //ApproveBtnImg.Enabled = true;
+                    //ApproveUpdateBtn.Enabled = true;
+
+
+                }
+
+                if (userType == "Users")
+                {
+                    e.Row.Cells[0].Enabled = false;
+                    ApproveBtnImg.Visible = false;
+                    ApproveUpdateBtn.Visible = false;
+                    insertCheck.Enabled = false;
+                    updatedCheck.Enabled = false;
+                }
+            }
+        }
+
+        protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            string fullUsername = User.Identity.Name;
+            string username = fullUsername.Substring(fullUsername.IndexOf("\\") + 1);
+
+            SqlDataAdapter sda = new SqlDataAdapter("select * from [userMng] where username= '" + username + "'", connectionString);
+            DataTable dtResult = new DataTable();
+            sda.Fill(dtResult);
+
+            string userType = dtResult.Rows[0]["Access_role"].ToString();
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                if (userType == "Supper Admin")
+                {
+                    e.Row.Cells[0].Enabled = true;
+                    //ApproveBtnImg.Enabled = true;
+                    //ApproveUpdateBtn.Enabled = true;
+
+                }
+                if (userType == "Admin")
+                {
+                    e.Row.Cells[0].Enabled = false;
+                    //ApproveBtnImg.Enabled = true;
+                    //ApproveUpdateBtn.Enabled = true;
+
+
+                }
+
+                if (userType == "Users")
+                {
+                    e.Row.Cells[0].Enabled = false;
+                    ApproveBtnImg.Visible = false;
+                    ApproveUpdateBtn.Visible = false;
+                    insertCheck.Enabled = false;
+                    updatedCheck.Enabled = false;
+                }
             }
         }
 
@@ -292,9 +371,11 @@ namespace Collateral_int
         protected void ApproveUpdateBtn_Click(object sender, ImageClickEventArgs e)
         {
 
-         
+            string fullUsername = User.Identity.Name;
+            int index_domain = fullUsername.IndexOf("AIB\\");
+            string username = fullUsername.Substring(fullUsername.IndexOf("\\") + 1);
 
-                string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
                 using (SqlConnection sqlConn = new SqlConnection(connectionString))
                 {
                     foreach (GridViewRow gw in GridView3.Rows)
@@ -327,7 +408,7 @@ namespace Collateral_int
                                   ",[Remark] =@val9" +
                                   ",[InsertedBy]=@val10" +
                                   ",[Updated By]=@val12" +
-                                  ",[Approved By]='" + Session["Users"].ToString() + "'" +
+                                  ",[Approved By]='" + username + "'" +
                                   " WHERE id=@val1";
                         SqlCommand sqlcmd = new SqlCommand(queryy, sqlConn);
                             //==========catch selected data=================================

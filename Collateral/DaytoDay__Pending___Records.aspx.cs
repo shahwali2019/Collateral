@@ -12,11 +12,92 @@ namespace Collateral
 {
     public partial class DaytoDay__Pending___Records : System.Web.UI.Page
     {
-        string Val1, Val2, Val3, Val4, Val5, Val6, Val7, Val8, Val9, Val10, Val11, Val12, Val13, Val14, Val15;
+        string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
+        string Val1, Val2, Val3, Val4, Val5, Val6, Val7, Val8, Val9, Val10, Val11, Val12, Val13, Val14, Val15, Val16;
+
+        protected void GridView3_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            string fullUsername = User.Identity.Name;
+            string username = fullUsername.Substring(fullUsername.IndexOf("\\") + 1);
+
+            SqlDataAdapter sda = new SqlDataAdapter("select * from [userMng] where username= '" + username + "'", connectionString);
+            DataTable dtResult = new DataTable();
+            sda.Fill(dtResult);
+
+            string userType = dtResult.Rows[0]["Access_role"].ToString();
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                if (userType == "Supper Admin")
+                {
+                    e.Row.Cells[0].Enabled = true;
+                    //ApproveBtnImg.Enabled = true;
+                    //ApproveUpdateBtn.Enabled = true;
+
+                }
+                if (userType == "Admin")
+                {
+                    e.Row.Cells[0].Enabled = false;
+                    //ApproveBtnImg.Enabled = true;
+                    //ApproveUpdateBtn.Enabled = true;
+
+
+                }
+
+                if (userType == "Users")
+                {
+                    e.Row.Cells[0].Enabled = false;
+                    ApproveBtnImg.Visible = false;
+                    ApproveUpdateBtn.Visible = false;
+                }
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
+        protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            string fullUsername = User.Identity.Name;
+            string username = fullUsername.Substring(fullUsername.IndexOf("\\") + 1);
+
+            SqlDataAdapter sda = new SqlDataAdapter("select * from [userMng] where username= '" + username + "'", connectionString);
+            DataTable dtResult = new DataTable();
+            sda.Fill(dtResult);
+
+            string userType = dtResult.Rows[0]["Access_role"].ToString();
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                if (userType == "Supper Admin")
+                {
+                    e.Row.Cells[0].Enabled = true;
+                    //ApproveBtnImg.Enabled = true;
+                    //ApproveUpdateBtn.Enabled = true;
+
+                }
+                if (userType == "Admin")
+                {
+                    e.Row.Cells[0].Enabled = false;
+                    //ApproveBtnImg.Enabled = true;
+                    //ApproveUpdateBtn.Enabled = true;
+
+
+                }
+
+                if (userType == "Users")
+                {
+                    e.Row.Cells[0].Enabled = false;
+                    ApproveBtnImg.Visible = false;
+                    ApproveUpdateBtn.Visible = false;
+                }
+            }
+        }
+
+
 
         protected void insertCheck_CheckedChanged(object sender, EventArgs e)
         {
@@ -82,9 +163,13 @@ namespace Collateral
                         Val10 = (gw.FindControl("Label10") as Label).Text;   //Date of Boking
                         Val11 = (gw.FindControl("Label11") as Label).Text;   //CMLA SignOff Date
                         Val12 = (gw.FindControl("Label12") as Label).Text;   //Remark
-                        Val13 = (gw.FindControl("Label13") as Label).Text;   //Inserted By
-                        Val14 = (gw.FindControl("Label14") as Label).Text;   //Updated By
-                        //Val15 = (gw.FindControl("Label15") as Label).Text;   //Approved By
+                        Val13 = (gw.FindControl("Label13") as Label).Text;   //
+                        Val14 = (gw.FindControl("Label14") as Label).Text;   //
+                    //    Val15 = (gw.FindControl("Label15") as Label).Text;   //
+                        Val16 = (gw.FindControl("Label16") as Label).Text;   //
+
+
+
                         sqlCon.Open();
 
                         string query = "insert into  [DayToDayTbl]" +
@@ -99,9 +184,10 @@ namespace Collateral
                                    ",[Confirmed By]" +
                                    ",[Date of Boking]" +
                                    ",[CMLA SignOff Date]"  +
+                                   ",[Number of Extension Renewa]" +
                                    ",[Remark]"             +
                                    ",[Inserted By]"         +
-                                   ",[Updated By]"          +
+                                //   ",[Updated By]"          +
                                    ",[Approved By]" +
                                    ")" +
                                    "VALUES(" +
@@ -118,7 +204,8 @@ namespace Collateral
                                    "@val12," +
                                    "@val13," +
                                    "@val14," +
-                                   "@val15" +
+                                  // "@val15," +
+                                   "@val16" +
                                    ")";
                         SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
                         //==========catch selected data=================================
@@ -138,7 +225,8 @@ namespace Collateral
                         sqlcmd.Parameters.AddWithValue("@val12", Val12);// 
                         sqlcmd.Parameters.AddWithValue("@val13", Val13);// 
                         sqlcmd.Parameters.AddWithValue("@val14", Val14);// 
-                        sqlcmd.Parameters.AddWithValue("@val15", username);// 
+                      //  sqlcmd.Parameters.AddWithValue("@val15", Val15);//
+                        sqlcmd.Parameters.AddWithValue("@val16", username);// 
                         sqlcmd.ExecuteNonQuery();
                         sqlCon.Close();
 
@@ -234,8 +322,9 @@ namespace Collateral
                         Val11 = (gw.FindControl("Label11") as Label).Text;   //CMLA SignOff Date
                         Val12 = (gw.FindControl("Label12") as Label).Text;   //Remark
                         Val13 = (gw.FindControl("Label13") as Label).Text;   //Inserted By
-                        Val14 = (gw.FindControl("Label14") as Label).Text;   //Updated By
-                        Val15 = (gw.FindControl("Label15") as Label).Text;   //Approved By
+                      // Val14 = (gw.FindControl("Label14") as Label).Text;   //Updated By
+                         Val15 = (gw.FindControl("Label15") as Label).Text;   //Approved By
+                        Val16 = (gw.FindControl("Label16") as Label).Text;   //
                         sqlConn.Open();
 
                         string queryy = "UPDATE [DayToDayTbl] SET" +
@@ -249,9 +338,10 @@ namespace Collateral
                                   ",[Confirmed By]=@val9" +                  //Confirmed By
                                   ",[Date of Boking]=@val10" +               //Date of Boking
                                   ",[CMLA SignOff Date] =@val11 " +                   //CMLA SignOff Date
-                                  ",[Remark] =@val12" +                              //Remark
-                                  ",[Inserted By] =@val13" +                         //Inserted By
-                                  ",[Updated By] =@val14" +                          //Updated By
+                                  ",[Number of Extension Renewa] = @val12" +
+                                  ",[Remark] =@val13" +                              //Remark
+                                 // ",[Inserted By] =@val14" +                         //Inserted By
+                                  ",[Updated By] =@val15" +                          //Updated By
                                   ",[Approved By]= '" + username + "'" +     //Approved By
                                   " WHERE id=@val1";
                         SqlCommand sqlcmd = new SqlCommand(queryy, sqlConn);
@@ -270,8 +360,9 @@ namespace Collateral
                         sqlcmd.Parameters.AddWithValue("@val11", Val11);// 
                         sqlcmd.Parameters.AddWithValue("@val12", Val12);// 
                         sqlcmd.Parameters.AddWithValue("@val13", Val13);// 
-                        sqlcmd.Parameters.AddWithValue("@val14", Val14);// 
+                       // sqlcmd.Parameters.AddWithValue("@val14", Val14);// 
                         sqlcmd.Parameters.AddWithValue("@val15", Val15);// 
+                        sqlcmd.Parameters.AddWithValue("@val16", Val16);//
 
                         sqlcmd.ExecuteNonQuery();
                         sqlConn.Close();

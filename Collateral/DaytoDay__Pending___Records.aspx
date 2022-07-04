@@ -20,10 +20,13 @@
         .auto-style2 {
             width: 1100px;
         }
-  
+      .body-content {
+    padding: 0;
+    padding-right: 100px;
+}
         </style>
     <br />
-    <div class="main">
+
       
    
      <p>
@@ -34,16 +37,12 @@
              <asp:ImageButton ID="ApproveBtnImg" runat="server" Height="32px" ImageUrl="~/image/insertBtn.jpg" OnClick="ApproveBtnImg_Click" ToolTip="Approve Inserted Records" Width="30px" Enabled="False" />
 
              &nbsp;<asp:ImageButton ID="ApproveUpdateBtn" runat="server" Height="32px" ImageUrl="~/image/updatebtn.png" ToolTip="Approved Updated Records" Width="28px" Enabled="False" OnClick="ApproveUpdateBtn_Click" />
-             <hr style="margin-left:5px;border-bottom:5px solid #003399; background-color: #00FF00;" class="auto-style2" />
-              <div style="margin-top:-15px;">
          <asp:Label ID="updateLbl" runat="server" Font-Size="Small" Text="Label" Visible="False" Font-Names="Bahnschrift" ForeColor="Red"></asp:Label>
-               </div>
-              <div style="margin-top:-15px;">
  <asp:Label ID="insertLbl" runat="server" Font-Size="Small" Text="Label" Visible="False" Font-Names="Bahnschrift" ForeColor="Red"></asp:Label>
-   </div>
 
-          
-                <asp:GridView ID="GridView2" OnRowCommand="GridView2_RowCommand" runat="server" ShowHeaderWhenEmpty="True"
+
+              <div class="table table-responsive">
+                <asp:GridView ID="GridView2" OnRowCommand="GridView2_RowCommand" OnRowDataBound="GridView2_RowDataBound" runat="server" ShowHeaderWhenEmpty="True"
                AllowSorting="True" CssClass="auto-style1" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC"
                BorderStyle="None" BorderWidth="1px" CellPadding="4" DataKeyNames="id" DataSourceID="SqlCon2" PageSize="7" Width="1172px" Visible="False" AllowCustomPaging="True" GridLines="None">
                     <AlternatingRowStyle BackColor="#66CCFF" />
@@ -63,11 +62,7 @@
                     <ItemStyle HorizontalAlign="center" />
                      </asp:TemplateField>
 
-                   <asp:TemplateField ShowHeader="False" Visible="false">
-                       <ItemTemplate>
-                           <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete"></asp:LinkButton>
-                       </ItemTemplate>
-                   </asp:TemplateField>
+
 
 
 
@@ -192,12 +187,23 @@
                           <HeaderStyle CssClass="center" />
                           <ItemStyle CssClass="center" />
                       </asp:TemplateField>
-                      <asp:TemplateField HeaderText="Remark" SortExpression="Remark">
+                      <asp:TemplateField HeaderText="Number of Extension/Renewa" SortExpression="Number of Extension/Renewa">
                           <EditItemTemplate>
-                              <asp:TextBox ID="TextBox11" runat="server" Text='<%# Bind("Remark") %>'></asp:TextBox>
+                              <asp:TextBox ID="TextBox11" runat="server" Text='<%# Bind("[Number of Extension Renewa]") %>'></asp:TextBox>
                           </EditItemTemplate>
                           <ItemTemplate>
-                              <asp:Label ID="Label12" runat="server" Text='<%# Bind("Remark") %>'></asp:Label>
+                              <asp:Label ID="Label12" runat="server" Text='<%# Bind("[Number of Extension Renewa]") %>'></asp:Label>
+                          </ItemTemplate>
+                              <ControlStyle CssClass="center" />
+                          <HeaderStyle CssClass="center" />
+                          <ItemStyle CssClass="center" />
+                      </asp:TemplateField>
+                      <asp:TemplateField HeaderText="Remark" SortExpression="Remark">
+                          <EditItemTemplate>
+                              <asp:TextBox ID="TextBox12" runat="server" Text='<%# Bind("Remark") %>'></asp:TextBox>
+                          </EditItemTemplate>
+                          <ItemTemplate>
+                              <asp:Label ID="Label13" runat="server" Text='<%# Bind("Remark") %>'></asp:Label>
                           </ItemTemplate>
                               <ControlStyle CssClass="center" />
                           <HeaderStyle CssClass="center" />
@@ -205,10 +211,10 @@
                       </asp:TemplateField>
                       <asp:TemplateField HeaderText="Inserted By" SortExpression="Inserted By">
                           <EditItemTemplate>
-                              <asp:TextBox ID="TextBox12" runat="server" Text='<%# Bind("[Inserted By]") %>'></asp:TextBox>
+                              <asp:TextBox ID="TextBox13" runat="server" Text='<%# Bind("[Inserted By]") %>'></asp:TextBox>
                           </EditItemTemplate>
                           <ItemTemplate>
-                              <asp:Label ID="Label13" runat="server" Text='<%# Bind("[Inserted By]") %>'></asp:Label>
+                              <asp:Label ID="Label14" runat="server" Text='<%# Bind("[Inserted By]") %>'></asp:Label>
                           </ItemTemplate>
                               <ControlStyle CssClass="center" />
                           <HeaderStyle CssClass="center" />
@@ -216,10 +222,10 @@
                       </asp:TemplateField>
                       <asp:TemplateField HeaderText="Updated By" SortExpression="Updated By">
                           <EditItemTemplate>
-                              <asp:TextBox ID="TextBox13" runat="server" Text='<%# Bind("[Updated By]") %>'></asp:TextBox>
+                              <asp:TextBox ID="TextBox14" runat="server" Text='<%# Bind("[Updated By]") %>'></asp:TextBox>
                           </EditItemTemplate>
                           <ItemTemplate>
-                              <asp:Label ID="Label14" runat="server" Text='<%# Bind("[Updated By]") %>'></asp:Label>
+                              <asp:Label ID="Label15" runat="server" Text='<%# Bind("[Updated By]") %>'></asp:Label>
                           </ItemTemplate>
                               <ControlStyle CssClass="center" />
                           <HeaderStyle CssClass="center" />
@@ -227,10 +233,10 @@
                       </asp:TemplateField>
                       <asp:TemplateField HeaderText="Approved By" SortExpression="Approved By">
                           <EditItemTemplate>
-                              <asp:TextBox ID="TextBox14" runat="server" Text='<%# Bind("[Approved By]") %>'></asp:TextBox>
+                              <asp:TextBox ID="TextBox15" runat="server" Text='<%# Bind("[Approved By]") %>'></asp:TextBox>
                           </EditItemTemplate>
                           <ItemTemplate>
-                              <asp:Label ID="Label15" runat="server" Text='<%# Bind("[Approved By]") %>'></asp:Label>
+                              <asp:Label ID="Label16" runat="server" Text='<%# Bind("[Approved By]") %>'></asp:Label>
                           </ItemTemplate>
                               <ControlStyle CssClass="center" />
                           <HeaderStyle CssClass="center" />
@@ -256,97 +262,21 @@
 
          <asp:SqlDataSource ID="SqlCon2" runat="server" ConnectionString="<%$ ConnectionStrings:DBCon %>"
             SelectCommand="SELECT * FROM [DayToDayTbl_ins]" DeleteCommand="DELETE FROM [DayToDayTbl_ins] WHERE [id] = @id">
-<%--             <DeleteParameters>
-                 <asp:Parameter Name="original_id" Type="Int32" />
-                 <asp:Parameter Name="original_Account_Name" Type="String" />
-                 <asp:Parameter Name="original_Approval_Number" Type="String" />
-                 <asp:Parameter Name="original_Facility_Type" Type="String" />
-                 <asp:Parameter Name="original_Facility_Amount" Type="String" />
-                 <asp:Parameter Name="original_Currency" Type="String" />
-                 <asp:Parameter Name="original_Action_Taken" Type="String" />
-                 <asp:Parameter Name="original_TFL_Instructed_On" Type="String" />
-                 <asp:Parameter Name="original_Confirmed_By" Type="String" />
-                 <asp:Parameter DbType="Date" Name="original_Date_of_Boking" />
-                 <asp:Parameter DbType="Date" Name="original_CMLA_SignOff_Date" />
-                 <asp:Parameter Name="original_Remark" Type="String" />
-                 <asp:Parameter Name="original_Inserted_By" Type="String" />
-                 <asp:Parameter Name="original_Updated_By" Type="String" />
-                 <asp:Parameter Name="original_Approved_By" Type="String" />
-             </DeleteParameters>--%>
-                          <DeleteParameters>
+             <DeleteParameters>
                  <asp:Parameter Name="id" Type="Int32" />
              </DeleteParameters>
-<%--             <InsertParameters>
-                 <asp:Parameter Name="Account_Name" Type="String" />
-                 <asp:Parameter Name="Approval_Number" Type="String" />
-                 <asp:Parameter Name="Facility_Type" Type="String" />
-                 <asp:Parameter Name="Facility_Amount" Type="String" />
-                 <asp:Parameter Name="Currency" Type="String" />
-                 <asp:Parameter Name="Action_Taken" Type="String" />
-                 <asp:Parameter Name="TFL_Instructed_On" Type="String" />
-                 <asp:Parameter Name="Confirmed_By" Type="String" />
-                 <asp:Parameter Name="Date_of_Boking" DbType="Date" />
-                 <asp:Parameter Name="CMLA_SignOff_Date" DbType="Date" />
-                 <asp:Parameter Name="Remark" Type="String" />
-                 <asp:Parameter Name="Inserted_By" Type="String" />
-                 <asp:Parameter Name="Updated_By" Type="String" />
-                 <asp:Parameter Name="Approved_By" Type="String" />
-             </InsertParameters>
-             <UpdateParameters>
-                 <asp:Parameter Name="Account_Name" Type="String" />
-                 <asp:Parameter Name="Approval_Number" Type="String" />
-                 <asp:Parameter Name="Facility_Type" Type="String" />
-                 <asp:Parameter Name="Facility_Amount" Type="String" />
-                 <asp:Parameter Name="Currency" Type="String" />
-                 <asp:Parameter Name="Action_Taken" Type="String" />
-                 <asp:Parameter Name="TFL_Instructed_On" Type="String" />
-                 <asp:Parameter Name="Confirmed_By" Type="String" />
-                 <asp:Parameter Name="Date_of_Boking" DbType="Date" />
-                 <asp:Parameter Name="CMLA_SignOff_Date" DbType="Date" />
-                 <asp:Parameter Name="Remark" Type="String" />
-                 <asp:Parameter Name="Inserted_By" Type="String" />
-                 <asp:Parameter Name="Updated_By" Type="String" />
-                 <asp:Parameter Name="Approved_By" Type="String" />
-                 <asp:Parameter Name="original_id" Type="Int32" />
-                 <asp:Parameter Name="original_Account_Name" Type="String" />
-                 <asp:Parameter Name="original_Approval_Number" Type="String" />
-                 <asp:Parameter Name="original_Facility_Type" Type="String" />
-                 <asp:Parameter Name="original_Facility_Amount" Type="String" />
-                 <asp:Parameter Name="original_Currency" Type="String" />
-                 <asp:Parameter Name="original_Action_Taken" Type="String" />
-                 <asp:Parameter Name="original_TFL_Instructed_On" Type="String" />
-                 <asp:Parameter Name="original_Confirmed_By" Type="String" />
-                 <asp:Parameter DbType="Date" Name="original_Date_of_Boking" />
-                 <asp:Parameter DbType="Date" Name="original_CMLA_SignOff_Date" />
-                 <asp:Parameter Name="original_Remark" Type="String" />
-                 <asp:Parameter Name="original_Inserted_By" Type="String" />
-                 <asp:Parameter Name="original_Updated_By" Type="String" />
-                 <asp:Parameter Name="original_Approved_By" Type="String" />
-             </UpdateParameters>--%>
-<%--             UpdateCommand="UPDATE [DayToDayTbl_ins] SET [Account Name] = @Account_Name, [Approval Number] = @Approval_Number, [Facility Type] = @Facility_Type, [Facility Amount] = @Facility_Amount, [Currency] = @Currency, [Action Taken] = @Action_Taken, [Remark] = @Remark, [TFL Instructed On] = @TFL_Instructed_On, [Confirmed By] = @Confirmed_By, [Date of Boking] = @Date_of_Boking, [CMLA SignOff Date] = @CMLA_SignOff_Date, [Inserted By] =@Inserted_By, [Updated By] = @Updated_By, [Approved By] = @Approved_By WHERE [id] = @id--%>
-<%--                 <UpdateParameters>
-                 <asp:Parameter Name="id" Type="Int32" />
-                 <asp:Parameter Name="Account_Name" Type="String" />
-                 <asp:Parameter Name="Approval_Number" Type="String" />
-                 <asp:Parameter Name="Facility_Type" Type="String" />
-                 <asp:Parameter Name="Facility_Amount" Type="String" />
-                 <asp:Parameter Name="Currency" Type="String" />
-                 <asp:Parameter Name="Action_Taken" Type="String" />
-                 <asp:Parameter Name="TFL_Instructed_On" Type="String" />
-                 <asp:Parameter Name="Confirmed_By" Type="String" />
-                 <asp:Parameter Name="Date_of_Boking" Type="String" />
-                 <asp:Parameter Name="CMLA_SignOff_Date" Type="String" />
-                 <asp:Parameter Name="Remark" Type="String" />
-                 <asp:Parameter Name="Inserted_By" Type="String" />
-                 <asp:Parameter Name="Updated_By" Type="String" />
-                 <asp:Parameter Name="Approved_By" Type="String" />
-             </UpdateParameters>--%>
+
         </asp:SqlDataSource>
              <div style="margin-top:-5px;">
-                    <asp:GridView ID="GridView3" OnRowCommand="GridView3_RowCommand" runat="server" ShowHeaderWhenEmpty="True"
+                    <asp:GridView ID="GridView3" OnRowCommand="GridView3_RowCommand" OnRowDataBound="GridView3_RowDataBound" runat="server" ShowHeaderWhenEmpty="True"
                AllowSorting="True" CssClass="auto-style1" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC"
                BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="SqlConUpdate" PageSize="7" Width="1172px" Visible="False" DataKeyNames="id">
                         <Columns>
+                                               <asp:TemplateField ShowHeader="False">
+                       <ItemTemplate>
+                           <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete"></asp:LinkButton>
+                       </ItemTemplate>
+                   </asp:TemplateField>
                             <asp:TemplateField HeaderText="All">
                      <HeaderTemplate>
                     <asp:CheckBox ID="chkb1" runat="server" Text="All" OnCheckedChanged="chkb1_CheckedChanged" AutoPostBack="true" />
@@ -481,12 +411,23 @@
                                 <HeaderStyle CssClass="center" />
                                 <ItemStyle CssClass="center" />
                             </asp:TemplateField>
+                      <asp:TemplateField HeaderText="Number of Extension/Renewa" SortExpression="Number of Extension/Renewa">
+                          <EditItemTemplate>
+                              <asp:TextBox ID="TextBox11" runat="server" Text='<%# Bind("[Number of Extension Renewa]") %>'></asp:TextBox>
+                          </EditItemTemplate>
+                          <ItemTemplate>
+                              <asp:Label ID="Label12" runat="server" Text='<%# Bind("[Number of Extension Renewa]") %>'></asp:Label>
+                          </ItemTemplate>
+                              <ControlStyle CssClass="center" />
+                          <HeaderStyle CssClass="center" />
+                          <ItemStyle CssClass="center" />
+                      </asp:TemplateField>
                             <asp:TemplateField HeaderText="Remark" SortExpression="Remark">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox11" runat="server" Text='<%# Bind("Remark") %>'></asp:TextBox>
+                                    <asp:TextBox ID="TextBox12" runat="server" Text='<%# Bind("Remark") %>'></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="Label12" runat="server" Text='<%# Bind("Remark") %>'></asp:Label>
+                                    <asp:Label ID="Label13" runat="server" Text='<%# Bind("Remark") %>'></asp:Label>
                                 </ItemTemplate>
                                     <ControlStyle CssClass="center" />
                                 <HeaderStyle CssClass="center" />
@@ -494,10 +435,10 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Inserted By" SortExpression="Inserted By">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox12" runat="server" Text='<%# Bind("[Inserted By]") %>'></asp:TextBox>
+                                    <asp:TextBox ID="TextBox13" runat="server" Text='<%# Bind("[Inserted By]") %>'></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="Label13" runat="server" Text='<%# Bind("[Inserted By]") %>'></asp:Label>
+                                    <asp:Label ID="Label14" runat="server" Text='<%# Bind("[Inserted By]") %>'></asp:Label>
                                 </ItemTemplate>
                                     <ControlStyle CssClass="center" />
                                 <HeaderStyle CssClass="center" />
@@ -505,10 +446,10 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Updated By" SortExpression="Updated By">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox13" runat="server" Text='<%# Bind("[Updated By]") %>'></asp:TextBox>
+                                    <asp:TextBox ID="TextBox14" runat="server" Text='<%# Bind("[Updated By]") %>'></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="Label14" runat="server" Text='<%# Bind("[Updated By]") %>'></asp:Label>
+                                    <asp:Label ID="Label15" runat="server" Text='<%# Bind("[Updated By]") %>'></asp:Label>
                                 </ItemTemplate>
                                     <ControlStyle CssClass="center" />
                                 <HeaderStyle CssClass="center" />
@@ -516,10 +457,10 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Approved By" SortExpression="Approved By">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox14" runat="server" Text='<%# Bind("[Approved By]") %>'></asp:TextBox>
+                                    <asp:TextBox ID="TextBox15" runat="server" Text='<%# Bind("[Approved By]") %>'></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="Label15" runat="server" Text='<%# Bind("[Approved By]") %>'></asp:Label>
+                                    <asp:Label ID="Label16" runat="server" Text='<%# Bind("[Approved By]") %>'></asp:Label>
                                 </ItemTemplate>
                                     <ControlStyle CssClass="center" />
                                 <HeaderStyle CssClass="center" />
@@ -539,15 +480,11 @@
   </div>
 
      <asp:SqlDataSource ID="SqlConUpdate" runat="server" ConnectionString="<%$ ConnectionStrings:DBCon %>"
-         SelectCommand="SELECT * FROM [DayToDayTbl_upd]">
-        
+         SelectCommand="SELECT * FROM [DayToDayTbl_upd]"  DeleteCommand="DELETE FROM [DayToDayTbl_upd] WHERE [id] = @id">
+               <DeleteParameters>
+                 <asp:Parameter Name="id" Type="Int32" />
+             </DeleteParameters>      
      </asp:SqlDataSource>
-
-
-
-
-
-   
   </div>
 
 </asp:Content>

@@ -178,6 +178,7 @@ namespace Collateral
             dt.Columns.Add("Confirmed By");
             dt.Columns.Add("Date of Boking");
             dt.Columns.Add("CMLA SignOff Date");
+            dt.Columns.Add("Number of Extension Renewa");
             dt.Columns.Add("Remark");
             dt.Columns.Add("Inserted By");
             dt.Columns.Add("Updated By");
@@ -202,7 +203,9 @@ namespace Collateral
                     string Val12 = (gw.FindControl("Label13") as Label).Text;//
                     string Val13 = (gw.FindControl("Label14") as Label).Text;//
                     string Val14 = (gw.FindControl("Label15") as Label).Text;//
-                    dt.Rows.Add(Val1,Val2, Val3, Val4, Val5, Val6, Val7, Val8, Val9, Val10, Val11, Val12, Val13, Val14);
+                    string Val15 = (gw.FindControl("Label16") as Label).Text;//
+
+                    dt.Rows.Add(Val1,Val2, Val3, Val4, Val5, Val6, Val7, Val8, Val9, Val10, Val11, Val12, Val13, Val14, Val15);
                 }
             }
             //--------------------------------
@@ -276,11 +279,43 @@ namespace Collateral
                     Session["confby"] = (string)rdr["Confirmed By"].ToString();
                     Session["dboking"] = (string)rdr["Date of Boking"].ToString();
                     Session["csnoofdate"] = (string)rdr["CMLA SignOff Date"].ToString();
+                    Session["numexten"] = (string)rdr["Number of Extension Renewa"].ToString();
                     Session["Remark"] = (string)rdr["Remark"].ToString();
                     sqlCon.Close();
 
                 }
                 Response.Redirect("AddnewDaytoDayRecords");
+            }
+        }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            string fullUsername = User.Identity.Name;
+            string username = fullUsername.Substring(fullUsername.IndexOf("\\") + 1);
+
+            SqlDataAdapter sda = new SqlDataAdapter("select * from [userMng] where username= '" + username + "'", connectionString);
+            DataTable dtResult = new DataTable();
+            sda.Fill(dtResult);
+
+            string userType = dtResult.Rows[0]["Access_role"].ToString();
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                if (userType == "Supper Admin")
+                {
+                    e.Row.Cells[1].Enabled = false;
+
+                }
+                if (userType == "Admin")
+                {
+                    e.Row.Cells[1].Enabled = false;
+                }
+
+                if (userType == "Users")
+                {
+                    e.Row.Cells[1].Enabled = true;
+                }
             }
         }
     }

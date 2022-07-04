@@ -34,23 +34,25 @@ namespace Collateral_int
                     Response.Redirect("NotAuthorize.aspx?ReturnPath=" + Server.UrlEncode(Request.Url.AbsoluteUri));
                 }
 
-                if (Access_role == null)
-                {
-                    Response.Redirect("Loging.aspx");
-                    Session.Remove("loading");
-                }
+                //if (Access_role == null)
+                //{
+                //    Response.Redirect("Loging.aspx");
+                //    Session.Remove("loading");
+                //}
 
                 if (Session["acgf_id"] != null)
                 {
                     addLbl.Text = "Update ACGF Record";
-                    Button2.Text = " Update ";
-                    RequiredFieldValidator1.Enabled = false;
-                    RequiredFieldValidator2.Enabled = false;
-                    RequiredFieldValidator3.Enabled = false;
-                    RequiredFieldValidator4.Enabled = false;
-                    RequiredFieldValidator5.Enabled = false;
-                    RequiredFieldValidator6.Enabled = false;
-                    RequiredFieldValidator9.Enabled = false;
+                    btnADD.Text = " Update ";
+
+
+                    //RequiredFieldValidator1.Enabled = false;
+                    //RequiredFieldValidator2.Enabled = false;
+                    //RequiredFieldValidator3.Enabled = false;
+                    //RequiredFieldValidator4.Enabled = false;
+                    //RequiredFieldValidator5.Enabled = false;
+                    //RequiredFieldValidator6.Enabled = false;
+                    //RequiredFieldValidator9.Enabled = false;
                   
                     txtBorrower.Text = Session["bname"].ToString();
                     txtFAN.Text = Session["fan"].ToString();
@@ -81,14 +83,25 @@ namespace Collateral_int
             Response.Redirect("Collateral.aspx");
         }
 
-        protected void Button2_Click(object sender, EventArgs e)
+
+        protected void txtBorrower_TextChanged(object sender, EventArgs e)
+        {
+            msg.Visible = false;
+        }
+        protected void ResetBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Request.RawUrl);
+            msg.Visible = false;
+        }
+
+        protected void btnADD_Click(object sender, EventArgs e)
         {
             string fullUsername = User.Identity.Name;
             int index_domain = fullUsername.IndexOf("AIB\\");
             string username = fullUsername.Substring(fullUsername.IndexOf("\\") + 1);
             if (Page.IsValid)
             {
-                if (Button2.Text == "ADD")
+                if (btnADD.Text == "ADD")
                 {
                     string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
                     using (SqlConnection sqlCon = new SqlConnection(connectionString))
@@ -196,17 +209,6 @@ namespace Collateral_int
 
 
             }
-
-
-        }
-        protected void txtBorrower_TextChanged(object sender, EventArgs e)
-        {
-            msg.Visible = false;
-        }
-        protected void ResetBtn_Click(object sender, EventArgs e)
-        {
-            Response.Redirect(Request.RawUrl);
-            msg.Visible = false;
         }
     }
 }

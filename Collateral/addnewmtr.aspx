@@ -158,7 +158,6 @@
                         <SortedDescendingCellStyle BackColor="#D4DFE1" />
                         <SortedDescendingHeaderStyle BackColor="#15524A" />
                     </asp:GridView>
-                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:OracleCon %>" ProviderName="<%$ ConnectionStrings:OracleCon.ProviderName %>" SelectCommand="SELECT top 10 &quot;COUNTER_PARTY&quot; FROM &quot;FCXTB_FXDEAL_CONTRACT&quot;"></asp:SqlDataSource>
                 </td>
             </tr>
         </table>

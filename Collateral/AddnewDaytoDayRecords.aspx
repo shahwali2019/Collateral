@@ -124,7 +124,14 @@
                 width: 209px;
             }
         </style>
-
+        <script>
+    function HideLabel() {
+        var seconds = 5;
+        setTimeout(function () {
+            document.getElementById("<%=txtlbl.ClientID %>").style.display = "none";
+        }, seconds * 1000);
+    };
+        </script>
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
 
             <ContentTemplate>
@@ -158,7 +165,6 @@
                         <SortedDescendingCellStyle BackColor="#D4DFE1" />
                         <SortedDescendingHeaderStyle BackColor="#15524A" />
                     </asp:GridView>
-                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:OracleCon %>" ProviderName="<%$ ConnectionStrings:OracleCon.ProviderName %>" SelectCommand="SELECT top 10 &quot;COUNTER_PARTY&quot; FROM &quot;FCXTB_FXDEAL_CONTRACT&quot;"></asp:SqlDataSource>
                 </td>
             </tr>
         </table>
@@ -209,13 +215,15 @@
                 </td>
                 <td class="auto-style47">
                     <asp:TextBox ID="appNumber" runat="server" Height="40px" Width="196px" class="  Facility Approval..." TabIndex="2" CssClass="form-control"></asp:TextBox>
-                </td>
+                    <asp:Label ID="txtlbl" ForeColor="Red" Font-Bold="true" Text="No Data In The FlexCube." runat="server" Visible="false" />
+
+                    </td>
                 <td class="auto-style48">
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="X" Font-Bold="True" Font-Names="Bahnschrift" Font-Size="X-Small" ForeColor="Red" ControlToValidate="action"></asp:RequiredFieldValidator>
                 </td>
                 <td class="auto-style30"><strong>TFL Instruced On<span style="color: red;">*</span>&nbsp;&nbsp;</strong></td>
                 <td style="width: 209px">
-                    <asp:TextBox ID="tfl" AutoPostBack="false" runat="server" Height="40px" Width="196px" class="   Guarantee Claimed..." TabIndex="7" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="tfl" AutoPostBack="false" runat="server" Height="40px" Width="196px" class="   Guarantee Claimed..." TabIndex="7" CssClass="form-control" TextMode="Date"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -302,21 +310,31 @@
                     <asp:TextBox ID="cmla" runat="server" Height="40px" Width="196px" class="  Remark..." TabIndex="8" CssClass="form-control" TextMode="Date"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
-                <td class="auto-style46">&nbsp;</td>
-                <td class="auto-style38">&nbsp;</td>
-                <td class="auto-style39">&nbsp;</td>
-                <td class="auto-style49">&nbsp;</td>
-                <td class="auto-style41">Remark</td>
+
+                        <tr>
+                <td class="auto-style46"><strong>&nbsp;Number of Extension/Renewal<span style="color: red;">*</span></strong></td>
+                <td class="auto-style38">
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="X" Font-Bold="True" Font-Names="Bahnschrift" Font-Size="X-Small" ForeColor="Red" ControlToValidate="txtnm_extn"></asp:RequiredFieldValidator>
+                </td>
+                <td class="auto-style39">
+                    <asp:TextBox ID="txtnm_extn" runat="server" Height="40px" Width="196px" class="  Number_Exten..." TabIndex="8" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
+
+                </td>
+                <td class="auto-style49">
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="X" Font-Bold="True" Font-Names="Bahnschrift" Font-Size="X-Small" ForeColor="Red" ControlToValidate="remark"></asp:RequiredFieldValidator>
+                </td>
+                <td class="auto-style41">Remark<strong><span style="color: red;">*</span>&nbsp;</strong></td>
                 <td class="auto-style52">
                     <asp:TextBox ID="remark" runat="server" Height="40px" Width="196px" class="  Remark..." TabIndex="8" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
                 </td>
             </tr>
+
             <tr>
                 <td class="auto-style45">&nbsp;</td>
                 <td class="auto-style33">&nbsp;</td>
                 <td class="auto-style47">&nbsp;</td>
                 <td class="auto-style51">
+
                     <br />
                 </td>
                 <td class="auto-style51">&nbsp;</td>

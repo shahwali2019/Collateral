@@ -33,11 +33,7 @@ namespace Collateral
                     Response.Redirect("NotAuthorize.aspx?ReturnPath=" + Server.UrlEncode(Request.Url.AbsoluteUri));
                 }
 
-                if (Access_role == null)
-                {
-                    Response.Redirect("Loging.aspx");
-                    Session.Remove("loading");
-                }
+
 
 
                 //----------------------------------------------
@@ -163,7 +159,7 @@ namespace Collateral
                         sqlCon2.Close();
                         //-------------------------------------
 
-                        //  txtClient.Text = facilityApptxt.Text = txtDrawer.Text = txtFolderNo.Text = txtExtention.Text = txtMod.Text = txtSafein.Text = txtSafeout.Text = txtRemark.Text = "";
+                        //txtClient.Text = facilityApptxt.Text = txtDrawer.Text = txtFolderNo.Text = txtExtention.Text = txtMod.Text = txtSafein.Text = txtSafeout.Text = txtRemark.Text = "";
 
                         //==========================================
                     }

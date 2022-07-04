@@ -43,11 +43,11 @@ namespace Collateral_int
                 resultLbl.Visible = true;
                 if (counter <= 1)
                 {
-                    resultLbl.Text = "Found " + counter + " Record.";
+                    resultLbl.Text = "Found" + counter + " Record.";
                 }
                 else
 
-                    resultLbl.Text = "Found " + counter + " Record(s).";
+                    resultLbl.Text = "Found" + counter + " Record(s).";
             }
             //-------------------------
             if (!string.IsNullOrEmpty(txtComName.Text) && string.IsNullOrEmpty(txtAppNo.Text) && drop_down_facility_type.SelectedValue == "FT")
@@ -57,7 +57,7 @@ namespace Collateral_int
                 string sqlQuery;
                 SqlConnection sqlCon = new SqlConnection(connectionString);
                 sqlCon.Open();
-                sqlQuery = "SELECT *FROM [LoanReg_tbl] where [Company Name] like '%"+txtComName.Text+ "%'";
+                sqlQuery = "SELECT *FROM [LoanReg_tbl] where [Company Name] like '%" + txtComName.Text + "%'";
                 SqlCommand cmd = new SqlCommand(sqlQuery, sqlCon);
                 cmd.ExecuteNonQuery();
                 SqlDataAdapter DA = new SqlDataAdapter(cmd);
@@ -70,11 +70,11 @@ namespace Collateral_int
                 resultLbl.Visible = true;
                 if (counter <= 1)
                 {
-                    resultLbl.Text = "Found " + counter + " Record.";
+                    resultLbl.Text = "Found" + counter + " Record.";
                 }
                 else
 
-                    resultLbl.Text = "Found " + counter + " Record(s).";
+                    resultLbl.Text = "Found" + counter + " Record(s).";
             }
             //-------------------------
 
@@ -98,16 +98,15 @@ namespace Collateral_int
                 resultLbl.Visible = true;
                 if (counter <= 1)
                 {
-                    resultLbl.Text = "Found " + counter + " Record.";
+                    resultLbl.Text = "Found" + counter + " Record.";
                 }
                 else
 
-                    resultLbl.Text = "Found " + counter + " Record(s).";
+                    resultLbl.Text = "Found" + counter + " Record(s).";
             }
             //-------------------------
 
-
-            if (string.IsNullOrEmpty(txtComName.Text) && string.IsNullOrEmpty(txtAppNo.Text) && drop_down_facility_type.SelectedValue!="FT")
+            if (string.IsNullOrEmpty(txtComName.Text) && string.IsNullOrEmpty(txtAppNo.Text) && drop_down_facility_type.SelectedValue != "FT")
             {
                 string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
                 GridView1.DataSourceID = null;
@@ -127,14 +126,13 @@ namespace Collateral_int
                 resultLbl.Visible = true;
                 if (counter <= 1)
                 {
-                    resultLbl.Text = "Found " + counter + " Record.";
+                    resultLbl.Text = "Found" + counter + " Record.";
                 }
                 else
 
-                    resultLbl.Text = "Found " + counter + " Record(s).";
+                    resultLbl.Text = "Found" + counter + " Record(s).";
             }
             //-------------------------
-
 
             if (!string.IsNullOrEmpty(txtComName.Text) && !string.IsNullOrEmpty(txtAppNo.Text) && drop_down_facility_type.SelectedValue == "FT")
             {
@@ -143,7 +141,7 @@ namespace Collateral_int
                 string sqlQuery;
                 SqlConnection sqlCon = new SqlConnection(connectionString);
                 sqlCon.Open();
-                sqlQuery = "SELECT *FROM [LoanReg_tbl] where [Approval Number] like '%" + txtAppNo.Text + "%' AND [Company Name] LIKE '%"+txtComName.Text+"%'";
+                sqlQuery = "SELECT *FROM [LoanReg_tbl] where [Approval Number] like '%" + txtAppNo.Text + "%' AND [Company Name] LIKE '%" + txtComName.Text + "%'";
                 SqlCommand cmd = new SqlCommand(sqlQuery, sqlCon);
                 cmd.ExecuteNonQuery();
                 SqlDataAdapter DA = new SqlDataAdapter(cmd);
@@ -156,11 +154,11 @@ namespace Collateral_int
                 resultLbl.Visible = true;
                 if (counter <= 1)
                 {
-                    resultLbl.Text = "Found " + counter + " Record.";
+                    resultLbl.Text = "Found" + counter + " Record.";
                 }
                 else
 
-                    resultLbl.Text = "Found " + counter + " Record(s).";
+                    resultLbl.Text = "Found" + counter + " Record(s).";
             }
             //-------------------------
 
@@ -184,11 +182,11 @@ namespace Collateral_int
                 resultLbl.Visible = true;
                 if (counter <= 1)
                 {
-                    resultLbl.Text = "Found " + counter + " Record.";
+                    resultLbl.Text = "Found" + counter + " Record.";
                 }
                 else
 
-                    resultLbl.Text = "Found " + counter + " Record(s).";
+                    resultLbl.Text = "Found" + counter + " Record(s).";
             }
             //-------------------------
 
@@ -212,20 +210,13 @@ namespace Collateral_int
                 resultLbl.Visible = true;
                 if (counter <= 1)
                 {
-                    resultLbl.Text = "Found " + counter + " Record.";
+                    resultLbl.Text = "Found" + counter + " Record.";
                 }
                 else
 
-                    resultLbl.Text = "Found " + counter + " Record(s).";
+                    resultLbl.Text = "Found" + counter + " Record(s).";
             }
             //-------------------------
-
-
-
-
-
-
-
 
         }
 
@@ -267,9 +258,6 @@ namespace Collateral_int
         protected void excelExporter_Click(object sender, ImageClickEventArgs e)
         {
 
-
-
-
         }
 
         protected void chkb1_CheckedChanged1(object sender, EventArgs e)
@@ -308,51 +296,84 @@ namespace Collateral_int
                 var chkSelect = gw.FindControl("chkSelect") as CheckBox;
                 if (chkSelect.Checked)
                 {
-                    string Val1 = (gw.FindControl("Label2") as Label).Text;//
-                    string Val2 = (gw.FindControl("Label3") as Label).Text;//
-                    string Val3 = (gw.FindControl("Label4") as Label).Text;//
-                    string Val4 = (gw.FindControl("Label5") as Label).Text;//
-                    string Val5 = (gw.FindControl("Label6") as Label).Text;//
-                    string Val6 = (gw.FindControl("Label7") as Label).Text;//
-                    string Val7 = (gw.FindControl("Label8") as Label).Text;//
-                    string Val8 = (gw.FindControl("Label9") as Label).Text;//
-                    string Val9 = (gw.FindControl("Label10") as Label).Text;//
-                    string Val11 = (gw.FindControl("Label13") as Label).Text;//
+                    string Val1 = (gw.FindControl("Label2") as Label).Text; //
+                    string Val2 = (gw.FindControl("Label3") as Label).Text; //
+                    string Val3 = (gw.FindControl("Label4") as Label).Text; //
+                    string Val4 = (gw.FindControl("Label5") as Label).Text; //
+                    string Val5 = (gw.FindControl("Label6") as Label).Text; //
+                    string Val6 = (gw.FindControl("Label7") as Label).Text; //
+                    string Val7 = (gw.FindControl("Label8") as Label).Text; //
+                    string Val8 = (gw.FindControl("Label9") as Label).Text; //
+                    string Val9 = (gw.FindControl("Label10") as Label).Text; //
+                    string Val11 = (gw.FindControl("Label13") as Label).Text; //
                     dt.Rows.Add(Val1, Val2, Val3, Val4, Val5, Val6, Val7, Val8, Val9, Val11);
                 }
             }
-                //--------------------------------
-                var products = dt;
-                ExcelPackage excel = new ExcelPackage();
-                var workSheet = excel.Workbook.Worksheets.Add("LoanDocReg");
-                var totalCols = products.Columns.Count;
-                var totalRows = products.Rows.Count;
+            //--------------------------------
+            var products = dt;
+            ExcelPackage excel = new ExcelPackage();
+            var workSheet = excel.Workbook.Worksheets.Add("LoanDocReg");
+            var totalCols = products.Columns.Count;
+            var totalRows = products.Rows.Count;
 
-                for (var col = 1; col <= totalCols; col++)
+            for (var col = 1; col <= totalCols; col++)
+            {
+                workSheet.Cells[1, col].Value = products.Columns[col - 1].ColumnName;
+            }
+            for (var row = 1; row <= totalRows; row++)
+            {
+                for (var col = 0; col < totalCols; col++)
                 {
-                    workSheet.Cells[1, col].Value = products.Columns[col - 1].ColumnName;
-                }
-                for (var row = 1; row <= totalRows; row++)
-                {
-                    for (var col = 0; col < totalCols; col++)
-                    {
-                        workSheet.Cells[row + 1, col + 1].Value = products.Rows[row - 1][col];
-                    }
-                }
-                using (var memoryStream = new MemoryStream())
-                {
-                    Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                    Response.AddHeader("content-disposition", "attachment;  filename=LoanDocumentRegister.xlsx");
-                    excel.SaveAs(memoryStream);
-                    memoryStream.WriteTo(Response.OutputStream);
-                    Response.Flush();
-                    Response.End();
+                    workSheet.Cells[row + 1, col + 1].Value = products.Rows[row - 1][col];
                 }
             }
-        
+            using (var memoryStream = new MemoryStream())
+            {
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                Response.AddHeader("content-disposition", "attachment;  filename=LoanDocumentRegister.xlsx");
+                excel.SaveAs(memoryStream);
+                memoryStream.WriteTo(Response.OutputStream);
+                Response.Flush();
+                Response.End();
+            }
+        }
+
         protected void addNew_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("newLRD_records.aspx");
+        }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            string fullUsername = User.Identity.Name;
+            string username = fullUsername.Substring(fullUsername.IndexOf("\\") + 1);
+
+            SqlDataAdapter sda = new SqlDataAdapter("select * from [userMng] where username= '" + username + "'", connectionString);
+            DataTable dtResult = new DataTable();
+            sda.Fill(dtResult);
+
+            string userType = dtResult.Rows[0]["Access_role"].ToString();
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                if (userType == "Supper Admin")
+                {
+                    e.Row.Cells[1].Enabled = false;
+                    addNew.Enabled = false;
+
+                }
+                if (userType == "Admin")
+                {
+                    e.Row.Cells[1].Enabled = false;
+                    addNew.Enabled = false;
+                }
+
+                if (userType == "Users")
+                {
+                    e.Row.Cells[1].Enabled = true;
+                }
+            }
         }
     }
 }

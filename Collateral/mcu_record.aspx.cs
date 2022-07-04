@@ -15,7 +15,7 @@ namespace Collateral_int
 
     public partial class mcu_record : System.Web.UI.Page
     {
-
+        string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -36,12 +36,6 @@ namespace Collateral_int
                 if (string.IsNullOrEmpty(Access_role))
                 {
                     Response.Redirect("NotAuthorize.aspx?ReturnPath=" + Server.UrlEncode(Request.Url.AbsoluteUri));
-                }
-
-                if (Access_role == null)
-                {
-                    Response.Redirect("Loging.aspx");
-                    Session.Remove("loading");
                 }
             }
         }
@@ -71,7 +65,7 @@ namespace Collateral_int
                     resultLbl.Text = "Found " + counter + " Record.";
                 }
                 else
-                    
+
                     resultLbl.Text = "Found " + counter + " Record(s).";
             }
             //----------Search by Customer Name-----------------------------------------------------------------
@@ -82,7 +76,7 @@ namespace Collateral_int
                 string sqlQuery;
                 SqlConnection sqlCon = new SqlConnection(connectionString);
                 sqlCon.Open();
-                sqlQuery = "SELECT *FROM mcu_tbl where [Customre Name] LIKE '%"+txtbname.Text.Trim()+"%'";
+                sqlQuery = "SELECT *FROM mcu_tbl where [Customre Name] LIKE '%" + txtbname.Text.Trim() + "%'";
                 SqlCommand cmd = new SqlCommand(sqlQuery, sqlCon);
                 cmd.ExecuteNonQuery();
                 SqlDataAdapter DA = new SqlDataAdapter(cmd);
@@ -97,10 +91,9 @@ namespace Collateral_int
                 {
                     resultLbl.Text = "Found " + counter + " Record.";
                 }
-                else
-                    resultLbl.Text = "Found " + counter + " Record(s).";
+                else resultLbl.Text = "Found " + counter + " Record(s).";
             }
-           
+
             //----------Search by AccountNumber-----------------------------------------------------------------
             if (string.IsNullOrEmpty(txtbname.Text) && !string.IsNullOrEmpty(txtCode.Text) && string.IsNullOrEmpty(txtLog.Text) && statusList.SelectedValue == "LS")
             {
@@ -124,10 +117,9 @@ namespace Collateral_int
                 {
                     resultLbl.Text = "Found " + counter + " Record.";
                 }
-                else
-                    resultLbl.Text = "Found " + counter + " Record(s).";
+                else resultLbl.Text = "Found " + counter + " Record(s).";
             }
-        
+
             //----------Search by Approval Number-----------------------------------------------------------------
             if (string.IsNullOrEmpty(txtbname.Text) && string.IsNullOrEmpty(txtCode.Text) && !string.IsNullOrEmpty(txtLog.Text) && statusList.SelectedValue == "LS")
             {
@@ -151,8 +143,7 @@ namespace Collateral_int
                 {
                     resultLbl.Text = "Found " + counter + " Record.";
                 }
-                else
-                    resultLbl.Text = "Found " + counter + " Record(s).";
+                else resultLbl.Text = "Found " + counter + " Record(s).";
             }
             //-------------------------------------------------------
             //----------Search by AccountNumber-----------------------------------------------------------------
@@ -178,8 +169,7 @@ namespace Collateral_int
                 {
                     resultLbl.Text = "Found " + counter + " Record.";
                 }
-                else
-                    resultLbl.Text = "Found " + counter + " Record(s).";
+                else resultLbl.Text = "Found " + counter + " Record(s).";
             }
 
         }
@@ -219,7 +209,7 @@ namespace Collateral_int
                     Session["cur"] = (string)rdr["Currency"].ToString();
                     Session["account"] = (string)rdr["Account Number"].ToString();
                     Session["appNo"] = (string)rdr["Approval Number"].ToString();
-                    Session["Dis"] = (string)rdr["[Disburesement"].ToString();
+                    Session["Dis"] = (string)rdr["Disburesement"].ToString();
                     Session["DDM"] = (string)rdr["Due Date of MCU"].ToString();
                     Session["MCUD"] = (string)rdr["MCU Date"].ToString();
                     Session["LS"] = (string)rdr["Loan Status"].ToString();
@@ -231,7 +221,6 @@ namespace Collateral_int
                 Response.Redirect("new_mcu_record.aspx");
             }
 
-
         }
 
         protected void addNew_Click(object sender, ImageClickEventArgs e)
@@ -242,33 +231,39 @@ namespace Collateral_int
         protected void excelExporter_Click(object sender, ImageClickEventArgs e)
         {
             DataTable dt = new DataTable();
+            dt.Columns.Add("id");
             dt.Columns.Add("Customre Name");
             dt.Columns.Add("Currency");
             dt.Columns.Add("Account Number");
             dt.Columns.Add("Approval Number");
-            dt.Columns.Add("[Disburesement");
+            dt.Columns.Add("Disburesement");
             dt.Columns.Add("Due Date of MCU");
             dt.Columns.Add("MCU Date");
             dt.Columns.Add("Loan Status");
             dt.Columns.Add("Remark");
+            dt.Columns.Add("Inserted By");
             dt.Columns.Add("Approved By");
+            dt.Columns.Add("Updated By");
 
             foreach (GridViewRow gw in GridView1.Rows)
             {
                 var chkSelect = gw.FindControl("chkSelect") as CheckBox;
                 if (chkSelect.Checked)
                 {
-                    string Val1 = (gw.FindControl("Label2") as Label).Text;//
-                    string Val2 = (gw.FindControl("Label3") as Label).Text;//
-                    string Val3 = (gw.FindControl("Label4") as Label).Text;//
-                    string Val4 = (gw.FindControl("Label5") as Label).Text;//
-                    string Val5 = (gw.FindControl("Label6") as Label).Text;//
-                    string Val6 = (gw.FindControl("Label7") as Label).Text;//
-                    string Val7 = (gw.FindControl("Label8") as Label).Text;//
-                    string Val8 = (gw.FindControl("Label9") as Label).Text;//
-                    string Val9 = (gw.FindControl("Label10") as Label).Text;//
-                    string Val11 = (gw.FindControl("Label11") as Label).Text;//
-                    dt.Rows.Add(Val1, Val2, Val3, Val4, Val5, Val6, Val7, Val8, Val9, Val11);
+                    string Val1 = (gw.FindControl("Label1") as Label).Text; //
+                    string Val2 = (gw.FindControl("Label2") as Label).Text; //
+                    string Val3 = (gw.FindControl("Label3") as Label).Text; //
+                    string Val4 = (gw.FindControl("Label4") as Label).Text; //
+                    string Val5 = (gw.FindControl("Label5") as Label).Text; //
+                    string Val6 = (gw.FindControl("Label6") as Label).Text; //
+                    string Val7 = (gw.FindControl("Label7") as Label).Text; //
+                    string Val8 = (gw.FindControl("Label8") as Label).Text; //
+                    string Val9 = (gw.FindControl("Label9") as Label).Text; //
+                    string Val10 = (gw.FindControl("Label10") as Label).Text; //
+                    string Val11 = (gw.FindControl("Label11") as Label).Text; //
+                    string Val12 = (gw.FindControl("Label12") as Label).Text; //
+                    string Val13 = (gw.FindControl("Label13") as Label).Text; //
+                    dt.Rows.Add(Val1, Val2, Val3, Val4, Val5, Val6, Val7, Val8, Val9, Val10, Val11, Val12, Val13);
                 }
             }
             //--------------------------------
@@ -299,10 +294,39 @@ namespace Collateral_int
                 Response.End();
             }
 
+        }
 
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            string fullUsername = User.Identity.Name;
+            string username = fullUsername.Substring(fullUsername.IndexOf("\\") + 1);
 
+            SqlDataAdapter sda = new SqlDataAdapter("select * from [userMng] where username= '" + username + "'", connectionString);
+            DataTable dtResult = new DataTable();
+            sda.Fill(dtResult);
 
+            string userType = dtResult.Rows[0]["Access_role"].ToString();
 
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                if (userType == "Supper Admin")
+                {
+                    e.Row.Cells[1].Enabled = false;
+                    addNew.Enabled = false;
+
+                }
+                if (userType == "Admin")
+                {
+                    e.Row.Cells[1].Enabled = false;
+                    addNew.Enabled = false;
+                }
+
+                if (userType == "Users")
+                {
+                    e.Row.Cells[1].Enabled = true;
+                }
+            }
         }
     }
 }

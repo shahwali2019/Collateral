@@ -29,42 +29,42 @@ namespace Collateral
                     using (SqlConnection sqlCon = new SqlConnection(connectionString))
                     {
                         sqlCon.Open();
-                        string query = "INSERT INTO [dbo].[mtr_insert]" +
-               "(" +
-               "[Client Name]" +
-               ",[Memo Ref]" +
-               ",[Debit Account]" +
-               ",[Credit Account]" +
-               ",[Transaction Code]" +
-               ",[Memo Submission]" +
-               ",[Amount]" +
-               ",[Currency]" +
-               ",[Heading]" +
-               ",[Transaction Detail]" +
-               ",[Booding Date]" +
-               ",[Value Date]" +
-               ",[Status]" +
-               ",[Remark]" +
-               ",[InsertedBy]" +
-               ")" +
-                "VALUES" +
-               "(" +
-               "@val2," +
-               "@val3," +
-               "@val4," +
-               "@val5," +
-               "@val6," +
-               "@val7," +
-               "@val8," +
-               "@val9," +
-               "@val10," +
-               "@val11," +
-               "@val12," +
-               "@val13," +
-               "@val14," +
-               "@val15," +
-               "@val16" +
-               ")";
+                        string query = "INSERT INTO [dbo].[mtr_insert]" + 
+                            "(" + 
+                            "[Client Name]" + 
+                            ",[Memo Ref]" +
+                            ",[Debit Account]" + 
+                            ",[Credit Account]" +
+                            ",[Transaction Code]" + 
+                            ",[Memo Submission]" + 
+                            ",[Amount]" + 
+                            ",[Currency]" + 
+                            ",[Heading]" +
+                            ",[Transaction Detail]" + 
+                            ",[Booding Date]" + 
+                            ",[Value Date]" +
+                            ",[Status]" + 
+                            ",[Remark]" + 
+                            ",[InsertedBy]" + 
+                            ")" + 
+                            "VALUES" + 
+                            "(" + 
+                            "@val2," +
+                            "@val3," +
+                            "@val4," +
+                            "@val5," + 
+                            "@val6," + 
+                            "@val7," + 
+                            "@val8," + 
+                            "@val9," + 
+                            "@val10," + 
+                            "@val11," + 
+                            "@val12," +
+                            "@val13," +
+                            "@val14," +
+                            "@val15," + 
+                            "@val16" +
+                            ")";
                         SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
                         // sqlcmd.Parameters.AddWithValue("@val1",txtClient.Text);
                         sqlcmd.Parameters.AddWithValue("@val2", txtclientn.Text);
@@ -101,43 +101,42 @@ namespace Collateral
                 {
                     sqlCon.Open();
                     string query = "INSERT INTO [dbo].[mtr_update]" +
-           "(" +
-               "id," +
-               "[Client Name]" +
-               ",[Memo Ref]" +
-               ",[Debit Account]" +
-               ",[Credit Account]" +
-               ",[Transaction Code]" +
-               ",[Memo Submission]" +
-               ",[Amount]" +
-               ",[Currency]" +
-               ",[Heading]" +
-               ",[Transaction Detail]" +
-               ",[Booding Date]" +
-               ",[Value Date]" +
-               ",[Status]" +
-               ",[Remark]" +
-               ",[InsertedBy]" +
-           ")" +
-            "VALUES" +
-           "(" +
-           "@val1," +
-           "@val2," +
-           "@val3," +
-           "@val4," +
-           "@val5," +
-           "@val6," +
-           "@val7," +
-           "@val8," +
-           "@val9," +
-           "@val10," +
-           "@val11," +
-           "@val12," +
-           "@val13," +
-           "@val14," +
-           "@val15," +
-           "@val16" +
-           ")";
+                        "(" +
+                        "id," + 
+                        "[Client Name]" + 
+                        ",[Memo Ref]" +
+                        ",[Debit Account]" +
+                        ",[Credit Account]" + 
+                        ",[Transaction Code]" + 
+                        ",[Memo Submission]" + 
+                        ",[Amount]" + 
+                        ",[Currency]" + 
+                        ",[Heading]" + 
+                        ",[Transaction Detail]" +
+                        ",[Booding Date]" + 
+                        ",[Value Date]" +
+                        ",[Status]" + 
+                        ",[Remark]" + 
+                        ",[InsertedBy]" + 
+                        ")" + "VALUES" +
+                        "(" + 
+                        "@val1," +
+                        "@val2," + 
+                        "@val3," +
+                        "@val4," + 
+                        "@val5," +
+                        "@val6," + 
+                        "@val7," + 
+                        "@val8," +
+                        "@val9," + 
+                        "@val10," + 
+                        "@val11," + 
+                        "@val12," + 
+                        "@val13," +
+                        "@val14," + 
+                        "@val15," + 
+                        "@val16" +
+                        ")";
                     SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
                     sqlcmd.Parameters.AddWithValue("@val1", Session["id"].ToString());
                     sqlcmd.Parameters.AddWithValue("@val2", txtclientn.Text);

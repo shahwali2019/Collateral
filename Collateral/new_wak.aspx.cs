@@ -32,17 +32,7 @@ namespace Collateral_int
                     Response.Redirect("NotAuthorize.aspx?ReturnPath=" + Server.UrlEncode(Request.Url.AbsoluteUri));
                 }
 
-                if (Access_role == null)
-                {
-                    Response.Redirect("Loging.aspx");
-                    Session.Remove("loading");
-                }
-
-
-
-
-
-
+    
                 if (Session["id"] != null)
                 {
                     string id = Session["id"].ToString();
@@ -59,6 +49,10 @@ namespace Collateral_int
                     string DocStatus = Session["DocStatus"].ToString();
                     string SafeOutDate = Session["SafeoutDate"].ToString();
                     string Remark = Session["Remark"].ToString();
+                    string ArchDoc = Session["ArchDoc"].ToString();
+                    string SafeRef = Session["SafeRef"].ToString();
+                    string ArchDate = Session["ArchDate"].ToString();
+
 
                     txtClient.Text = ClientName;
                     facilityApptxt.Text = FacilityApp;
@@ -73,6 +67,9 @@ namespace Collateral_int
                     DocStatusList.SelectedValue = DocStatus;
                     txtSafeout.Text = SafeOutDate;
                     txtRemark.Text = Remark;
+                    txtArcDoc.Text = ArchDoc;
+                    txtCabineRef.Text = SafeRef;
+                    txtArchiveDate.Text = ArchDate;
                     subBtn.Text = "Update";
                     ArchiveChBox.Visible = true;
                     addLbl.Text = "Edit VALUT Record";
@@ -84,7 +81,6 @@ namespace Collateral_int
                     //RequiredFieldValidator6.Enabled = false;
                     //RequiredFieldValidator7.Enabled = false;
                     //RequiredFieldValidator8.Enabled = false;
-
 
                 }
             }
@@ -128,36 +124,37 @@ namespace Collateral_int
 
                                     sqlCon.Open();
                                 string query = "INSERT INTO[dbo].[Wak_Tbl_temp] (" + // temp table for insertion
-                                    "[ClientName]," +
-                                    "[FacilityApproval]," +
-                                    "[FacilityType] ," +
-                                    "[FacilityStatus]," +
-                                    "[SafeNo]," +
-                                    "[drawer]," +
-                                    "[FolderNo]," +
-                                    "[Extention]," +
-                                    "[modification]," +
-                                    "[SafeInDate] ," +
-                                    "[DocStatus]," +
-                                    "[SafeOutDate]," +
-                                    "[Remark]," +
-                                    "[InsertedBy]" +
-                                    ") VALUES" +
-                                    "(" +
-                                    "@ClientName," +
-                                    "@FacilityApproval," +
-                                    "@FacilityType," +
-                                    "@FacilityStatus," +
-                                    "@SafeNo," +
-                                    "@Drawer," +
-                                    "@FolderNo," +
-                                    "@Extention," +
-                                    "@modification," +
-                                    "@SafeInDate," +
-                                    "@DocStatus," +
-                                    "@SafeOutDate," +
-                                    "@Remark," +
-                                    "@InsertedBy)";
+                                "[ClientName]," + 
+                                "[FacilityApproval]," +
+                                "[FacilityType] ," +
+                                "[FacilityStatus]," + 
+                                "[SafeNo]," + 
+                                "[drawer]," + 
+                                "[FolderNo]," + 
+                                "[Extention]," + 
+                                "[modification]," + 
+                                "[SafeInDate] ," +
+                                "[DocStatus]," + 
+                                "[SafeOutDate]," + 
+                                "[Remark]," + 
+                                "[InsertedBy]" +
+
+                                ") VALUES" + 
+                                "(" + 
+                                "@ClientName," +
+                                "@FacilityApproval," + 
+                                "@FacilityType," + 
+                                "@FacilityStatus," + 
+                                "@SafeNo," + 
+                                "@Drawer," + 
+                                "@FolderNo," + 
+                                "@Extention," + 
+                                "@modification," + 
+                                "@SafeInDate," + 
+                                "@DocStatus," + 
+                                "@SafeOutDate," +
+                                "@Remark," + 
+                                "@InsertedBy)";
 
                                 SqlCommand sqlcmd = new SqlCommand(query, sqlCon2);
 
@@ -172,15 +169,17 @@ namespace Collateral_int
                                 sqlcmd.Parameters.AddWithValue("@Extention", txtExtention.Text);
                                 sqlcmd.Parameters.AddWithValue("@modification", txtMod.Text);
 
-
                                 sqlcmd.Parameters.AddWithValue("@SafeInDate", txtSafein.Text);
                                 sqlcmd.Parameters.AddWithValue("@DocStatus", DocStatusList.SelectedValue);
                                 sqlcmd.Parameters.AddWithValue("@SafeOutDate", txtSafeout.Text);
 
-
                                 sqlcmd.Parameters.AddWithValue("@Remark", txtRemark.Text);
                                 sqlcmd.Parameters.AddWithValue("@InsertedBy", username);
 
+                                //sqlcmd.Parameters.AddWithValue("@ArchDoc", txtArcDoc.Text);
+
+                                //sqlcmd.Parameters.AddWithValue("@SafeRef", txtCabineRef.Text);
+                                //sqlcmd.Parameters.AddWithValue("@ArchDat", txtArchiveDate.Text);
 
                                 sqlcmd.ExecuteNonQuery();
                                 msg.Visible = true;
@@ -190,13 +189,13 @@ namespace Collateral_int
                                 sqlCon2.Close();
                                 //-------------------------------------
 
-                                txtClient.Text = facilityApptxt.Text = txtDrawer.Text = txtFolderNo.Text = txtExtention.Text = txtMod.Text = txtSafein.Text = txtSafeout.Text = txtRemark.Text = "";
+                                txtClient.Text = facilityApptxt.Text = txtDrawer.Text = txtFolderNo.Text = txtExtention.Text = txtMod.Text = txtSafein.Text = txtSafeout.Text = txtRemark.Text = txtArcDoc.Text = txtCabineRef.Text = txtArchiveDate.Text = "";
 
                                 //==========================================
                             }
                         }
                     }
-                }// end of adding new WAK Record
+                } // end of adding new WAK Record
 
                 else
                 {
@@ -213,50 +212,50 @@ namespace Collateral_int
                         //end of if
                         else
                         {
-
                             string connectionStringg = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
                             using (SqlConnection sqlConn = new SqlConnection(connectionStringg))
                             {
                                 sqlConn.Open();
-                                string query = "INSERT INTO[dbo].[Wak_update_temp] (" + // temp table for updating
-                                    "[id]," +
-                                    "[ClientName]," +
-                                    "[FacilityApproval]," +
-                                    "[FacilityType] ," +
-                                    "[FacilityStatus]," +
-                                    "[SafeNo]," +
-                                    "[drawer]," +
-                                    "[FolderNo]," +
-                                    "[Extention]," +
-                                    "[modification]," +
-                                    "[SafeInDate] ," +
-                                    "[DocStatus]," +
-                                    "[SafeOutDate]," +
-                                    "[Remark]," +
-                                    "[updatedBy]," +
-                                    "[ArchDoc]," +
-                                    "[SafeRef]," +
-                                    "[ArchDate]" +
-                                    ") VALUES" +
-                                    "(" +
-                                    "@id," +
-                                    "@ClientName," +
-                                    "@FacilityApproval," +
-                                    "@FacilityType," +
-                                    "@FacilityStatus," +
-                                    "@SafeNo," +
-                                    "@Drawer," +
-                                    "@FolderNo," +
-                                    "@Extention," +
-                                    "@modification," +
-                                    "@SafeInDate," +
-                                    "@DocStatus," +
-                                    "@SafeOutDate," +
-                                    "@Remark," +
-                                    "@UpdatedBy," +
-                                    "@archDoc," +
-                                    "@SafeRef," +
-                                    "@archDate)";
+                                string query = "INSERT INTO[dbo].[Wak_update_temp]" +
+                                    " (" + // temp table for updating
+                                "[id]," + 
+                                "[ClientName]," + 
+                                "[FacilityApproval]," + 
+                                "[FacilityType] ," + 
+                                "[FacilityStatus]," +
+                                "[SafeNo]," + 
+                                "[drawer]," + 
+                                "[FolderNo]," + 
+                                "[Extention]," +
+                                "[modification]," + 
+                                "[SafeInDate] ," + 
+                                "[DocStatus]," + 
+                                "[SafeOutDate]," + 
+                                "[Remark]," + 
+                                "[updatedBy]," +
+                                "[ArchDoc]," +
+                                "[SafeRef]," + 
+                                "[ArchDate]" + 
+                                ") VALUES" +
+                                "(" + 
+                                "@id," + 
+                                "@ClientName," + 
+                                "@FacilityApproval," + 
+                                "@FacilityType," +
+                                "@FacilityStatus," + 
+                                "@SafeNo," + 
+                                "@Drawer," + 
+                                "@FolderNo," +
+                                "@Extention," + 
+                                "@modification," + 
+                                "@SafeInDate," + 
+                                "@DocStatus," + 
+                                "@SafeOutDate," + 
+                                "@Remark," + 
+                                "@UpdatedBy," + 
+                                "@ArchDoc," +
+                                "@SafeRef," + 
+                                "@ArchDate)";
 
                                 SqlCommand sqlcmd = new SqlCommand(query, sqlConn);
                                 sqlcmd.Parameters.AddWithValue("@id", Session["id"].ToString());
@@ -274,9 +273,9 @@ namespace Collateral_int
                                 sqlcmd.Parameters.AddWithValue("@SafeOutDate", txtSafeout.Text);
                                 sqlcmd.Parameters.AddWithValue("@Remark", txtRemark.Text);
                                 sqlcmd.Parameters.AddWithValue("@UpdatedBy", username);
-                                sqlcmd.Parameters.AddWithValue("@archDoc", txtArcDoc.Text);
+                                sqlcmd.Parameters.AddWithValue("@ArchDoc", txtArcDoc.Text);
                                 sqlcmd.Parameters.AddWithValue("@SafeRef", txtCabineRef.Text);
-                                sqlcmd.Parameters.AddWithValue("@archDate", txtArchiveDate.Text);
+                                sqlcmd.Parameters.AddWithValue("@ArchDate", txtArchiveDate.Text);
                                 sqlcmd.ExecuteNonQuery();
                                 sqlConn.Close();
                                 sqlConn.Dispose();
@@ -300,58 +299,61 @@ namespace Collateral_int
                             Session.Remove("DocStatus");
                             Session.Remove("SafeoutDate");
                             Session.Remove("Remark");
+                            Session.Remove("ArchDoc");
+                            Session.Remove("SafeRef");
+                            Session.Remove("ArchDate");
                         }
                         //end of else
 
-                    }// end of if checkbox checked
+                    } // end of if checkbox checked
 
                     else
                     {
-
 
                         string connectionStringg = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
                         using (SqlConnection sqlConn = new SqlConnection(connectionStringg))
                         {
                             sqlConn.Open();
-                            string query = "INSERT INTO[dbo].[Wak_update_temp] (" + // temp table for updating
-                                "[id]," +
-                                "[ClientName]," +
-                                "[FacilityApproval]," +
-                                "[FacilityType] ," +
-                                "[FacilityStatus]," +
-                                "[SafeNo]," +
-                                "[drawer]," +
-                                "[FolderNo]," +
-                                "[Extention]," +
-                                "[modification]," +
-                                "[SafeInDate] ," +
-                                "[DocStatus]," +
-                                "[SafeOutDate]," +
-                                "[Remark]," +
-                                "[updatedBy]," +
-                                "[ArchDoc]," +
-                                "[SafeRef]," +
-                                "[ArchDate]" +
-                                ") VALUES" +
-                                "(" +
-                                "@id," +
-                                "@ClientName," +
-                                "@FacilityApproval," +
-                                "@FacilityType," +
-                                "@FacilityStatus," +
-                                "@SafeNo," +
-                                "@Drawer," +
-                                "@FolderNo," +
-                                "@Extention," +
-                                "@modification," +
-                                "@SafeInDate," +
-                                "@DocStatus," +
-                                "@SafeOutDate," +
-                                "@Remark," +
-                                "@UpdatedBy," +
-                                "@archDoc," +
-                                "@SafeRef," +
-                                "@archDate)";
+                            string query = "INSERT INTO[dbo].[Wak_update_temp]" +
+                                " (" + // temp table for updating
+                            "[id]," + 
+                            "[ClientName]," + 
+                            "[FacilityApproval]," + 
+                            "[FacilityType] ," + 
+                            "[FacilityStatus]," +
+                            "[SafeNo]," + 
+                            "[drawer]," +
+                            "[FolderNo]," +
+                            "[Extention]," + 
+                            "[modification]," +
+                            "[SafeInDate] ," + 
+                            "[DocStatus]," + 
+                            "[SafeOutDate]," + 
+                            "[Remark]," +
+                            "[updatedBy]," + 
+                            "[ArchDoc]," + 
+                            "[SafeRef]," + 
+                            "[ArchDate]" + 
+                            ") VALUES" +
+                            "(" +
+                            "@id," +
+                            "@ClientName," + 
+                            "@FacilityApproval," +
+                            "@FacilityType," + 
+                            "@FacilityStatus," +
+                            "@SafeNo," +
+                            "@Drawer," + 
+                            "@FolderNo," + 
+                            "@Extention," + 
+                            "@modification," + 
+                            "@SafeInDate," + 
+                            "@DocStatus," + 
+                            "@SafeOutDate," + 
+                            "@Remark," + 
+                            "@UpdatedBy," + 
+                            "@archDoc," + 
+                            "@SafeRef," + 
+                            "@archDate)";
 
                             SqlCommand sqlcmd = new SqlCommand(query, sqlConn);
                             sqlcmd.Parameters.AddWithValue("@id", Session["id"].ToString());
@@ -369,10 +371,11 @@ namespace Collateral_int
                             sqlcmd.Parameters.AddWithValue("@SafeOutDate", txtSafeout.Text);
                             sqlcmd.Parameters.AddWithValue("@Remark", txtRemark.Text);
                             sqlcmd.Parameters.AddWithValue("@UpdatedBy", username);
+
                             sqlcmd.Parameters.AddWithValue("@archDoc", txtArcDoc.Text);
                             sqlcmd.Parameters.AddWithValue("@SafeRef", txtCabineRef.Text);
-
                             sqlcmd.Parameters.AddWithValue("@archDate", txtArchiveDate.Text);
+
                             sqlcmd.ExecuteNonQuery();
                             sqlConn.Close();
                             sqlConn.Dispose();
@@ -396,11 +399,12 @@ namespace Collateral_int
                         Session.Remove("DocStatus");
                         Session.Remove("SafeoutDate");
                         Session.Remove("Remark");
+                        Session.Remove("ArchDoc");
+                        Session.Remove("SafeRef");
+                        Session.Remove("ArchDate");
                     }
                     //end of else
-                }// end of update btn
-
-
+                } // end of update btn
 
             }
             else
@@ -410,7 +414,6 @@ namespace Collateral_int
                 msg.ForeColor = System.Drawing.Color.OrangeRed;
 
             }
-
 
         }
 
@@ -440,8 +443,7 @@ namespace Collateral_int
             {
                 DocStatusList.Enabled = false;
             }
-            else
-                DocStatusList.Enabled = true;
+            else DocStatusList.Enabled = true;
         }
 
         protected void ArchiveChBox_CheckedChanged(object sender, EventArgs e)
@@ -457,7 +459,6 @@ namespace Collateral_int
                 cabineRefLbl.Visible = true;
                 //RequiredFieldValidator9.Enabled = false;
                 //RequiredFieldValidator10.Enabled = false;
-
 
             }
             else
@@ -483,6 +484,15 @@ namespace Collateral_int
         protected void ImageButton3_Click(object sender, ImageClickEventArgs e)
         {
             txtArchiveDate.Text = "";
+        }
+
+        protected void txtArchiveDate_TextChanged(object sender, EventArgs e)
+        {
+            if (txtArchiveDate.Text == "yyyy-mm-dd")
+            {
+                DocStatusList.Enabled = false;
+            }
+            else DocStatusList.Enabled = true;
         }
     }
 }

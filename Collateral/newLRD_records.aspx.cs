@@ -12,7 +12,7 @@ namespace Collateral_int
 {
     public partial class newLRD_records : System.Web.UI.Page
     {
-       
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -42,7 +42,7 @@ namespace Collateral_int
                 //    Session.Remove("loading");
                 //}
             }
-                if (!IsPostBack)
+            if (!IsPostBack)
             {
                 string fullUsername = User.Identity.Name;
                 int index_domain = fullUsername.IndexOf("AIB\\");
@@ -62,7 +62,7 @@ namespace Collateral_int
 
                     txtCompanyName.Text = Session["company"].ToString();
                     txtAppNo.Text = Session["AppNo"].ToString();
-                    drop_down_facility_type.SelectedValue =  Session["FacType"].ToString();
+                    drop_down_facility_type.SelectedValue = Session["FacType"].ToString();
                     txtDocrRec.Text = Session["DocType"].ToString();
                     txtEnterby.Text = Session["EnterBy"].ToString();
                     txt2ndverifier.Text = Session["2ndVerifier"].ToString();
@@ -71,7 +71,7 @@ namespace Collateral_int
                     txtRemark.Text = Session["Remark"].ToString();
 
                 }
-            else
+                else
                 {
                     txtEnterby.Text = username;
                 }
@@ -106,12 +106,11 @@ namespace Collateral_int
 
                     string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
 
-
                     using (SqlConnection sqlCon = new SqlConnection(connectionString))
 
                     using (SqlCommand cmd = new SqlCommand("SELECT * FROM LoanReg_tbl_insert WHERE ApprovalNumber = @ApprovalNumber", sqlCon))
                     {
-                        
+
                         using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                         {
                             sqlCon.Open();
@@ -128,30 +127,29 @@ namespace Collateral_int
 
                                     sqlCon2.Open();
                                 string query = "INSERT INTO[dbo].[LoanReg_tbl_insert] " + // temp table for insertion
-                              " (" +
-                              "[Received Date]" +
-                              " ,[Company Name]" +
-                               ",[ApprovalNumber]" +
-                               ",[Facility Type]" +
-                              " ,[Document Received]" +
-                               ",[Enter By]" +
-                              // " ,[Second Verifier]" +
-                              //" ,[Completion Date]" +
-                              ",[Remark]" +
-                              " ,[Inserted By]" +
-                              ")" +
-                                    " VALUES" +
-                                    "(" +
-                                    "@rd," +
-                                    "@cn," +
-                                    "@an," +
-                                    "@ft," +
-                                    "@dr," +
-                                    "@eb," +
-                                    // "@sv," +
-                                    // "@cd," +
-                                    "@rem," +
-                                    "@InsertedBy)";
+                                " (" + "[Received Date]" +
+                                " ,[Company Name]" +
+                                ",[ApprovalNumber]" + 
+                                ",[Facility Type]" + 
+                                " ,[Document Received]" + 
+                                ",[Enter By]" +
+                                // " ,[Second Verifier]" +
+                                //" ,[Completion Date]" +
+                                ",[Remark]" + 
+                                " ,[Inserted By]" +
+                                ")" +
+                                " VALUES" + 
+                                "(" + 
+                                "@rd," + 
+                                "@cn," + 
+                                "@an," +
+                                "@ft," +
+                                "@dr," + 
+                                "@eb," +
+                                // "@sv," +
+                                // "@cd," +
+                                "@rem," +
+                                "@InsertedBy)";
                                 SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
                                 sqlcmd.Parameters.AddWithValue("@rd", txtRecDate.Text);
                                 sqlcmd.Parameters.AddWithValue("@cn", txtCompanyName.Text);
@@ -170,45 +168,44 @@ namespace Collateral_int
                                 // Session.Remove("acgf_id");
                                 sqlCon.Close();
                             }
-                        }// end of adding new acgf Record
+                        } // end of adding new acgf Record
                     }
 
                 }
                 else // it means update interface is shown now
                 {
-
                     string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
                     using (SqlConnection sqlCon = new SqlConnection(connectionString))
                     {
                         sqlCon.Open();
                         string query = "INSERT INTO[dbo].[LoanReg_tbl_Update] " + // temp table for insertion
-                      "(id," +
-                      "[Received Date]" +
-                      ",[Company Name]" +
-                      ",[Approval Number]" +
-                      ",[Facility Type]" +
-                      ",[Document Received]" +
-                      ",[Enter By]" +
-                     ",[Second Verifier]" +
-                     ",[Completion Date]" +
-                      ",[Remark]" +
-                      ",[Inserted By]" +
-                      ",[Updated By]" +
-                      ")" +
-                            " VALUES" +
-                            "(" +
-                            "@id," +
-                            "@rd," +
-                            "@cn," +
-                            "@an," +
-                            "@ft," +
-                            "@dr," +
-                            "@eb," +
-                            "@sv," +
-                            "@cd," +
-                            "@rem," +
-                            "@ib," +
-                            "@ub)";
+                        "(id," + 
+                        "[Received Date]" +
+                        ",[Company Name]" + 
+                        ",[Approval Number]" +
+                        ",[Facility Type]" + 
+                        ",[Document Received]" + 
+                        ",[Enter By]" + 
+                        ",[Second Verifier]" + 
+                        ",[Completion Date]" + 
+                        ",[Remark]" + 
+                        ",[Inserted By]" + 
+                        ",[Updated By]" + 
+                        ")" + 
+                        " VALUES" + 
+                        "(" + 
+                        "@id," + 
+                        "@rd," + 
+                        "@cn," + 
+                        "@an," + 
+                        "@ft," +
+                        "@dr," + 
+                        "@eb," + 
+                        "@sv," +
+                        "@cd," + 
+                        "@rem," + 
+                        "@ib," +
+                        "@ub)";
 
                         SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
                         sqlcmd.Parameters.AddWithValue("@id", Session["id"].ToString());
@@ -231,8 +228,8 @@ namespace Collateral_int
                         sqlCon.Close();
                     }
                 }
-                    //end of else}
-                
+                //end of else}
+
             }
         }
         protected void txtRecDate_TextChanged(object sender, EventArgs e)

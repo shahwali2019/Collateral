@@ -39,11 +39,16 @@
    </div>
 
           
-                    <asp:GridView ID="GridView2" OnRowCommand="GridView2_RowCommand"   runat="server" ShowHeaderWhenEmpty="True"
+                    <asp:GridView ID="GridView2" OnRowCommand="GridView2_RowCommand" runat="server" OnRowDataBound="GridView2_RowDataBound" ShowHeaderWhenEmpty="True"
                AllowSorting="True" CssClass="auto-style1" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC"
                BorderStyle="None" BorderWidth="1px" CellPadding="4" DataKeyNames="id" DataSourceID="SqlCon2" PageSize="7" Width="1172px" Visible="False" OnSelectedIndexChanged="GridView2_SelectedIndexChanged">
                <Columns>
 
+                   <asp:TemplateField ShowHeader="False">
+                       <ItemTemplate>
+                           <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete"></asp:LinkButton>
+                       </ItemTemplate>
+                   </asp:TemplateField>
                    <asp:TemplateField HeaderText="All">
                      <HeaderTemplate>
                     <asp:CheckBox ID="chkb2" runat="server" Text="All" OnCheckedChanged="chkb2_CheckedChanged1" AutoPostBack="true" />
@@ -57,11 +62,6 @@
                     <ItemStyle HorizontalAlign="center" />
                      </asp:TemplateField>
 
-                   <asp:TemplateField ShowHeader="False">
-                       <ItemTemplate>
-                           <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete"></asp:LinkButton>
-                       </ItemTemplate>
-                   </asp:TemplateField>
                    <asp:TemplateField HeaderText="id" InsertVisible="False" SortExpression="id">
                        <EditItemTemplate>
                            <asp:Label ID="Label1" runat="server" Text='<%# Eval("id") %>'></asp:Label>
@@ -212,45 +212,22 @@
         <br />
 
          <asp:SqlDataSource ID="SqlCon2" runat="server" ConnectionString="<%$ ConnectionStrings:DBCon %>" 
-            DeleteCommand="DELETE FROM [ACGF_insert] WHERE [id] = @id"
-            InsertCommand="INSERT INTO [ACGF_insert] ([Borrower Name], [Faciliy Approval No.], [Product Code], [LOG No.#], [Maturity Date of Facility], [ACGF Expiry Date], [Guarantee Claimed], [Remark], [InsertedBy], [Approved By], [Updated By]) VALUES (@Borrower_Name, @column1, @Product_Code, @column2, @Maturity_Date_of_Facility, @ACGF_Expiry_Date, @Guarantee_Claimed, @Remark, @InsertedBy, @Approved_By, @Updated_By)"
-            SelectCommand="SELECT * FROM [ACGF_insert]" UpdateCommand="UPDATE [ACGF_insert] SET [Borrower Name] = @Borrower_Name, [Faciliy Approval No.] = @column1, [Product Code] = @Product_Code, [LOG No.#] = @column2, [Maturity Date of Facility] = @Maturity_Date_of_Facility, [ACGF Expiry Date] = @ACGF_Expiry_Date, [Guarantee Claimed] = @Guarantee_Claimed, [Remark] = @Remark, [InsertedBy] = @InsertedBy, [Approved By] = @Approved_By, [Updated By] = @Updated_By WHERE [id] = @id" >
+           SelectCommand="SELECT * FROM [ACGF_insert]" DeleteCommand="DELETE FROM [ACGF_insert] WHERE [id] = @id">
              <DeleteParameters>
                  <asp:Parameter Name="id" Type="Int32" />
              </DeleteParameters>
-             <InsertParameters>
-                 <asp:Parameter Name="Borrower_Name" Type="String" />
-                 <asp:Parameter Name="column1" Type="String" />
-                 <asp:Parameter Name="Product_Code" Type="String" />
-                 <asp:Parameter Name="column2" Type="String" />
-                 <asp:Parameter Name="Maturity_Date_of_Facility" Type="String" />
-                 <asp:Parameter Name="ACGF_Expiry_Date" Type="String" />
-                 <asp:Parameter Name="Guarantee_Claimed" Type="String" />
-                 <asp:Parameter Name="Remark" Type="String" />
-                 <asp:Parameter Name="InsertedBy" Type="String" />
-                 <asp:Parameter Name="Approved_By" Type="String" />
-                 <asp:Parameter Name="Updated_By" Type="String" />
-             </InsertParameters>
-             <UpdateParameters>
-                 <asp:Parameter Name="Borrower_Name" Type="String" />
-                 <asp:Parameter Name="column1" Type="String" />
-                 <asp:Parameter Name="Product_Code" Type="String" />
-                 <asp:Parameter Name="column2" Type="String" />
-                 <asp:Parameter Name="Maturity_Date_of_Facility" Type="String" />
-                 <asp:Parameter Name="ACGF_Expiry_Date" Type="String" />
-                 <asp:Parameter Name="Guarantee_Claimed" Type="String" />
-                 <asp:Parameter Name="Remark" Type="String" />
-                 <asp:Parameter Name="InsertedBy" Type="String" />
-                 <asp:Parameter Name="Approved_By" Type="String" />
-                 <asp:Parameter Name="Updated_By" Type="String" />
-                 <asp:Parameter Name="id" Type="Int32" />
-             </UpdateParameters>
         </asp:SqlDataSource>
              <div style="margin-top:-5px;">
-                    <asp:GridView ID="GridView3" OnRowCommand="GridView3_RowCommand"   runat="server" ShowHeaderWhenEmpty="True"
+                    <asp:GridView ID="GridView3" OnRowCommand="GridView3_RowCommand" OnRowDataBound="GridView3_RowDataBound" DataKeyNames="id" runat="server" ShowHeaderWhenEmpty="True"
                AllowSorting="True" CssClass="auto-style1" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC"
                BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="SqlConUpdate" PageSize="7" Width="1172px" Visible="False" OnSelectedIndexChanged="GridView3_SelectedIndexChanged">
                         <Columns>
+
+                   <asp:TemplateField ShowHeader="False">
+                       <ItemTemplate>
+                           <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete"></asp:LinkButton>
+                       </ItemTemplate>
+                   </asp:TemplateField>
                      <asp:TemplateField HeaderText="All">
                      <HeaderTemplate>
                     <asp:CheckBox ID="chkb1" runat="server" Text="All" OnCheckedChanged="chkb1_CheckedChanged" AutoPostBack="true" />
@@ -397,8 +374,7 @@
   </div>
 
      <asp:SqlDataSource ID="SqlConUpdate" runat="server" ConnectionString="<%$ ConnectionStrings:DBCon %>"
-         SelectCommand="SELECT * FROM [ACGF_update]" 
-         >
+         SelectCommand="SELECT * FROM [ACGF_update]" DeleteCommand="DELETE FROM [ACGF_update] WHERE [id] = @id">
         
      </asp:SqlDataSource>
 

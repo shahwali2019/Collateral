@@ -15,7 +15,9 @@ namespace Collateral_int
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+            string fullUsername = User.Identity.Name;
+            int index_domain = fullUsername.IndexOf("AIB\\");
+            string username = fullUsername.Substring(fullUsername.IndexOf("\\") + 1);
             if (!IsPostBack)
             {
 
@@ -23,69 +25,47 @@ namespace Collateral_int
                 txtRelBy.Visible = false;
                 txtRelDate.Visible = false;
 
-                string fullUsername = User.Identity.Name;
-                int index_domain = fullUsername.IndexOf("AIB\\");
-                string username = fullUsername.Substring(fullUsername.IndexOf("\\") + 1);
-                string qry = string.Empty;
-                qry = "select Access_role from [userMng] where username='" + username + "'";
-                string strConnString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
-
-                SqlConnection con = new SqlConnection(strConnString);
-                con.Open();
-                SqlCommand cd = new SqlCommand(qry, con);
-
-                string Access_role = Convert.ToString(cd.ExecuteScalar());
-
-                if (string.IsNullOrEmpty(Access_role))
-                {
-                    Response.Redirect("NotAuthorize.aspx?ReturnPath=" + Server.UrlEncode(Request.Url.AbsoluteUri));
-                }
-
-                if (Access_role == null)
-                {
-                    Response.Redirect("Loging.aspx");
-                    Session.Remove("loading");
-                }
-
                 //---------------------------------------
                 if (Session["RTD_ID"] != null)
                 {
                     //COPY THE SESSION TO STRING VALUE
 
-                    string id =  Session["id"].ToString();
-                    string cn=  Session["CN"].ToString();
+                    string id = Session["id"].ToString();
+                    string cn = Session["CN"].ToString();
                     string lt = Session["LT"].ToString();
                     string qt = Session["qt"].ToString();
                     string qn = Session["qn"].ToString();
                     string qd = Session["qd"].ToString();
-                    string oq= Session["oq"].ToString();
-                    string tp= Session["tp"].ToString();
-                    string vp =Session["vp"].ToString();
+                    string oq = Session["oq"].ToString();
+                    string tp = Session["tp"].ToString();
+                    string vp = Session["vp"].ToString();
                     string cur = Session["cur"].ToString();
-                    string pe=  Session["pe"].ToString();
+                    string pe = Session["pe"].ToString();
                     string address = Session["address"].ToString();
-                    string led =Session["LED"].ToString();
+                    string led = Session["LED"].ToString();
                     string rmn = Session["rmn"].ToString();
                     string rmd = Session["rmd"].ToString();
                     string mv = Session["mv"].ToString();
+                    string cv = Session["cv"].ToString();
                     string hkn = Session["hkn"].ToString();
-                    string hkd= Session["hkd"].ToString();
-                    string hkv=  Session["hkv"].ToString();
+                    string hkd = Session["hkd"].ToString();
+                    string hkv = Session["hkv"].ToString();
                     string emn = Session["emn"].ToString();
                     string emd = Session["emd"].ToString();
                     string rd = Session["RD"].ToString();
-                    string rb=  Session["RB"].ToString();
                     string rtd = Session["RTD"].ToString();
-                    string bo= Session["BO"].ToString();
-                    string pifa=  Session["PIFA"].ToString();
+                    string rb = Session["RB"].ToString();
+                    string bo = Session["BO"].ToString();
+                    string pifa = Session["PIFA"].ToString();
                     string duedate = Session["duedate"].ToString(); // New
                     string recb = Session["RECB"].ToString();
-                    string status=  Session["Status"].ToString();
+                    string rdsbto = Session["RDSBTO"].ToString();
+                    string status = Session["Status"].ToString();
                     string remark = Session["Remark"].ToString();
                     string AddLoanStatus = Session["ALS"].ToString(); //New
-                    string ib= Session["IB"].ToString();
+                    string ib = Session["IB"].ToString();
                     string ub = Session["UB"].ToString();
-                    string ab=  Session["AB"].ToString();
+                    string ab = Session["AB"].ToString();
                     string InDate = Session["InDate"].ToString();
                     //----------------------------------------------------
 
@@ -104,6 +84,7 @@ namespace Collateral_int
                     txtRMN.Text = rmn;
                     txtRMD.Text = rmd;
                     txtMValue.Text = mv;
+                    txtcurrency_crtg.SelectedValue = cv;
                     txtHNo.Text = hkn;
                     txtHNo.Text = hkn;
                     txtHdate.Text = hkd;
@@ -112,53 +93,27 @@ namespace Collateral_int
                     txtBase.Text = bo;
                     txtPending.Text = pifa;
                     txtPIDD.Text = duedate;
-                   // drop_Pending.SelectedValue = pifa;
+                    // drop_Pending.SelectedValue = pifa;
                     txtRB.Text = recb;
+                    txtrels_subm.Text = rdsbto;
                     Drop_status.SelectedValue = status;
                     txtRemark.Text = remark;
                     Drop_LoanStatus.SelectedValue = AddLoanStatus;
-                    txtInsertedDate.Text=InDate;
+                    txtInsertedDate.Text = InDate;
                     txtRelBy.Enabled = false;
-                    txtRelBy.Text = Session["Users"].ToString();
+                    txtRelBy.Text = username;
                     txtRelDate.Text = rd;
                     txtRTD.Text = rtd;
 
-                 //-----------------------------------------------
+                    //-----------------------------------------------
                     subBtn.Text = "Update";
-                    //RequiredFieldValidator1.Enabled = false;
-                    //RequiredFieldValidator2.Enabled = false;
-                    //RequiredFieldValidator3.Enabled = false;
-                    //RequiredFieldValidator4.Enabled = false;
-                    //RequiredFieldValidator5.Enabled = false;
-                    //RequiredFieldValidator6.Enabled = false;
-                    //RequiredFieldValidator7.Enabled = false;
-                    //RequiredFieldValidator8.Enabled = false;
-                    //RequiredFieldValidator9.Enabled = false;
-                    //RequiredFieldValidator10.Enabled = false;
-                    //RequiredFieldValidator11.Enabled = false;
-                    //RequiredFieldValidator12.Enabled = false;
-                    //RequiredFieldValidator13.Enabled = false;
-                    //RequiredFieldValidator14.Enabled = false;
-                    //RequiredFieldValidator15.Enabled = false;
-                    //RequiredFieldValidator16.Enabled = false;
-                    //RequiredFieldValidator17.Enabled = false;
-                    //RequiredFieldValidator18.Enabled = false;
-                    //RequiredFieldValidator19.Enabled = false;
-                    //RequiredFieldValidator20.Enabled = false;
-                    //RequiredFieldValidator21.Enabled = false;
-                    ////RequiredFieldValidator22.Enabled = false;
-                    //RequiredFieldValidator23.Enabled = false;
-                    //RequiredFieldValidator24.Enabled = false;
-                    //RequiredFieldValidator25.Enabled = false;
-                    //RequiredFieldValidator26.Enabled = false;
-                    //RequiredFieldValidator27.Enabled = false;
                     Star1.Visible = Star2.Visible = Star3.Visible = false;
                     rtdLbl.Visible = RelBy.Visible = RelDate.Visible = false;
                     addLbl.Text = "Edit RTD Record";
                 }
             }
             //----------------------------------------------
-         
+
             if (Session["RTD_ID"] == null)
             {
                 txtInsertedDate.Text = DateTime.Now.ToShortDateString();
@@ -175,15 +130,7 @@ namespace Collateral_int
             {
                 Session.Remove("RTD_ID");
             }
-            //RequiredFieldValidator8.Enabled = false;
-            //RequiredFieldValidator7.Enabled = false;
-            //RequiredFieldValidator6.Enabled = false;
-            //RequiredFieldValidator5.Enabled = false;
-            //RequiredFieldValidator4.Enabled = false;
-            //RequiredFieldValidator3.Enabled = false;
-            //RequiredFieldValidator2.Enabled = false;
-            //RequiredFieldValidator1.Enabled = false;
-           
+
             Response.Redirect("RTDL.aspx");
         }
         protected void txtClient_TextChanged(object sender, EventArgs e)
@@ -203,78 +150,82 @@ namespace Collateral_int
                     using (SqlConnection sqlCon = new SqlConnection(connectionString))
                     {
                         sqlCon.Open();
-                        string query = "INSERT INTO [dbo].[RTD_Temp_Insert]" +
-               "(" +
-               "[Client Name]" +
-               ",[Loan Type]" +
-               ",[Qabala Type]" +
-               ",[Qabala Number]" +
-               ",[Qabala Date]" +
-               ",[Owner of Qabala]" +
-               ",[Type of Property]" +
-               ",[Value of Property]" +
-               ",[Currency]" +
-               ",[Property Evaluator]" +
-               ",[Address]" +
-               ",[Last Evaluation Date]" +
-               ",[Registered Mortgage No]" +
-               ",[Registered Mortgage Date]" +
-               ",[Mortgage Value]" +
-               ",[Hujat Khaat Number]" +
-               ",[Hujat Khaat Date]" +
-               ",[Hujat Khaat Vallue]" +
-               ",[Equitable Mortgage Number]" +
-               ",[Equitable Mortgage Date]" +
-               //",[Released Date]" +
-               //",[Released By]" +
-               //",[Released Title Deeds]" +
-               ",[Based On]" +
-               ",[Pending Item For Accomplishment]" +
-               ",[Due Date]" +
-               ",[Received By]" +
-               ",[Status]" +
-               ",[Remark]" +
-               ",[Add Loan Status]" +
-               ",[Inserted By]" +
-               //",[Updated By]" +
-               //",[Approved By]" +
-               ",[Inserted Date]" +
-               ")" +
-                "VALUES" +
-               "(" +
-               "@val2," +
-               "@val3," +
-               "@val4," +
-               "@val5," +
-               "@val6," +
-               "@val7," +
-               "@val8," +
-               "@val9," +
-               "@val10," +
-               "@val11," +
-               "@val12," +
-               "@val13," +
-               "@val14," +
-               "@val15," +
-               "@val16," +
-               "@val17," +
-               "@val18," +
-               "@val19," +
-               "@val20," +
-               "@val21," +
-               //"@val22," +
-               //"@val23" +
-               //"@val24," +
-               "@val25," +
-               "@val26," +
-               "@val27," +
-               "@val28," +
-               "@val29," +
-               "@val30," +
-               "@val31," +
-               "@val32," +
-               "@val33" +
-               ")";
+                        string query = "INSERT INTO [dbo].[RTD_Temp_Insert]" + 
+                            "(" + 
+                            "[Client Name]" +
+                            ",[Loan Type]" + 
+                            ",[Qabala Type]" + 
+                            ",[Qabala Number]" +
+                            ",[Qabala Date]" + 
+                            ",[Owner of Qabala]" + 
+                            ",[Type of Property]" + 
+                            ",[Value of Property]" +
+                            ",[Currency]" +
+                            ",[Property Evaluator]" + 
+                            ",[Address]" +
+                            ",[Last Evaluation Date]" + 
+                            ",[Registered Mortgage No]" + 
+                            ",[Registered Mortgage Date]" + 
+                            ",[Mortgage Value]" +
+                            ",[Currency_Mrtg]" +
+                            ",[Hujat Khaat Number]" +
+                            ",[Hujat Khaat Date]" +
+                            ",[Hujat Khaat Vallue]" + 
+                            ",[Equitable Mortgage Number]" + 
+                            ",[Equitable Mortgage Date]" +
+                        //",[Released Date]" +
+                        //",[Released By]" +
+                        //",[Released Title Deeds]" +
+                        ",[Based On]" + 
+                        ",[Pending Item For Accomplishment]" + 
+                        ",[Due Date]" + 
+                        ",[Received By]" +
+                        ",[Released Submitted to]" +
+                        ",[Status]" +
+                        ",[Remark]" + 
+                        ",[Add Loan Status]" +
+                        ",[Inserted By]" +
+                        //",[Updated By]" +
+                        //",[Approved By]" +
+                        ",[Inserted Date]" +
+                        ")" +
+                        "VALUES" + 
+                        "(" + 
+                        "@val2," + 
+                        "@val3," + 
+                        "@val4," + 
+                        "@val5," + 
+                        "@val6," + 
+                        "@val7," + 
+                        "@val8," + 
+                        "@val9," +
+                        "@val10," + 
+                        "@val11," + 
+                        "@val12," + 
+                        "@val13," + 
+                        "@val14," + 
+                        "@val15," + 
+                        "@val16," +
+                        "@curren_gtg," +
+                        "@val17," + 
+                        "@val18," + 
+                        "@val19," + 
+                        "@val20," + 
+                        "@val21," +
+                        //"@val22," +
+                        //"@val23" +
+                        //"@val24," +
+                        "@val25," + 
+                        "@val26," + 
+                        "@val27," + 
+                        "@val28," +
+                        "@submit_to," +
+                        "@val29," + 
+                        "@val30," + 
+                        "@val31," +
+                        "@val32," + 
+                        "@val33" +
+                        ")";
                         SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
                         // sqlcmd.Parameters.AddWithValue("@val1",txtClient.Text);
                         sqlcmd.Parameters.AddWithValue("@val2", txtClient.Text);
@@ -292,6 +243,7 @@ namespace Collateral_int
                         sqlcmd.Parameters.AddWithValue("@val14", txtRMN.Text);
                         sqlcmd.Parameters.AddWithValue("@val15", txtRMD.Text);
                         sqlcmd.Parameters.AddWithValue("@val16", txtMValue.Text);
+                        sqlcmd.Parameters.AddWithValue("@curren_gtg", txtcurrency_crtg.SelectedValue);
                         sqlcmd.Parameters.AddWithValue("@val17", txtHNo.Text);
                         sqlcmd.Parameters.AddWithValue("@val18", txtHdate.Text);
                         sqlcmd.Parameters.AddWithValue("@val19", txthValue.Text);
@@ -304,6 +256,7 @@ namespace Collateral_int
                         sqlcmd.Parameters.AddWithValue("@val26", txtPending.Text);
                         sqlcmd.Parameters.AddWithValue("@val27", txtPIDD.Text);
                         sqlcmd.Parameters.AddWithValue("@val28", txtRB.Text);
+                        sqlcmd.Parameters.AddWithValue("@submit_to", txtrels_subm.Text);
                         sqlcmd.Parameters.AddWithValue("@val29", Drop_status.SelectedValue);
                         sqlcmd.Parameters.AddWithValue("@val30", txtRemark.Text);
                         sqlcmd.Parameters.AddWithValue("@val31", Drop_LoanStatus.SelectedValue);
@@ -328,79 +281,83 @@ namespace Collateral_int
                 {
                     sqlCon.Open();
                     string query = "INSERT INTO [dbo].[RTD_Pending_Update]" +
-           "(" +
-           "id," +
-           "[Client Name]" +
-           ",[Loan Type]" +
-           ",[Qabala Type]" +
-           ",[Qabala Number]" +
-           ",[Qabala Date]" +
-           ",[Owner of Qabala]" +
-           ",[Type of Property]" +
-           ",[Value of Property]" +
-           ",[Currency]" +
-           ",[Property Evaluator]" +
-           ",[Address]" +
-           ",[Last Evaluation Date]" +
-           ",[Registered Mortgage No]" +
-           ",[Registered Mortgage Date]" +
-           ",[Mortgage Value]" +
-           ",[Hujat Khaat Number]" +
-           ",[Hujat Khaat Date]" +
-           ",[Hujat Khaat Vallue]" +
-           ",[Equitable Mortgage Number]" +
-           ",[Equitable Mortgage Date]" +
-           ",[Released Date]" +
-           ",[Released By]" +
-           ",[Released Title Deeds]" +
-           ",[Based On]" +
-           ",[Pending Item For Accomplishment]" +
-           ",[Due Date]" +
-           ",[Received By]" +
-           ",[Status]" +
-           ",[Remark]" +
-           ",[Add Loan Status]" +
-           ",[Inserted By]" +
-           ",[Updated By]" +
-           ",[Inserted Date]" +
-           ")" +
-            "VALUES" +
-           "(" +
-           "@val1," +
-           "@val2," +
-           "@val3," +
-           "@val4," +
-           "@val5," +
-           "@val6," +
-           "@val7," +
-           "@val8," +
-           "@val9," +
-           "@val10," +
-           "@val11," +
-           "@val12," +
-           "@val13," +
-           "@val14," +
-           "@val15," +
-           "@val16," +
-           "@val17," +
-           "@val18," +
-           "@val19," +
-           "@val20," +
-           "@val21," +
-           "@val22," +
-           "@val23," +
-           "@val24," +
-           "@val25," +
-           "@val26," +
-           "@val27," +
-           "@val28," +
-           "@val29," +
-           "@val30," +
-           "@val31," +
-           "@val32," +
-           "@val33," +
-           "@val34" +
-           ")";
+                        "(" +
+                        "id," +
+                        "[Client Name]" +
+                        ",[Loan Type]" +
+                        ",[Qabala Type]" + 
+                        ",[Qabala Number]" +
+                        ",[Qabala Date]" + 
+                        ",[Owner of Qabala]" +
+                        ",[Type of Property]" +
+                        ",[Value of Property]" +
+                        ",[Currency]" + 
+                        ",[Property Evaluator]" + 
+                        ",[Address]" + 
+                        ",[Last Evaluation Date]" +
+                        ",[Registered Mortgage No]" +
+                        ",[Registered Mortgage Date]" +
+                        ",[Mortgage Value]" +
+                        ",[Currency_Mrtg]" +
+                        ",[Hujat Khaat Number]" +
+                        ",[Hujat Khaat Date]" +
+                        ",[Hujat Khaat Vallue]" + 
+                        ",[Equitable Mortgage Number]" +
+                        ",[Equitable Mortgage Date]" + 
+                        ",[Released Date]" + 
+                        ",[Released By]" + 
+                        ",[Released Title Deeds]" + 
+                        ",[Based On]" + 
+                        ",[Pending Item For Accomplishment]" +
+                        ",[Due Date]" + 
+                        ",[Received By]" +
+                        ",[Released Submitted to]" +
+                        ",[Status]" + 
+                        ",[Remark]" + 
+                        ",[Add Loan Status]" +
+                        ",[Inserted By]" + 
+                        ",[Updated By]" +
+                        ",[Inserted Date]" + 
+                        ")" + 
+                        "VALUES" + 
+                        "(" +
+                        "@val1," +
+                        "@val2," + 
+                        "@val3," + 
+                        "@val4," + 
+                        "@val5," + 
+                        "@val6," + 
+                        "@val7," + 
+                        "@val8," + 
+                        "@val9," + 
+                        "@val10," +
+                        "@val11," + 
+                        "@val12," + 
+                        "@val13," + 
+                        "@val14," + 
+                        "@val15," +
+                        "@val16," +
+                        "@curren_gtg," +
+                        "@val17," +
+                        "@val18," + 
+                        "@val19," + 
+                        "@val20," + 
+                        "@val21," + 
+                        "@val22," + 
+                        "@val23," +
+                        "@val24," + 
+                        "@val25," +
+                        "@val26," + 
+                        "@val27," + 
+                        "@val28," +
+                        "@submit_to," +
+                        "@val29," +
+                        "@val30," + 
+                        "@val31," +
+                        "@val32," +
+                        "@val33," +
+                        "@val34" +
+                        ")";
                     SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
                     sqlcmd.Parameters.AddWithValue("@val1", Session["id"].ToString());
                     sqlcmd.Parameters.AddWithValue("@val2", txtClient.Text);
@@ -418,23 +375,25 @@ namespace Collateral_int
                     sqlcmd.Parameters.AddWithValue("@val14", txtRMN.Text);
                     sqlcmd.Parameters.AddWithValue("@val15", txtRMD.Text);
                     sqlcmd.Parameters.AddWithValue("@val16", txtMValue.Text);
+                    sqlcmd.Parameters.AddWithValue("@curren_gtg", txtcurrency_crtg.SelectedValue);
                     sqlcmd.Parameters.AddWithValue("@val17", txtHNo.Text);
                     sqlcmd.Parameters.AddWithValue("@val18", txtHdate.Text);
                     sqlcmd.Parameters.AddWithValue("@val19", txthValue.Text);
                     sqlcmd.Parameters.AddWithValue("@val20", txtEMN.Text);
                     sqlcmd.Parameters.AddWithValue("@val21", txtEMD.Text);
-                    sqlcmd.Parameters.AddWithValue("@val22", txtRTD.Text);
+                    sqlcmd.Parameters.AddWithValue("@val22", txtRelDate.Text);
                     sqlcmd.Parameters.AddWithValue("@val23", txtRelBy.Text);
-                    sqlcmd.Parameters.AddWithValue("@val24", txtRelDate.Text);
+                    sqlcmd.Parameters.AddWithValue("@val24", txtRTD.Text);
                     sqlcmd.Parameters.AddWithValue("@val25", txtBase.Text);
                     sqlcmd.Parameters.AddWithValue("@val26", txtPending.Text);
                     sqlcmd.Parameters.AddWithValue("@val27", txtPIDD.Text);
                     sqlcmd.Parameters.AddWithValue("@val28", txtRB.Text);
+                    sqlcmd.Parameters.AddWithValue("@submit_to", txtrels_subm.Text);
                     sqlcmd.Parameters.AddWithValue("@val29", Drop_status.SelectedValue);
                     sqlcmd.Parameters.AddWithValue("@val30", txtRemark.Text);
                     sqlcmd.Parameters.AddWithValue("@val31", Drop_LoanStatus.SelectedValue);
-                    sqlcmd.Parameters.AddWithValue("@val32", Session["IB"].ToString());
-                    sqlcmd.Parameters.AddWithValue("@val33", Session["Users"].ToString());
+                    sqlcmd.Parameters.AddWithValue("@val32", username);
+                    sqlcmd.Parameters.AddWithValue("@val33", username);
                     sqlcmd.Parameters.AddWithValue("@val34", txtInsertedDate.Text);
                     sqlcmd.ExecuteNonQuery();
                     msg.Visible = true;
@@ -447,14 +406,17 @@ namespace Collateral_int
         } // end of page valid
         protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
+            string fullUsername = User.Identity.Name;
+            int index_domain = fullUsername.IndexOf("AIB\\");
+            string username = fullUsername.Substring(fullUsername.IndexOf("\\") + 1);
             if (CheckBox1.Checked)
             {
                 txtRelDate.Visible = true;
                 txtRelBy.Visible = true;
                 txtRTD.Visible = true;
                 Star1.Visible = Star2.Visible = Star3.Visible = true;
-                rtdLbl.Visible = RelBy.Visible= RelDate.Visible= true;
-                txtRelBy.Text = Session["Users"].ToString();
+                rtdLbl.Visible = RelBy.Visible = RelDate.Visible = true;
+                txtRelBy.Text = username;
             }
             else
             {
@@ -477,17 +439,6 @@ namespace Collateral_int
 
         }
 
-       // protected void txtQabalaDate_TextChanged(object sender, EventArgs e)
-        //{
-            //string GregorianDate = txtQabalaDate.Text;
-            //DateTime d = DateTime.Parse(GregorianDate);
-            //PersianCalendar pc = new PersianCalendar();
-            //txtQabalaDate.Text = string.Format("{0}/{1}/{2}", pc.GetYear(d), pc.GetMonth(d), pc.GetDayOfMonth(d));
-            //// txtQabalaDate.Text = "10/26/2000";
-            ////Response.Write(string.Format("{0}/{1}/{2}", pc.GetYear(d), pc.GetMonth(d), pc.GetDayOfMonth(d)));
-
-       // }
-
         protected void txtPending_TextChanged(object sender, EventArgs e)
         {
             if (IsPostBack)
@@ -506,16 +457,13 @@ namespace Collateral_int
                     txtPIDD.TextMode = TextBoxMode.Date;
                 }
             }
-            
+
         }
 
-        //protected void DropDownList3_TextChanged(object sender, EventArgs e)
-        //{
-        //}
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
-            
+
         }
 
         protected void DropDownList3_SelectedIndexChanged(object sender, EventArgs e)
@@ -525,21 +473,21 @@ namespace Collateral_int
                 txtQabalaDate.Text = DropDownList1.SelectedValue + "/" + DropDownList2.SelectedValue + "/" + DropDownList3.SelectedValue;
                 Chk_qabalaDate.Checked = false;
             }
-           
+
             //--------------------------------------
             if (Chk_MortgageDate.Checked)
             {
                 txtRMD.Text = DropDownList1.SelectedValue + "/" + DropDownList2.SelectedValue + "/" + DropDownList3.SelectedValue;
                 Chk_MortgageDate.Checked = false;
             }
-            
+
             //-----------------------------------------------
             if (Chk_HKD.Checked)
             {
                 txtHdate.Text = DropDownList1.SelectedValue + "/" + DropDownList2.SelectedValue + "/" + DropDownList3.SelectedValue;
                 Chk_HKD.Checked = false;
             }
-            
+
         }
         protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -547,9 +495,6 @@ namespace Collateral_int
             {
 
                 txtQabalaDate.Text = DropDownList1.SelectedValue + "/" + DropDownList2.SelectedValue + "/" + DropDownList3.SelectedValue;
-                //DropDownList1.Visible = false;
-                //DropDownList2.Visible = false;
-                //DropDownList3.Visible = false;
 
                 Chk_qabalaDate.Checked = false;
 
@@ -559,9 +504,6 @@ namespace Collateral_int
             {
 
                 txtRMD.Text = DropDownList1.SelectedValue + "/" + DropDownList2.SelectedValue + "/" + DropDownList3.SelectedValue;
-                //DropDownList1.Visible = false;
-                //DropDownList2.Visible = false;
-                //DropDownList3.Visible = false;
 
                 Chk_MortgageDate.Checked = false;
 
@@ -571,9 +513,6 @@ namespace Collateral_int
             {
 
                 txtHdate.Text = DropDownList1.SelectedValue + "/" + DropDownList2.SelectedValue + "/" + DropDownList3.SelectedValue;
-                //DropDownList1.Visible = false;
-                //DropDownList2.Visible = false;
-                //DropDownList3.Visible = false;
                 Chk_HKD.Checked = false;
 
             }
@@ -585,9 +524,6 @@ namespace Collateral_int
             {
 
                 txtQabalaDate.Text = DropDownList1.SelectedValue + "/" + DropDownList2.SelectedValue + "/" + DropDownList3.SelectedValue;
-                //DropDownList1.Visible = false;
-                //DropDownList2.Visible = false;
-                //DropDownList3.Visible = false;
 
                 Chk_qabalaDate.Checked = false;
 
@@ -597,9 +533,7 @@ namespace Collateral_int
             {
 
                 txtRMD.Text = DropDownList1.SelectedValue + "/" + DropDownList2.SelectedValue + "/" + DropDownList3.SelectedValue;
-                //DropDownList1.Visible = false;
-                //DropDownList2.Visible = false;
-                //DropDownList3.Visible = false;
+
 
                 Chk_MortgageDate.Checked = false;
 
@@ -609,9 +543,7 @@ namespace Collateral_int
             {
 
                 txtHdate.Text = DropDownList1.SelectedValue + "/" + DropDownList2.SelectedValue + "/" + DropDownList3.SelectedValue;
-                //DropDownList1.Visible = false;
-                //DropDownList2.Visible = false;
-                //DropDownList3.Visible = false;
+
                 Chk_HKD.Checked = false;
 
             }
@@ -619,13 +551,8 @@ namespace Collateral_int
 
         protected void txtPropertyvalue_TextChanged(object sender, EventArgs e)
         {
-            //if (!IsPostBack)
-            //{
-            //    decimal PVDicimal = decimal.Parse(txtPropertyvalue.Text);
-            //    txtPropertyvalue.Text = PVDicimal.ToString("N");
-            //}
+
         }
 
-     
     }
 }

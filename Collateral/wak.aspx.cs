@@ -16,11 +16,13 @@ namespace Collateral_int
     public partial class wak : System.Web.UI.Page
     {
 
-
         string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) { GridView1.DataSourceID = "DbCon"; }
+            if (!IsPostBack)
+            {
+                GridView1.DataSourceID = "DbCon";
+            }
             //URL Restriction
             if (!IsPostBack)
             {
@@ -60,7 +62,6 @@ namespace Collateral_int
         }
         protected void searchBtn_Click(object sender, EventArgs e)
         {
-
 
             //CASE x x x x x
             if (string.IsNullOrEmpty(txtSafeNo.Text) && StatusListbox.SelectedValue == "DocSta" && FacilityTypeList.SelectedValue == "FacType" && txtDate1.Text == "" && txtDate2.Text == "")
@@ -381,7 +382,6 @@ namespace Collateral_int
                 resultLbl.Text = "Found " + counter + " record(s)";
             }
 
-
             //--------------------Case x x 3 4 5
             if (!string.IsNullOrEmpty(txtSafeNo.Text) && StatusListbox.SelectedValue != "DocSta" && FacilityTypeList.SelectedValue != "FacType" && txtDate1.Text == "" && txtDate2.Text == "")
             {
@@ -422,14 +422,13 @@ namespace Collateral_int
                 resultLbl.Text = "Found " + counter + " record(s)";
             }
         }
-
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Select")
             {
-                Session["wakID"] = e.CommandArgument.ToString();
+                Session["id"] = e.CommandArgument.ToString();
                 SqlConnection sqlCon = new SqlConnection(connectionString);
-                string query = "SELECT *FROM Wak_tbl where id = '" + Session["wakID"].ToString() + "'";
+                string query = "SELECT *FROM Wak_tbl where id = '" + Session["id"].ToString() + "'";
                 SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
                 sqlCon.Open();
                 SqlDataReader rdr = sqlcmd.ExecuteReader();
@@ -451,6 +450,10 @@ namespace Collateral_int
                     Session["Remark"] = (string)rdr["Remark"].ToString();
                     Session["InsertedBy"] = (string)rdr["InsertedBy"].ToString();
                     Session["ApprovedBy"] = (string)rdr["ApprovedBy"].ToString();
+                    Session["updatedBy"] = (string)rdr["updatedBy"].ToString();
+                    Session["ArchDoc"] = (string)rdr["ArchDoc"].ToString();
+                    Session["SafeRef"] = (string)rdr["SafeRef"].ToString();
+                    Session["ArchDate"] = (string)rdr["ArchDate"].ToString();
                     sqlCon.Close();
                     Response.Redirect("New_wak.aspx");
                 }
@@ -574,7 +577,6 @@ namespace Collateral_int
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
 
-
             DataTable dt = new DataTable();
             dt.Columns.Add("id");
             dt.Columns.Add("ClientName");
@@ -590,29 +592,39 @@ namespace Collateral_int
             dt.Columns.Add("DocStatus");
             dt.Columns.Add("SafeOutDate");
             dt.Columns.Add("Remark");
-
+            dt.Columns.Add("InsertedBy");
+            dt.Columns.Add("updatedBy");
+            dt.Columns.Add("approvedBy");
+            dt.Columns.Add("ArchDoc");
+            dt.Columns.Add("SafeRef");
+            dt.Columns.Add("ArchDate");
             foreach (GridViewRow gw in GridView1.Rows)
             {
 
                 var chkSelect = gw.FindControl("chkSelect") as CheckBox;
                 if (chkSelect.Checked)
                 {
-                    string Val16 = (gw.FindControl("Label19") as Label).Text;//
-                    string Val1 = (gw.FindControl("Label2") as Label).Text;//
-                    string Val2 = (gw.FindControl("Label3") as Label).Text;//
-                    string Val3 = (gw.FindControl("Label4") as Label).Text;//
-                    string Val4 = (gw.FindControl("Label5") as Label).Text;//
-                    string Val5 = (gw.FindControl("Label6") as Label).Text;//
-                    string Val6 = (gw.FindControl("Label7") as Label).Text;//
-                    string Val7 = (gw.FindControl("Label8") as Label).Text;//
-                    string Val8 = (gw.FindControl("Label9") as Label).Text;//
-                    string Val9 = (gw.FindControl("Label10") as Label).Text;//
-                    string Val11 = (gw.FindControl("Label11") as Label).Text;//
-                    string Val12 = (gw.FindControl("Label12") as Label).Text;//
-                    string Val13 = (gw.FindControl("Label13") as Label).Text;//
-                    string Val14 = (gw.FindControl("Label14") as Label).Text;//
-
-                    dt.Rows.Add(Val16, Val1, Val2, Val3, Val4, Val5, Val6, Val7, Val8, Val9, Val11, Val12, Val13, Val14);
+                    string Val1 = (gw.FindControl("Label1") as Label).Text; //
+                    string Val2 = (gw.FindControl("Label2") as Label).Text; //
+                    string Val3 = (gw.FindControl("Label3") as Label).Text; //
+                    string Val4 = (gw.FindControl("Label4") as Label).Text; //
+                    string Val5 = (gw.FindControl("Label5") as Label).Text; //
+                    string Val6 = (gw.FindControl("Label6") as Label).Text; //
+                    string Val7 = (gw.FindControl("Label7") as Label).Text; //
+                    string Val8 = (gw.FindControl("Label8") as Label).Text; //
+                    string Val9 = (gw.FindControl("Label9") as Label).Text; //
+                    string Val10 = (gw.FindControl("Label10") as Label).Text; //
+                    string Val11 = (gw.FindControl("Label11") as Label).Text; //
+                    string Val12 = (gw.FindControl("Label12") as Label).Text; //
+                    string Val13 = (gw.FindControl("Label13") as Label).Text; //
+                    string Val14 = (gw.FindControl("Label14") as Label).Text; //
+                    string Val15 = (gw.FindControl("Label15") as Label).Text; //
+                    string Val16 = (gw.FindControl("Label16") as Label).Text; //
+                    string Val17 = (gw.FindControl("Label17") as Label).Text; //
+                    string Val18 = (gw.FindControl("Label18") as Label).Text; //
+                    string Val19 = (gw.FindControl("Label19") as Label).Text; //
+                    string Val20 = (gw.FindControl("Label20") as Label).Text; //
+                    dt.Rows.Add(Val1, Val2, Val3, Val4, Val5, Val6, Val7, Val8, Val9, Val10, Val11, Val12, Val13, Val14, Val15, Val16, Val17, Val18, Val19, Val20);
                 }
             }
 
@@ -646,7 +658,6 @@ namespace Collateral_int
 
         }
 
-
         protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
         {
             txtDate1.Text = "";
@@ -658,6 +669,40 @@ namespace Collateral_int
         protected void txtDate1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            string fullUsername = User.Identity.Name;
+            string username = fullUsername.Substring(fullUsername.IndexOf("\\") + 1);
+
+            SqlDataAdapter sda = new SqlDataAdapter("select * from [userMng] where username= '" + username + "'", connectionString);
+            DataTable dtResult = new DataTable();
+            sda.Fill(dtResult);
+
+            string userType = dtResult.Rows[0]["Access_role"].ToString();
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                if (userType == "Supper Admin")
+                {
+                    e.Row.Cells[1].Enabled = false;
+                    addNew.Enabled = false;
+
+                }
+                if (userType == "Admin")
+                {
+                    e.Row.Cells[1].Enabled = false;
+                    addNew.Enabled = false;
+                }
+
+                if (userType == "Users")
+                {
+                    e.Row.Cells[1].Enabled = true;
+                    addNew.Enabled = true;
+                }
+            }
         }
     }
 }

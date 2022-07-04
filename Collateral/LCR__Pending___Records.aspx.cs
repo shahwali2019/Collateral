@@ -12,7 +12,7 @@ namespace Collateral
 {
     public partial class LCR__Pending___Records : System.Web.UI.Page
     {
-
+        string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
         string Val1, Val2, Val3, Val4, Val5, Val6, Val7, Val8, Val9, Val10, Val11;
 
         protected void gv3_RowCommand1(object sender, GridViewCommandEventArgs e)
@@ -23,6 +23,84 @@ namespace Collateral
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void gv_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            string fullUsername = User.Identity.Name;
+            string username = fullUsername.Substring(fullUsername.IndexOf("\\") + 1);
+
+            SqlDataAdapter sda = new SqlDataAdapter("select * from [userMng] where username= '" + username + "'", connectionString);
+            DataTable dtResult = new DataTable();
+            sda.Fill(dtResult);
+
+            string userType = dtResult.Rows[0]["Access_role"].ToString();
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                if (userType == "Supper Admin")
+                {
+                    e.Row.Cells[0].Enabled = true;
+                    //ApproveBtnImg.Enabled = true;
+                    //ApproveUpdateBtn.Enabled = true;
+
+                }
+                if (userType == "Admin")
+                {
+                    e.Row.Cells[0].Enabled = false;
+                    //ApproveBtnImg.Enabled = true;
+                    //ApproveUpdateBtn.Enabled = true;
+
+
+                }
+
+                if (userType == "Users")
+                {
+                    e.Row.Cells[0].Enabled = false;
+                    ApproveBtnImg.Visible = false;
+                    ApproveUpdateBtn.Visible = false;
+                }
+            }
+        }
+
+        protected void gv3_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            string fullUsername = User.Identity.Name;
+            string username = fullUsername.Substring(fullUsername.IndexOf("\\") + 1);
+
+            SqlDataAdapter sda = new SqlDataAdapter("select * from [userMng] where username= '" + username + "'", connectionString);
+            DataTable dtResult = new DataTable();
+            sda.Fill(dtResult);
+
+            string userType = dtResult.Rows[0]["Access_role"].ToString();
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                if (userType == "Supper Admin")
+                {
+                    e.Row.Cells[0].Enabled = true;
+                    //ApproveBtnImg.Enabled = true;
+                    //ApproveUpdateBtn.Enabled = true;
+
+                }
+                if (userType == "Admin")
+                {
+                    e.Row.Cells[0].Enabled = false;
+                    //ApproveBtnImg.Enabled = true;
+                    //ApproveUpdateBtn.Enabled = true;
+
+
+                }
+
+                if (userType == "Users")
+                {
+                    e.Row.Cells[0].Enabled = false;
+                    ApproveBtnImg.Visible = false;
+                    ApproveUpdateBtn.Visible = false;
+                }
+            }
         }
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
@@ -227,7 +305,8 @@ namespace Collateral
                         Val8 = (gw.FindControl("Label8") as Label).Text;//Remark
                         Val9 = (gw.FindControl("Label9") as Label).Text;//Inserted By
                         Val10 = (gw.FindControl("Label10") as Label).Text;//Updated By
-                        //Val11 = (gw.FindControl("Label11") as Label).Text;//Approved By
+                        Val11 = (gw.FindControl("Label11") as Label).Text;//Approved By
+
                         sqlConn.Open();
 
                         string queryy = "UPDATE [LCR] SET" +
@@ -255,6 +334,8 @@ namespace Collateral
                         sqlcmd.Parameters.AddWithValue("@val8", Val8);// 
                         sqlcmd.Parameters.AddWithValue("@val9", Val9);// 
                         sqlcmd.Parameters.AddWithValue("@val10", Val10);// 
+                        sqlcmd.Parameters.AddWithValue("@val11", Val11);// 
+
                         sqlcmd.ExecuteNonQuery();
                         sqlConn.Close();
                         using (SqlConnection sqlCon2 = new SqlConnection(connectionString))

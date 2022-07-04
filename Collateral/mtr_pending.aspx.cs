@@ -12,11 +12,97 @@ namespace Collateral
 {
     public partial class mtr_pending : System.Web.UI.Page
     {
+        string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
+
         string Val1, Val2, Val3, Val4, Val5, Val6, Val7, Val8, Val9, Val10, Val11, Val12, Val13, Val14, Val15, Val16, Val17, Val18;
+
+        protected void GridView3_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            string fullUsername = User.Identity.Name;
+            string username = fullUsername.Substring(fullUsername.IndexOf("\\") + 1);
+
+            SqlDataAdapter sda = new SqlDataAdapter("select * from [userMng] where username= '" + username + "'", connectionString);
+            DataTable dtResult = new DataTable();
+            sda.Fill(dtResult);
+
+            string userType = dtResult.Rows[0]["Access_role"].ToString();
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                if (userType == "Supper Admin")
+                {
+                    e.Row.Cells[0].Enabled = true;
+                    //ApproveBtnImg.Enabled = true;
+                    //ApproveUpdateBtn.Enabled = true;
+
+                }
+                if (userType == "Admin")
+                {
+                    e.Row.Cells[0].Enabled = false;
+                    //ApproveBtnImg.Enabled = true;
+                    //ApproveUpdateBtn.Enabled = true;
+
+
+                }
+
+                if (userType == "Users")
+                {
+                    e.Row.Cells[0].Enabled = false;
+                    ApproveBtnImg.Visible = false;
+                    ApproveUpdateBtn.Visible = false;
+                    insertCheck.Enabled = false;
+                    updatedCheck.Enabled = false;
+                }
+            }
+        }
+
+        protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            string fullUsername = User.Identity.Name;
+            string username = fullUsername.Substring(fullUsername.IndexOf("\\") + 1);
+
+            SqlDataAdapter sda = new SqlDataAdapter("select * from [userMng] where username= '" + username + "'", connectionString);
+            DataTable dtResult = new DataTable();
+            sda.Fill(dtResult);
+
+            string userType = dtResult.Rows[0]["Access_role"].ToString();
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                if (userType == "Supper Admin")
+                {
+                    e.Row.Cells[0].Enabled = true;
+                    //ApproveBtnImg.Enabled = true;
+                    //ApproveUpdateBtn.Enabled = true;
+
+                }
+                if (userType == "Admin")
+                {
+                    e.Row.Cells[0].Enabled = false;
+                    //ApproveBtnImg.Enabled = true;
+                    //ApproveUpdateBtn.Enabled = true;
+
+
+                }
+
+                if (userType == "Users")
+                {
+                    e.Row.Cells[0].Enabled = false;
+                    ApproveBtnImg.Visible = false;
+                    ApproveUpdateBtn.Visible = false;
+                    insertCheck.Enabled = false;
+                    updatedCheck.Enabled = false;
+                }
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
+
 
         protected void insertCheck_CheckedChanged(object sender, EventArgs e)
         {

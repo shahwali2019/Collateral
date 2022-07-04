@@ -175,13 +175,13 @@ namespace Collateral_int {
         protected global::System.Web.UI.WebControls.TextBox txtMDF;
         
         /// <summary>
-        /// Button2 control.
+        /// btnADD control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button btnADD;
         
         /// <summary>
         /// ResetBtn control.

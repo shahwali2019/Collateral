@@ -60,10 +60,9 @@
                     <td>
             <asp:DropDownList ID="DropDownList1" runat="server">
                 <asp:ListItem Value="">Please Select</asp:ListItem> 
-                <asp:ListItem>1</asp:ListItem>
-                <asp:ListItem>2</asp:ListItem>
-                <asp:ListItem>3</asp:ListItem>
-                <asp:ListItem>4</asp:ListItem>
+                <asp:ListItem>Supper Admin</asp:ListItem>
+                <asp:ListItem>Admin</asp:ListItem>
+                <asp:ListItem>Users</asp:ListItem>
             </asp:DropDownList>
                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="DropDownList1" ForeColor="Red" ErrorMessage="Please select usertype!"></asp:RequiredFieldValidator>
 

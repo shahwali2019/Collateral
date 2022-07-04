@@ -39,7 +39,7 @@
    </div>
 
           
-                <asp:GridView ID="gv" OnRowCommand="gv_RowCommand"   runat="server" ShowHeaderWhenEmpty="True"
+                <asp:GridView ID="gv" OnRowCommand="gv_RowCommand" OnRowDataBound="gv_RowDataBound"   runat="server" ShowHeaderWhenEmpty="True"
                AllowSorting="True" CssClass="auto-style1" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC"
                BorderStyle="None" BorderWidth="1px" CellPadding="4" DataKeyNames="id" DataSourceID="SqlCon2" PageSize="7" Width="1172px" Visible="False">
                <Columns>
@@ -216,9 +216,14 @@
              </UpdateParameters>
         </asp:SqlDataSource>
              <div style="margin-top:-5px;">
-                    <asp:GridView ID="gv3" OnRowCommand="gv3_RowCommand1" runat="server" ShowHeaderWhenEmpty="True" AllowSorting="True" CssClass="auto-style1" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC"
+                    <asp:GridView ID="gv3" OnRowCommand="gv3_RowCommand1" OnRowDataBound="gv3_RowDataBound" runat="server" ShowHeaderWhenEmpty="True" AllowSorting="True" CssClass="auto-style1" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC"
                BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="SqlConUpdate" PageSize="7" Width="1172px" Visible="False" DataKeyNames="id">
                         <Columns>
+                   <asp:TemplateField ShowHeader="False">
+                       <ItemTemplate>
+                           <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete"></asp:LinkButton>
+                       </ItemTemplate>
+                   </asp:TemplateField>
                                       <asp:TemplateField HeaderText="All">
                      <HeaderTemplate>
                     <asp:CheckBox ID="chkb1" runat="server" Text="All" OnCheckedChanged="chkb1_CheckedChanged" AutoPostBack="true" />
@@ -312,6 +317,14 @@
                                               <asp:Label ID="Label10" runat="server" Text='<%# Bind("[Updated By]") %>'></asp:Label>
                                           </ItemTemplate>
                                       </asp:TemplateField>
+                                      <asp:TemplateField HeaderText="Approved By" SortExpression="Approved By">
+                                          <EditItemTemplate>
+                                              <asp:TextBox ID="TextBox10" runat="server" Text='<%# Bind("[Approved By]") %>'></asp:TextBox>
+                                          </EditItemTemplate>
+                                          <ItemTemplate>
+                                              <asp:Label ID="Label11" runat="server" Text='<%# Bind("[Approved By]") %>'></asp:Label>
+                                          </ItemTemplate>
+                                      </asp:TemplateField>
                         </Columns>
                <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />
                <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />
@@ -359,12 +372,6 @@
          </UpdateParameters>
         
      </asp:SqlDataSource>
-
-
-
-
-
-   
   </div>
 
 

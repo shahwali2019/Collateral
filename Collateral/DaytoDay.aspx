@@ -24,7 +24,10 @@
             background: #286090
         }
  
-
+            .body-content {
+    padding: 0;
+    padding-right: 100px;
+}
     .GridPager a, .GridPager span
     {
         /*display: block;*/
@@ -95,7 +98,7 @@
     </div>
             
     <div>
-              <div class="table">
+              <div class="table table-responsive">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
@@ -104,7 +107,7 @@
 
 
 
-        <asp:GridView CssClass="GridPager" ID="GridView1" runat="server" OnRowCommand="GridView1_RowCommand" ShowHeaderWhenEmpty="True" AutoGenerateColumns="False"  DataKeyNames="id" DataSourceID="StringCon" EnableTheming="True"  BorderStyle="None">
+        <asp:GridView CssClass="GridPager" ID="GridView1" runat="server" OnRowDataBound="GridView1_RowDataBound" OnRowCommand="GridView1_RowCommand" ShowHeaderWhenEmpty="True" AutoGenerateColumns="False"  DataKeyNames="id" DataSourceID="StringCon" EnableTheming="True"  BorderStyle="None">
           
             <Columns>
 
@@ -256,7 +259,17 @@
                          <HeaderStyle CssClass="center" />
                          <ItemStyle CssClass="center" />
                      </asp:TemplateField>
-
+                      <asp:TemplateField HeaderText="Number of Extension/Renewa" SortExpression="Number of Extension/Renewa">
+                          <EditItemTemplate>
+                              <asp:TextBox ID="TextBox15" runat="server" Text='<%# Bind("[Number of Extension Renewa]") %>'></asp:TextBox>
+                          </EditItemTemplate>
+                          <ItemTemplate>
+                              <asp:Label ID="Label16" runat="server" Text='<%# Bind("[Number of Extension Renewa]") %>'></asp:Label>
+                          </ItemTemplate>
+                              <ControlStyle CssClass="center" />
+                          <HeaderStyle CssClass="center" />
+                          <ItemStyle CssClass="center" />
+                      </asp:TemplateField>
                      <asp:TemplateField HeaderText="Remark" SortExpression="Remark">
                          <EditItemTemplate>
                              <asp:TextBox ID="TextBox11" runat="server" Text='<%# Bind("[Remark]") %>'></asp:TextBox>
@@ -322,9 +335,9 @@
     <br />
     <asp:SqlDataSource ID="StringCon" runat="server" ConnectionString="<%$ ConnectionStrings:DBCon %>"
         DeleteCommand="DELETE FROM [DayToDayTbl] WHERE [id] = @original_id"
-        InsertCommand="INSERT INTO [DayToDayTbl] ([id], [Account Name], [Approval Number], [Facility Type], [Facility Amount], [Currency], [Action Taken], [TFL Instructed On], [Confirmed By], [Date of Boking], [CMLA SignOff Date], [Remark], [Inserted By], [Updated By], [Approved By]) VALUES (@id, @Account_Name, @Approval_Number, @Facility_Type, @Facility_Amount, @Currency, @Action_Taken, @TFL_Instructed_On, @Confirmed_By, @Date_of_Boking, @CMLA_SignOff_Date, @Remark, @Inserted_By, @Updated_By, @Approved_By)"
+        InsertCommand="INSERT INTO [DayToDayTbl] ([id], [Account Name], [Approval Number], [Facility Type], [Facility Amount], [Currency], [Action Taken], [TFL Instructed On], [Confirmed By], [Date of Boking], [CMLA SignOff Date],[Number of Extension Renewa], [Remark], [Inserted By], [Updated By], [Approved By]) VALUES (@id, @Account_Name, @Approval_Number, @Facility_Type, @Facility_Amount, @Currency, @Action_Taken, @TFL_Instructed_On, @Confirmed_By, @Date_of_Boking, @CMLA_SignOff_Date,@num_exten @Remark, @Inserted_By, @Updated_By, @Approved_By)"
         SelectCommand="SELECT * FROM [DayToDayTbl]"
-        UpdateCommand="UPDATE [DayToDayTbl] SET [Account Name] = @Account_Name, [Approval Number] = @Approval_Number, [Facility Type] = @Facility_Type, [Facility Amount] = @Facility_Amount, [Currency] = @Currency, [Action Taken] = @Action_Taken, [TFL Instructed On] = @TFL_Instructed_On, [Confirmed By] = @Confirmed_By, [Date of Boking] = @Date_of_Boking, [CMLA SignOff Date] = @CMLA_SignOff_Date, [Remark] = @Remark, [Inserted By] = @Inserted_By, [Updated By] = @Updated_By, [Approved By] = @Approved_By WHERE [id] = @original_id" OldValuesParameterFormatString="original_{0}">
+        UpdateCommand="UPDATE [DayToDayTbl] SET [Account Name] = @Account_Name, [Approval Number] = @Approval_Number, [Facility Type] = @Facility_Type, [Facility Amount] = @Facility_Amount, [Currency] = @Currency, [Action Taken] = @Action_Taken, [TFL Instructed On] = @TFL_Instructed_On, [Confirmed By] = @Confirmed_By, [Date of Boking] = @Date_of_Boking, [CMLA SignOff Date] = @CMLA_SignOff_Date,[Number of Extension Renewa] =@num_exten [Remark] = @Remark, [Inserted By] = @Inserted_By, [Updated By] = @Updated_By, [Approved By] = @Approved_By WHERE [id] = @original_id" OldValuesParameterFormatString="original_{0}">
         <DeleteParameters>
             <asp:Parameter Name="original_id" Type="Int32" />
         </DeleteParameters>
@@ -340,6 +353,7 @@
             <asp:Parameter Name="Confirmed_By" Type="String" />
             <asp:Parameter Name="Date_of_Boking" DbType="Date" />
             <asp:Parameter Name="CMLA_SignOff_Date" DbType="Date" />
+            <asp:Parameter Name="num_exten" DbType="Date" />
             <asp:Parameter Name="Remark" Type="String" />
             <asp:Parameter Name="Inserted_By" Type="String" />
             <asp:Parameter Name="Updated_By" Type="String" />
@@ -356,6 +370,7 @@
             <asp:Parameter Name="Confirmed_By" Type="String" />
             <asp:Parameter Name="Date_of_Boking" DbType="Date" />
             <asp:Parameter Name="CMLA_SignOff_Date" DbType="Date" />
+            <asp:Parameter Name="num_exten" DbType="String" />
             <asp:Parameter Name="Remark" Type="String" />
             <asp:Parameter Name="Inserted_By" Type="String" />
             <asp:Parameter Name="Updated_By" Type="String" />

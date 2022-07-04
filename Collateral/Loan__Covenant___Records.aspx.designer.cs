@@ -67,15 +67,6 @@ namespace Collateral_int {
         protected global::System.Web.UI.WebControls.ImageButton excelExporter;
         
         /// <summary>
-        /// addNew control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton addNew;
-        
-        /// <summary>
         /// GridView1 control.
         /// </summary>
         /// <remarks>

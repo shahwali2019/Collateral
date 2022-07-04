@@ -13,6 +13,9 @@ namespace Collateral_int
 {
     public partial class new_mcu_record : System.Web.UI.Page
     {
+        string OracleCon = "Data Source=(DESCRIPTION =" + "(ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.0.56)(PORT = 1521))" + "(CONNECT_DATA =" + "(SERVER = DEDICATED)" + "(SERVICE_NAME = AIBLIVE)));" + "User Id=appuser;Password=Z__M098765;";
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -36,18 +39,13 @@ namespace Collateral_int
                     Response.Redirect("NotAuthorize.aspx?ReturnPath=" + Server.UrlEncode(Request.Url.AbsoluteUri));
                 }
 
-                if (Access_role == null)
-                {
-                    Response.Redirect("Loging.aspx");
-                    Session.Remove("loading");
-                }
-
 
                 //----------------------------------------------
                 if (Session["mcu_id"] != null)
                 {
 
-                    string currency, LoanStatus;
+                    string currency,
+                    LoanStatus;
 
                     subBtn.Text = " Updata ";
                     addLbl.Text = "UPDATE MCU RECORD";
@@ -61,39 +59,23 @@ namespace Collateral_int
                     txtDisburesment.Text = Session["Dis"].ToString();
                     txtDDM.Text = Session["DDM"].ToString();
                     txtmcudate.Text = Session["MCUD"].ToString();
-                    currency =  Session["cur"].ToString();
+                    currency = Session["cur"].ToString();
                     LoanStatus = Session["LS"].ToString();
 
                     listLoan.SelectedValue = LoanStatus;
                     listCurrency.SelectedValue = currency;
-              
-
 
                     txtRemark.Text = Session["Remark"].ToString();
 
                     //Session["InsertedBy"].ToString();
 
-
                 }
             }
 
-
-            
         }
-
         protected void back_Click(object sender, ImageClickEventArgs e)
         {
             Session.Remove("mcu_id");
-
-
-
-
-
-
-
-
-
-
 
             Response.Redirect("mcu_record.aspx");
         }
@@ -113,30 +95,29 @@ namespace Collateral_int
                     {
                         sqlCon2.Open();
                         string query = "INSERT INTO[dbo].[mcu_tbl_insert]" +
-                      "([Customre Name]" +
-                      ",Currency" +
-                       ",[Account Number]" +
-                       ",[Approval Number]" +
-                      ",[[Disburesement]" +
-                       ",[Due Date of MCU]" +
-                      " ,[MCU Date]" +
-                      " ,[Loan Status]" +
-                      " ,[Remark]" +
-                       ",[Inserted By]" +
-                        ")" +
-                        " VALUES" +
-                        "(" +
-                        "@cm," +
-                        "@currency," +
-                        "@acno," +
-                        "@appno," +
-                        "@dis," +
-                        "@duedate," +
-                        "@mcudate," +
-                        "@loanStatus," +
-                        "@remark," +
-                        "@is)";
-
+                            "([Customre Name]" +
+                            ",Currency" + 
+                            ",[Account Number]" + 
+                            ",[Approval Number]" + 
+                            ",[[Disburesement]" + 
+                            ",[Due Date of MCU]" +
+                            " ,[MCU Date]" + 
+                            " ,[Loan Status]" + 
+                            " ,[Remark]" + 
+                            ",[Inserted By]" + 
+                            ")" +
+                            " VALUES" + 
+                            "(" + 
+                            "@cm," +
+                            "@currency," +
+                            "@acno," +
+                            "@appno," + 
+                            "@dis," + 
+                            "@duedate," +
+                            "@mcudate," +
+                            "@loanStatus," + 
+                            "@remark," + 
+                            "@is)";
 
                         SqlCommand sqlcmd = new SqlCommand(query, sqlCon2);
 
@@ -152,10 +133,6 @@ namespace Collateral_int
                         sqlcmd.Parameters.AddWithValue("@remark", txtRemark.Text);
                         sqlcmd.Parameters.AddWithValue("@is", username);
 
-
-
-
-
                         sqlcmd.ExecuteNonQuery();
                         msg.Visible = true;
                         msg.Text = "Inserted to pending table!<br />It needs your admin approval!";
@@ -168,44 +145,43 @@ namespace Collateral_int
 
                         //==========================================
                     }
-                }// end of adding new WAK Record
+                } // end of adding new WAK Record
 
                 else
                 {
-
 
                     string connectionStringg = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
                     using (SqlConnection sqlConn = new SqlConnection(connectionStringg))
                     {
                         sqlConn.Open();
-                        string query = "INSERT INTO[dbo].[mcu_tbl_update]" +
-                      "(id" +
-                      ",[Customre Name]" +
-                      ",Currency" +
-                       ",[Account Number]" +
-                       ",[Approval Number]" +
-                      ",[[Disburesement]" +
-                       ",[Due Date of MCU]" +
-                      " ,[MCU Date]" +
-                      " ,[Loan Status]" +
-                      " ,[Remark]" +
-                       ",[Inserted By]" +
-                       ",[Updated By]" +
-                        ")" +
-                        " VALUES" +
-                        "(" +
-                        "@id," +
-                        "@cm," +
-                        "@currency," +
-                        "@acno," +
-                        "@appno," +
-                        "@dis," +
-                        "@duedate," +
-                        "@mcudate," +
-                        "@loanStatus," +
-                        "@remark," +
-                        "@is," +
-                        "@ub)";
+                        string query = "INSERT INTO[dbo].[mcu_tbl_update]" + 
+                            "(id" +
+                            ",[Customre Name]" + 
+                            ",Currency" +
+                            ",[Account Number]" + 
+                            ",[Approval Number]" +
+                            ",[[Disburesement]" + 
+                            ",[Due Date of MCU]" + 
+                            " ,[MCU Date]" + 
+                            " ,[Loan Status]" + 
+                            " ,[Remark]" + 
+                            ",[Inserted By]" +
+                            ",[Updated By]" +
+                            ")" +
+                            " VALUES" + 
+                            "(" + 
+                            "@id," + 
+                            "@cm," +
+                            "@currency," + 
+                            "@acno," + 
+                            "@appno," + 
+                            "@dis," + 
+                            "@duedate," + 
+                            "@mcudate," +
+                            "@loanStatus," +
+                            "@remark," +
+                            "@is," +
+                            "@ub)";
 
                         SqlCommand sqlcmd = new SqlCommand(query, sqlConn);
                         sqlcmd.Parameters.AddWithValue("@id", Session["id"].ToString());
@@ -230,12 +206,10 @@ namespace Collateral_int
                     msg.ForeColor = System.Drawing.Color.Green;
 
                 } //END OF ELSE
-            
+
             }
 
-
         }
-
 
         protected void txtClient_TextChanged(object sender, EventArgs e)
         {
@@ -244,21 +218,49 @@ namespace Collateral_int
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
-            string strConnString = ConfigurationManager.ConnectionStrings["OracleCon"].ConnectionString;
-            OracleConnection con = new OracleConnection(strConnString);
+            //string strConnString = ConfigurationManager.ConnectionStrings["OracleCon"].ConnectionString;
+            //OracleConnection con = new OracleConnection(strConnString);
 
-            if (con == null || con.State != ConnectionState.Open)
-            {
-                con.Open();
-            }
-            string query = "select AC_DESC,CUST_AC_NO,CUST_NO,CCY from sttm_cust_account@fc where upper(ac_desc) LIKE  '%" + txtACNO.Text.ToUpper() + "%'";
-            OracleCommand cmd = new OracleCommand(query, con);
+            //if (con == null || con.State != ConnectionState.Open)
+            //{
+            //    con.Open();
+            //}
+            //string query = "select AC_DESC,CUST_AC_NO,CUST_NO,CCY from sttm_cust_account@fc where upper(ac_desc) LIKE  '%" + txtACNO.Text.ToUpper() + "%'";
+            //OracleCommand cmd = new OracleCommand(query, con);
+            //OracleDataReader dr = cmd.ExecuteReader();
+            //DataTable dataTable = new DataTable();
+            //dataTable.Load(dr);
+            //GridView2.DataSource = dataTable;
+            //GridView2.DataBind();
+            //GridView2.Visible = true;
+
+            string accountno = Request.Form["ctl00$MainContent$txtACNO"];
+            OracleConnection con = new OracleConnection(OracleCon);
+            OracleCommand cmd = new OracleCommand();
+            // sttm_customer - nationality
+            cmd.CommandText = "SELECT  c.customer_name1, ac.cust_ac_no from fccprod.sttm_cust_account ac, fccprod.sttm_customer c WHERE c.customer_no = ac.cust_no AND ac.cust_ac_no = '" + accountno + "'";
+            cmd.Connection = con;
+            con.Open();
             OracleDataReader dr = cmd.ExecuteReader();
-            DataTable dataTable = new DataTable();
-            dataTable.Load(dr);
-            GridView2.DataSource = dataTable;
-            GridView2.DataBind();
-            GridView2.Visible = true;
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    txtACNO.Text = dr["cust_ac_no"].ToString();
+                    txtClient.Text = dr["customer_name1"].ToString();
+
+                }
+            }
+            else
+            {
+           
+                txtlbl.Text = "No Data In DataBase";
+                txtlbl.Visible = true;
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
+
+            }
+
+            con.Close();
         }
 
         protected void GridView2_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -268,9 +270,7 @@ namespace Collateral_int
                 txtACNO.Text = e.CommandArgument.ToString();
                 GridView2.Visible = false;
 
-
             }
-
 
         }
     }

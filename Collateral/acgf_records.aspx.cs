@@ -7,8 +7,8 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
-
-
+using OfficeOpenXml;
+using System.IO;
 
 namespace Collateral_int
 {
@@ -224,5 +224,38 @@ namespace Collateral_int
             }
             //End of Gridview ROW_COMMAND
         }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            string fullUsername = User.Identity.Name;
+            string username = fullUsername.Substring(fullUsername.IndexOf("\\") + 1);
+
+            SqlDataAdapter sda = new SqlDataAdapter("select * from [userMng] where username= '" + username + "'", connectionString);
+            DataTable dtResult = new DataTable();
+            sda.Fill(dtResult);
+
+            string userType = dtResult.Rows[0]["Access_role"].ToString();
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                if (userType == "Supper Admin")
+                {
+                    e.Row.Cells[1].Enabled = false;
+
+                }
+                if (userType == "Admin")
+                {
+                    e.Row.Cells[1].Enabled = false;
+                }
+
+                if (userType == "Users")
+                {
+                    e.Row.Cells[1].Enabled = true;
+                }
+            }
+        }
+
+
     }
 }

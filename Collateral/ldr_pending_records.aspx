@@ -39,12 +39,16 @@
    </div>
 
           
-                    <asp:GridView ID="GridView2" OnRowCommand="GridView2_RowCommand"   runat="server" ShowHeaderWhenEmpty="True"
+                    <asp:GridView ID="GridView2" OnRowCommand="GridView2_RowCommand" OnRowDataBound="GridView2_RowDataBound" runat="server" ShowHeaderWhenEmpty="True"
                AllowSorting="True" CssClass="auto-style1" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC"
-               BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="SqlCon2" PageSize="7" Width="1172px" Visible="False" GridLines="Horizontal">
+               BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="SqlCon2" DataKeyNames="id" PageSize="7" Width="1172px" Visible="False" GridLines="Horizontal">
                         <AlternatingRowStyle BackColor="#CCFFFF" />
                <Columns>
-
+                                      <asp:TemplateField ShowHeader="False">
+                       <ItemTemplate>
+                           <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete"></asp:LinkButton>
+                       </ItemTemplate>
+                   </asp:TemplateField>
                     <asp:TemplateField HeaderText="All">
                      <HeaderTemplate>
                     <asp:CheckBox ID="chkb2" runat="server" Text="All" OnCheckedChanged="chkb2_CheckedChanged" AutoPostBack="true" />
@@ -209,7 +213,7 @@
                <SortedDescendingHeaderStyle BackColor="#002876" />
         </asp:GridView>
          <asp:SqlDataSource ID="SqlCon2" runat="server" ConnectionString="<%$ ConnectionStrings:DBCon %>"
-             SelectCommand="SELECT * FROM [LoanReg_tbl_insert]">
+             SelectCommand="SELECT * FROM [LoanReg_tbl_insert]" DeleteCommand="DELETE FROM [LoanReg_tbl_insert] WHERE [id] = @id">
                <DeleteParameters>
                   <asp:Parameter Name="id" Type="Int32" DefaultValue="0" />
              </DeleteParameters>
@@ -217,11 +221,16 @@
         </asp:SqlDataSource>
 
              <div style="margin-top:-5px;">
-                    <asp:GridView ID="GridView3" OnRowCommand="GridView3_RowCommand"   runat="server" ShowHeaderWhenEmpty="True"
+                    <asp:GridView ID="GridView3" OnRowCommand="GridView3_RowCommand" OnRowDataBound="GridView3_RowDataBound"   runat="server" ShowHeaderWhenEmpty="True"
                AllowSorting="True" CssClass="auto-style1" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC"
-               BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="SqlConUpdate" PageSize="7" Width="1172px" Visible="False" OnSelectedIndexChanged="GridView3_SelectedIndexChanged" GridLines="Horizontal">
+               BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="SqlConUpdate" DataKeyNames="id" PageSize="7" Width="1172px" Visible="False" OnSelectedIndexChanged="GridView3_SelectedIndexChanged" GridLines="Horizontal">
                         <AlternatingRowStyle BackColor="#CCFFFF" />
                       <Columns>
+                                             <asp:TemplateField ShowHeader="False">
+                       <ItemTemplate>
+                           <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete"></asp:LinkButton>
+                       </ItemTemplate>
+                   </asp:TemplateField>
                             <asp:TemplateField HeaderText="All">
                      <HeaderTemplate>
                     <asp:CheckBox ID="chkb1" runat="server" Text="All" OnCheckedChanged="chkb1_CheckedChanged" AutoPostBack="true" />
@@ -377,7 +386,7 @@
         </asp:GridView>
   </div>
      <asp:SqlDataSource ID="SqlConUpdate" runat="server" ConnectionString="<%$ ConnectionStrings:DBCon %>"
-         SelectCommand="SELECT * FROM [LoanReg_tbl_Update]" >
+         SelectCommand="SELECT * FROM [LoanReg_tbl_Update]"  DeleteCommand="DELETE FROM [LoanReg_tbl_Update] WHERE [id] = @id">
      </asp:SqlDataSource>
   </div>
   <br />

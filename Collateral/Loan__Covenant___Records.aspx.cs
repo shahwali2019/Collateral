@@ -39,21 +39,13 @@ namespace Collateral_int
                     Response.Redirect("NotAuthorize.aspx?ReturnPath=" + Server.UrlEncode(Request.Url.AbsoluteUri));
                 }
 
-                if (Access_role == null)
-                {
-                    Response.Redirect("Loging.aspx");
-                    Session.Remove("loading");
-                }
-                //===================Validate back btn while updating records
-                if (Session["id"] != null)
-                {
-                    Session.Remove("id");
-                }
             }
         }
 
+
         protected void searchBtn_Click(object sender, EventArgs e)
         {
+
             //----------------------
             if (string.IsNullOrEmpty(txtComName.Text) && string.IsNullOrEmpty(txtAppNo.Text) && drop_down_facility_type.SelectedValue == "FT")
             {
@@ -138,7 +130,6 @@ namespace Collateral_int
             }
             //-------------------------
 
-
             if (string.IsNullOrEmpty(txtComName.Text) && string.IsNullOrEmpty(txtAppNo.Text) && drop_down_facility_type.SelectedValue != "FT")
             {
                 string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
@@ -166,7 +157,6 @@ namespace Collateral_int
                     resultLbl.Text = "Found " + counter + " Record(s).";
             }
             //-------------------------
-
 
             if (!string.IsNullOrEmpty(txtComName.Text) && !string.IsNullOrEmpty(txtAppNo.Text) && drop_down_facility_type.SelectedValue == "FT")
             {
@@ -280,9 +270,9 @@ namespace Collateral_int
             }
 
         }
-
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+
             if (e.CommandName == "edit")
             {
                 Session["lcr_id"] = e.CommandArgument.ToString();
@@ -294,24 +284,23 @@ namespace Collateral_int
                 if (rdr.Read())
                 {
                     //READ THE DATA FROM COLLATERAL DATABASE AND SAVE THEM INTO SESSION
-                    Session["id"] = (string)rdr["id"].ToString();                                   //"(" +
-                    Session["cm"] = (string)rdr["Customer Name"].ToString();                  //"@id," +
-                    Session["appname"] = (string)rdr["Approval Name"].ToString();                  //"@cm," +
-                    Session["dod"] = (string)rdr["Date of Disbursement"].ToString();           //"@duedate," +
-                    Session["conds"] = (string)rdr["Conditions"].ToString();                     //"@appname," +
-                    Session["duedate"] = (string)rdr["Due Date"].ToString();                       //"@constus," +
-                    Session["constus"] = (string)rdr["Condition Status"].ToString();               //"@dod," +
-                    Session["remark"] = (string)rdr["Remark"].ToString();                         //"@remark," +
-                    Session["is"] = (string)rdr["Inserted By"].ToString();                    //"@conds," +
-                    Session["ub"] = (string)rdr["Updated By"].ToString();                     //"@is," +
-                    Session["ap"] = (string)rdr["Approved By"].ToString();                   //"@ub)";
+                    Session["id"] = (string)rdr["id"].ToString(); //"(" +
+                    Session["cm"] = (string)rdr["Customer Name"].ToString(); //"@id," +
+                    Session["appname"] = (string)rdr["Approval Name"].ToString(); //"@cm," +
+                    Session["dod"] = (string)rdr["Date of Disbursement"].ToString(); //"@duedate," +
+                    Session["conds"] = (string)rdr["Conditions"].ToString(); //"@appname," +
+                    Session["duedate"] = (string)rdr["Due Date"].ToString(); //"@constus," +
+                    Session["constus"] = (string)rdr["Condition Status"].ToString(); //"@dod," +
+                    Session["remark"] = (string)rdr["Remark"].ToString(); //"@remark," +
+                    Session["is"] = (string)rdr["Inserted By"].ToString(); //"@conds," +
+                    Session["ub"] = (string)rdr["Updated By"].ToString(); //"@is," +
+                    Session["ap"] = (string)rdr["Approved By"].ToString(); //"@ub)";
                     sqlCon.Close();
                     sqlCon.Dispose();
                     Response.Redirect("newLCR.aspx");
                 }
             }
         }
-
         protected void excelExporter_Click(object sender, ImageClickEventArgs e)
         {
             DataTable dt = new DataTable();
@@ -332,17 +321,17 @@ namespace Collateral_int
                 if (chkSelect.Checked)
                 {
                     //string Val1 = (gw.FindControl("Label2") as Label).Text;//
-                    string Val2 = (gw.FindControl("Label3") as Label).Text;//
-                    string Val3 = (gw.FindControl("Label4") as Label).Text;//
-                    string Val4 = (gw.FindControl("Label5") as Label).Text;//
-                    string Val5 = (gw.FindControl("Label6") as Label).Text;//
-                    string Val6 = (gw.FindControl("Label7") as Label).Text;//
-                    string Val7 = (gw.FindControl("Label8") as Label).Text;//
-                    string Val8 = (gw.FindControl("Label9") as Label).Text;//
-                    string Val9 = (gw.FindControl("Label10") as Label).Text;//
-                    string Val11 = (gw.FindControl("Label11") as Label).Text;//
-                    string Val12 = (gw.FindControl("Label12") as Label).Text;//
-                    dt.Rows.Add( Val2, Val3, Val4, Val5, Val6, Val7, Val8, Val9, Val11, Val12);
+                    string Val2 = (gw.FindControl("Label3") as Label).Text; //
+                    string Val3 = (gw.FindControl("Label4") as Label).Text; //
+                    string Val4 = (gw.FindControl("Label5") as Label).Text; //
+                    string Val5 = (gw.FindControl("Label6") as Label).Text; //
+                    string Val6 = (gw.FindControl("Label7") as Label).Text; //
+                    string Val7 = (gw.FindControl("Label8") as Label).Text; //
+                    string Val8 = (gw.FindControl("Label9") as Label).Text; //
+                    string Val9 = (gw.FindControl("Label10") as Label).Text; //
+                    string Val11 = (gw.FindControl("Label11") as Label).Text; //
+                    string Val12 = (gw.FindControl("Label12") as Label).Text; //
+                    dt.Rows.Add(Val2, Val3, Val4, Val5, Val6, Val7, Val8, Val9, Val11, Val12);
                 }
             }
             //--------------------------------
@@ -374,16 +363,6 @@ namespace Collateral_int
             }
         }
 
-        protected void addNew_Click(object sender, ImageClickEventArgs e)
-        {
-            Response.Redirect("newLCR.aspx");
-        }
-
-        //protected void searchBtn_Click(object sender, EventArgs e)
-        //{
-
-        //}
-
 
         protected void chkb1_CheckedChanged1(object sender, EventArgs e)
         {
@@ -402,19 +381,35 @@ namespace Collateral_int
             }
         }
 
-        //protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
-        //{
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            string fullUsername = User.Identity.Name;
+            string username = fullUsername.Substring(fullUsername.IndexOf("\\") + 1);
 
-        //}
+            SqlDataAdapter sda = new SqlDataAdapter("select * from [userMng] where username= '" + username + "'", connectionString);
+            DataTable dtResult = new DataTable();
+            sda.Fill(dtResult);
 
-        //protected void addNew_Click(object sender, ImageClickEventArgs e)
-        //{
+            string userType = dtResult.Rows[0]["Access_role"].ToString();
 
-        //}
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
 
-        //protected void excelExporter_Click(object sender, ImageClickEventArgs e)
-        //{
+                if (userType == "Supper Admin")
+                {
+                    e.Row.Cells[1].Enabled = false;
 
-        //}
+                }
+                if (userType == "Admin")
+                {
+                    e.Row.Cells[1].Enabled = false;
+                }
+
+                if (userType == "Users")
+                {
+                    e.Row.Cells[1].Enabled = true;
+                }
+            }
+        }
     }
 }

@@ -133,7 +133,7 @@
             <td class="auto-style41">
                 <strong>&nbsp;ACFG Expiry Date <span style="color:red;">*</span></strong></td>
             <td class="auto-style42">
-                <asp:TextBox ID="txtACGFED" AutoPostBack="false" runat="server" Height="40px" Width="196px" class="   ACGF Expiry Date..."  TabIndex="6" CssClass="center"></asp:TextBox>
+                <asp:TextBox ID="txtACGFED" AutoPostBack="false" runat="server" Height="40px" Width="196px" class="   ACGF Expiry Date..." TextMode="Date" TabIndex="6" CssClass="center"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -196,7 +196,9 @@
             </td>
             <td class="auto-style49">
                 &nbsp;</td>
-            <td class="auto-style50" colspan="2"><strong>&nbsp;<asp:Button  ID="Button2" runat="server" CssClass="btn-info" Height="37px" Text="ADD" Width="81px" Font-Bold="True"  Font-Size="Small" TabIndex="9" OnClick="Button2_Click" BorderStyle="None"   />
+            <td class="auto-style50" colspan="2"><strong>&nbsp;
+                
+                <asp:Button  ID="btnADD" runat="server" CssClass="btn-info" Height="37px" Text="ADD" Width="81px" Font-Bold="True"  Font-Size="Small" TabIndex="9" OnClick="btnADD_Click" BorderStyle="None"/>
                 </strong>&nbsp; <strong>
                 <asp:Button ID="ResetBtn" runat="server" CssClass="btn-danger" Font-Bold="True" Font-Size="Small" Height="37px"  Text="Reset" Width="81px" TabIndex="9" BorderStyle="None" OnClick="ResetBtn_Click" />
                 </strong></td>

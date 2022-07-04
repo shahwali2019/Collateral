@@ -13,11 +13,67 @@ namespace Collateral_int
     public partial class upload_xlsx : System.Web.UI.Page
     {
         string Val11, Val12, Val13, Val14, Val15, Val16, Val17, Val18, Val19, Val110, Val111, Val112, Val113, Val114;
-   
 
 
 
+        string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
         //----------------------Jump release button event
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!this.IsPostBack)
+            {
+
+            }
+            hide.Visible = false;
+            //------------------Invoke StoreProcedure to change pdate DataType---------------------------
+            string ConStr = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
+            using (var conn = new SqlConnection(ConStr))
+            using (var command = new SqlCommand("DTypeChanger", conn)
+            {
+                CommandType = CommandType.StoredProcedure
+            })
+            {
+                conn.Open();
+                command.ExecuteNonQuery();
+                conn.Close();
+                conn.Dispose();
+            }
+
+            //---------------------------------------------------------------------
+            //------------------Invoke StoreProcedure to Rebuild Loanadder_tbl Index---------------------------
+            string ConStr2 = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
+            using (var conn = new SqlConnection(ConStr2))
+            using (var command = new SqlCommand("IndexRebuilder", conn)
+            {
+                CommandType = CommandType.StoredProcedure
+            })
+            {
+                conn.Open();
+                command.ExecuteNonQuery();
+                conn.Close();
+                conn.Dispose();
+            }
+            //------------------------------------------------------------------------
+            CartonNo.Focus();// = true;
+
+            //----------------------------------
+            if (!IsPostBack)
+            {
+                //if (Session["sid"] == null)
+                //{
+                //    Response.Redirect("Loging.aspx");
+                //    Session.Remove("loading");
+                //}
+
+                string fullUsername = User.Identity.Name;
+                int index_domain = fullUsername.IndexOf("AIB\\");
+                string username = fullUsername.Substring(fullUsername.IndexOf("\\") + 1);
+            }
+            //Label1.Text = "Welcome: " + Session["Users"].ToString();
+
+        }
+
+
         protected void btnJump_Click(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
@@ -194,6 +250,7 @@ namespace Collateral_int
 
         }
 
+
         protected void chkb1_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -226,57 +283,6 @@ namespace Collateral_int
         int IntVal;
         bool idChecker;
 
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            hide.Visible = false;
-            //------------------Invoke StoreProcedure to change pdate DataType---------------------------
-            string ConStr =  ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
-            using (var conn = new SqlConnection(ConStr))
-            using (var command = new SqlCommand("DTypeChanger", conn)
-            {
-                CommandType = CommandType.StoredProcedure
-            })
-            {
-                conn.Open();
-                command.ExecuteNonQuery();
-                conn.Close();
-                conn.Dispose();
-            }
-
-            //---------------------------------------------------------------------
-            //------------------Invoke StoreProcedure to Rebuild Loanadder_tbl Index---------------------------
-            string ConStr2 =  ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
-            using (var conn = new SqlConnection(ConStr2))
-            using (var command = new SqlCommand("IndexRebuilder", conn)
-            {
-                CommandType = CommandType.StoredProcedure
-            })
-            {
-                conn.Open();
-                command.ExecuteNonQuery();
-                conn.Close();
-                conn.Dispose();
-            }
-            //------------------------------------------------------------------------
-            CartonNo.Focus();// = true;
-
-            //----------------------------------
-            if (!IsPostBack)
-            {
-                //if (Session["sid"] == null)
-                //{
-                //    Response.Redirect("Loging.aspx");
-                //    Session.Remove("loading");
-                //}
-
-                string fullUsername = User.Identity.Name;
-                int index_domain = fullUsername.IndexOf("AIB\\");
-                string username = fullUsername.Substring(fullUsername.IndexOf("\\") + 1);
-            }
-            //Label1.Text = "Welcome: " + Session["Users"].ToString();
-
-        }
 
 
         protected void Button5_Click(object sender, EventArgs e)

@@ -307,9 +307,9 @@ namespace Collateral_int
                     {
                         val1 = (gw.FindControl("Label1") as Label).Text;
                     }
-                    //---------------------------------------------------------------------------------
-                    string connectionString = @"Data Source=AIBW8CAMS02;Initial Catalog=collateral;Persist Security Info=True;User ID=sma;Password=1111";
-                    using (SqlConnection sqlCon = new SqlConnection(connectionString))
+                        //---------------------------------------------------------------------------------
+                        string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
+                        using (SqlConnection sqlCon = new SqlConnection(connectionString))
                     {
                         sqlCon.Open();
                         string query = "UPDATE Loanadder_tbl SET InsertedBy ='" + val1 + "', approvedBy='"+Session["Users"].ToString()+"' where id>'" + oldID + "' and id <='" + NewID + "'";
@@ -367,7 +367,7 @@ namespace Collateral_int
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
 
-            string connectionString = @"Data Source=AIBW8CAMS02;Initial Catalog=collateral;Persist Security Info=True;User ID=sma;Password=1111";
+            string connectionString = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
 
@@ -397,9 +397,9 @@ namespace Collateral_int
         {
 
 
-            string[] filePaths = Directory.GetFiles(@"//192.168.0.4/groups/TFL/Collateral Management/Excel File/");
+            string[] filePaths = Directory.GetFiles(@"\\192.168.0.4/groups/TFL/Collateral Management/Excel File/");
             foreach (string filePath in filePaths)
-                File.Delete(@"//192.168.0.4/groups/TFL/Collateral Management/Excel File/Coll.xlsx");
+                File.Delete(@"\\192.168.0.4/groups/TFL/Collateral Management/Excel File/Coll.xlsx");
             msg.Visible = true;
             msg.ForeColor = System.Drawing.Color.Red;
             msg.Text = "All Uploaded .xlsx files have been deleted from shared drive.";

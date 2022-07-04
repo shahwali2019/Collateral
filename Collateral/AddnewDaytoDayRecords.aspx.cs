@@ -13,6 +13,8 @@ namespace Collateral
 {
     public partial class AddnewDaytoDayRecords : System.Web.UI.Page
     {
+        string OracleCon = "Data Source=(DESCRIPTION =" + "(ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.0.56)(PORT = 1521))" + "(CONNECT_DATA =" + "(SERVER = DEDICATED)" + "(SERVICE_NAME = AIBLIVE)));" + "User Id=appuser;Password=Z__M098765;";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -35,12 +37,6 @@ namespace Collateral
                     Response.Redirect("NotAuthorize.aspx?ReturnPath=" + Server.UrlEncode(Request.Url.AbsoluteUri));
                 }
 
-                if (Access_role == null)
-                {
-                    Response.Redirect("Loging.aspx");
-                    Session.Remove("loading");
-                }
-
 
                 //----------------------------------------------
                 if (Session["dod_id"] != null)
@@ -53,20 +49,21 @@ namespace Collateral
                     //---------------------------------------------------------------
                     // Session["id"].ToString();                         
                     acc_name.Text = Session["acn"].ToString();
-                    action.Text = Session["actoken"].ToString();        
-                    appNumber.Text = Session["appno"].ToString();       
-                    tfl.Text = Session["tflinfs"].ToString();                
-                    confirmed.Text = Session["confby"].ToString();         
-                    facAmt.Text = Session["famount"].ToString();              
+                    action.Text = Session["actoken"].ToString();
+                    appNumber.Text = Session["appno"].ToString();
+                    tfl.Text = Session["tflinfs"].ToString();
+                    confirmed.Text = Session["confby"].ToString();
+                    facAmt.Text = Session["famount"].ToString();
                     DoB.Text = Session["dboking"].ToString();
                     drop_down_facility_type.SelectedValue = Session["ftype"].ToString();
-                    currencyList.SelectedValue = Session["currency"].ToString();                 
+                    currencyList.SelectedValue = Session["currency"].ToString();
                     cmla.Text = Session["csnoofdate"].ToString();
+                    txtnm_extn.Text = Session["numexten"].ToString();
                     remark.Text = Session["Remark"].ToString();
 
 
 
-                    
+
 
                     //Session["InsertedBy"].ToString();
 
@@ -101,6 +98,7 @@ namespace Collateral
                        ",[Confirmed By]" +
                        ",[Date of Boking]" +
                        ",[CMLA SignOff Date]" +
+                       ",[Number of Extension Renewa]" +
                        ",[Remark]" +
                        ",[Inserted By]" +
                         ")" +
@@ -116,6 +114,7 @@ namespace Collateral
                         "@confby," +
                         "@dtboking," +
                         "@csignofdate," +
+                        "@num_exten," +
                         "@remark," +
                         "@is)";
 
@@ -131,6 +130,7 @@ namespace Collateral
                         sqlcmd.Parameters.AddWithValue("@confby", confirmed.Text);
                         sqlcmd.Parameters.AddWithValue("@dtboking", DoB.Text);
                         sqlcmd.Parameters.AddWithValue("@csignofdate", cmla.Text);
+                        sqlcmd.Parameters.AddWithValue("@num_exten", txtnm_extn.Text);
                         sqlcmd.Parameters.AddWithValue("@remark", remark.Text);
                         sqlcmd.Parameters.AddWithValue("@is", username);
 
@@ -172,6 +172,7 @@ namespace Collateral
                        ",[Confirmed By]" +
                        ",[Date of Boking]" +
                        ",[CMLA SignOff Date]" +
+                       ",[Number of Extension Renewa]" +
                        ",[Remark]" +
                        //",[Inserted By]" +
                        ",[Updated By]" +
@@ -189,6 +190,7 @@ namespace Collateral
                         "@confby," +
                         "@dtboking," +
                         "@csignofdate," +
+                        "@num_exten," +
                         "@remark," +
                         //"@is," +
                         "@ub)";
@@ -205,6 +207,7 @@ namespace Collateral
                         sqlcmd.Parameters.AddWithValue("@confby", confirmed.Text);
                         sqlcmd.Parameters.AddWithValue("@dtboking", DoB.Text);
                         sqlcmd.Parameters.AddWithValue("@csignofdate", cmla.Text);
+                        sqlcmd.Parameters.AddWithValue("@num_exten", txtnm_extn.Text);
                         sqlcmd.Parameters.AddWithValue("@remark", remark.Text);
                         //sqlcmd.Parameters.AddWithValue("@is", username);
                         sqlcmd.Parameters.AddWithValue("ub", username);
@@ -224,22 +227,51 @@ namespace Collateral
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
-            string strConnString = ConfigurationManager.ConnectionStrings["OracleCon"].ConnectionString;
-            OracleConnection con = new OracleConnection(strConnString);
+        //    //string strConnString = ConfigurationManager.ConnectionStrings["OracleCon"].ConnectionString;
+        //    //OracleConnection con = new OracleConnection(strConnString);
 
-            if (con == null || con.State != ConnectionState.Open)
-            {
-                con.Open();
-            }
-            string query = "select AC_DESC,CUST_AC_NO,CUST_NO,CCY from sttm_cust_account@fc where upper(ac_desc) LIKE  '%" + acc_name.Text.ToUpper() + "%'";
-            OracleCommand cmd = new OracleCommand(query, con);
-            OracleDataReader dr = cmd.ExecuteReader();
-            DataTable dataTable = new DataTable();
-            dataTable.Load(dr);
-            GridView2.DataSource = dataTable;
-            GridView2.DataBind();
-            GridView2.Visible = true;
+        //    //if (con == null || con.State != ConnectionState.Open)
+        //    //{
+        //    //    con.Open();
+        //    //}
+        //    //string query = "select AC_DESC,CUST_AC_NO,CUST_NO,CCY from sttm_cust_account@fc where upper(ac_desc) LIKE  '%" + acc_name.Text.ToUpper() + "%'";
+        //    //OracleCommand cmd = new OracleCommand(query, con);
+        //    //OracleDataReader dr = cmd.ExecuteReader();
+        //    //DataTable dataTable = new DataTable();
+        //    //dataTable.Load(dr);
+        //    //GridView2.DataSource = dataTable;
+        //    //GridView2.DataBind();
+        //    //GridView2.Visible = true;
+        //    string accountno = Request.Form["appNumber"];
+
+        //    OracleConnection con = new OracleConnection(OracleCon);
+        //    OracleCommand cmd = new OracleCommand();
+        //    // sttm_customer - nationality
+        //    cmd.CommandText = "SELECT  c.customer_name1, ac.cust_ac_no from fccprod.sttm_cust_account ac, fccprod.sttm_customer c WHERE c.customer_no = ac.cust_no AND ac.cust_ac_no = '" + accountno + "'";
+        //    cmd.Connection = con;
+        //    con.Open();
+        //    OracleDataReader dr = cmd.ExecuteReader();
+        //    if (dr.HasRows)
+        //    {
+        //        while (dr.Read())
+        //        {
+        //            appNumber.Text = dr["cust_ac_no"].ToString();
+        //            acc_name.Text = dr["customer_name1"].ToString();
+
+        //        }
+        //    }
+        //    else
+        //    {
+        //        //Response.Write("No Data In DataBase");
+        //        txtlbl.Text = "No Data In DataBase";
+        //        txtlbl.Visible = true;
+        //        ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
+
+        //    }
+
+        //    con.Close();
         }
+    
 
         protected void GridView2_RowCommand(object sender, GridViewCommandEventArgs e)
         {

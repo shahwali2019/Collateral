@@ -10,6 +10,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link type="text/css" rel="stylesheet" media="all" href="https://www.time.ir/fa/SWResource/v1/0/Default/1dbbc7602f6d2a264790a9483244cdd8c29972636f9c215b2217b49619ab00f24bda385af181aee8e4d73d82daa6c1c7d60eee51ae2e2c6db1f6b35e833c3aa2.css" />
        
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
@@ -71,8 +72,9 @@ td {
 
 .logo:hover {
 	background: rgba(0, 169, 79, 0.45);
-	/*border-bottom: 0.1em solid #00a94f;*/
-}*/
+	/*border-bottom: 0.1em solid #00a94f;
+}
+            */
 
 .ResTable {
 	height: 100px;
@@ -159,7 +161,9 @@ font-family: "Times New Roman", Georgia, serif;
     <br />
     <br />
     <br />
-<div class="table-responsive" style="margin-bottom: 10px; align-content: center ">
+
+
+<div class="table-responsive" style="margin-bottom: 10px; align-content: center " >
 	<table class="table" style="border:none">
 		<tbody>
 			<tr>
@@ -328,6 +332,72 @@ font-family: "Times New Roman", Georgia, serif;
 					</div>
 				</td>
 			</tr>
+            <tr>
+             <td class="ResTable">
+
+					<br />
+					<div class="tdText">
+						<asp:LinkButton ID="LinkButton29" PostBackUrl="~/obsr_loan_docs.aspx" CssClass="linkText"  runat="server">OBSERVATIONS ON LOAN DOCUMENTS</asp:LinkButton>
+					</div>
+					<br />
+					<div class="tdText">
+						<asp:LinkButton ID="LinkButton30" PostBackUrl="~/new-records_obsr_loan_docs.aspx" CssClass="linkText"  runat="server">NEW OBSERVATIONS ON LOAN DOCUMENTS</asp:LinkButton>
+					</div>
+					<br />
+					<div class="tdText">
+						<asp:LinkButton ID="LinkButton31" PostBackUrl="~/obsr_loan_docs_pending.aspx" CssClass="linkText"  runat="server">OBSERVATIONS ON LOAN DOCUMENTS APPROVAL</asp:LinkButton>
+					</div>
+				</td>
+             <td class="ResTable">
+
+					<br />
+					<div class="tdText">
+						<asp:LinkButton ID="LinkButton32" PostBackUrl="~/LAR.aspx" CssClass="linkText"  runat="server">LOAN RECORDS</asp:LinkButton>
+					</div>
+					<br />
+					<div class="tdText">
+						<asp:LinkButton ID="LinkButton33" PostBackUrl="~/Insert_LAR.aspx" CssClass="linkText"  runat="server">ADD NEW LOAN RECORD</asp:LinkButton>
+					</div>
+					<br />
+					<div class="tdText">
+						<asp:LinkButton ID="LinkButton34" PostBackUrl="~/Pending_LAR.aspx" CssClass="linkText"  runat="server">LOAN APPROVAL RECORD</asp:LinkButton>
+					</div>
+				</td>
+             <td class="ResTable">
+
+					<br />
+					<div class="tdText">
+						<asp:LinkButton ID="LinkButton35" PostBackUrl="~/UNR.aspx" CssClass="linkText"  runat="server">UNDER NOTICE RECORD</asp:LinkButton>
+					</div>
+					<br />
+					<div class="tdText">
+						<asp:LinkButton ID="LinkButton36" PostBackUrl="~/under_ntc_add.aspx" CssClass="linkText"  runat="server">ADD NEW UNDER NOTICE RECORD</asp:LinkButton>
+					</div>
+					<br />
+					<div class="tdText">
+						<asp:LinkButton ID="LinkButton37" PostBackUrl="~/UNR_Pending.aspx" CssClass="linkText"  runat="server">c APPROVAL RECORD</asp:LinkButton>
+					</div>
+				</td>
+
+
+            </tr>
+            <tr>
+              <td class="ResTable">
+
+					<br />
+					<div class="tdText">
+						<asp:LinkButton ID="LinkButton38" PostBackUrl="~/LLR_View.aspx" CssClass="linkText"  runat="server">Loan Details</asp:LinkButton>
+					</div>
+					<br />
+					<div class="tdText">
+						<asp:LinkButton ID="LinkButton39" PostBackUrl="~/LLR_Insert.aspx" CssClass="linkText"  runat="server">ADD NEW Loan Details RECORD</asp:LinkButton>
+					</div>
+					<br />
+					<div class="tdText">
+						<asp:LinkButton ID="LinkButton40" PostBackUrl="~/LLR_Approve_Pending.aspx" CssClass="linkText"  runat="server">Loan Details APPROVAL and Loan Recovery DetailsRECORD</asp:LinkButton>
+					</div>
+				</td>
+            </tr>
 		</tbody>
 	</table>
 </div>

@@ -50,9 +50,10 @@
              </div>
  
     <hr style="border-bottom:5px solid #003399" />
-   
+<%--                 <asp:ImageButton ID="excelExporter" runat="server" Height="23px" ImageUrl="~/image/excel1.png" OnClick="excelExporter_Click" ToolTip="Export to excel" Width="17px" />
+              &nbsp;--%>
    <div style="margin-left:20px;">
-        <asp:GridView ID="GridView1" runat="server" OnRowCommand="GridView1_RowCommand" ShowHeaderWhenEmpty="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="id" DataSourceID="StringCon" GridLines="Horizontal" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" EnableTheming="True" HorizontalAlign="Center">
+        <asp:GridView ID="GridView1" runat="server" OnRowCommand="GridView1_RowCommand" OnRowDataBound="GridView1_RowDataBound" ShowHeaderWhenEmpty="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="id" DataSourceID="StringCon" GridLines="Horizontal" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" EnableTheming="True" HorizontalAlign="Center">
             <AlternatingRowStyle BackColor="#CCFFFF" BorderStyle="None" HorizontalAlign="Center" />
         <Columns>
            
@@ -79,6 +80,7 @@
                 <ItemStyle CssClass="center" />
             </asp:TemplateField>
             <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" >
+
             <ControlStyle CssClass="center" />
             <HeaderStyle CssClass="center" />
             <ItemStyle CssClass="center" />
@@ -163,36 +165,11 @@
     </asp:GridView>
         
     </div>
-     <asp:SqlDataSource ID="StringCon" runat="server" ConnectionString="<%$ ConnectionStrings:DBCon %>" DeleteCommand="DELETE FROM [ACGF] WHERE [id] = @id" InsertCommand="INSERT INTO [ACGF] ([Borrower Name], [Faciliy Approval No.], [Product Code], [LOG No.#], [Maturity Date of Facility], [ACGF Expiry Date], [Guarantee Claimed], [Remark], [InsertedBy], [Approved By], [Updated By]) VALUES (@Borrower_Name, @column1, @Product_Code, @column2, @Maturity_Date_of_Facility, @ACGF_Expiry_Date, @Guarantee_Claimed, @Remark, @InsertedBy, @Approved_By, @Updated_By)" SelectCommand="SELECT * FROM [ACGF]" UpdateCommand="UPDATE [ACGF] SET [Borrower Name] = @Borrower_Name, [Faciliy Approval No.] = @column1, [Product Code] = @Product_Code, [LOG No.#] = @column2, [Maturity Date of Facility] = @Maturity_Date_of_Facility, [ACGF Expiry Date] = @ACGF_Expiry_Date, [Guarantee Claimed] = @Guarantee_Claimed, [Remark] = @Remark, [InsertedBy] = @InsertedBy, [Approved By] = @Approved_By, [Updated By] = @Updated_By WHERE [id] = @id">
+     <asp:SqlDataSource ID="StringCon" runat="server" ConnectionString="<%$ ConnectionStrings:DBCon %>">
          <DeleteParameters>
              <asp:Parameter Name="id" Type="Int32" />
          </DeleteParameters>
-         <InsertParameters>
-             <asp:Parameter Name="Borrower_Name" Type="String" />
-             <asp:Parameter Name="column1" Type="String" />
-             <asp:Parameter Name="Product_Code" Type="String" />
-             <asp:Parameter Name="column2" Type="String" />
-             <asp:Parameter Name="Maturity_Date_of_Facility" Type="String" />
-             <asp:Parameter Name="ACGF_Expiry_Date" Type="String" />
-             <asp:Parameter Name="Guarantee_Claimed" Type="String" />
-             <asp:Parameter Name="Remark" Type="String" />
-             <asp:Parameter Name="InsertedBy" Type="String" />
-             <asp:Parameter Name="Approved_By" Type="String" />
-             <asp:Parameter Name="Updated_By" Type="String" />
-         </InsertParameters>
-         <UpdateParameters>
-             <asp:Parameter Name="Borrower_Name" Type="String" />
-             <asp:Parameter Name="column1" Type="String" />
-             <asp:Parameter Name="Product_Code" Type="String" />
-             <asp:Parameter Name="column2" Type="String" />
-             <asp:Parameter Name="Maturity_Date_of_Facility" Type="String" />
-             <asp:Parameter Name="ACGF_Expiry_Date" Type="String" />
-             <asp:Parameter Name="Guarantee_Claimed" Type="String" />
-             <asp:Parameter Name="Remark" Type="String" />
-             <asp:Parameter Name="InsertedBy" Type="String" />
-             <asp:Parameter Name="Approved_By" Type="String" />
-             <asp:Parameter Name="Updated_By" Type="String" />
-             <asp:Parameter Name="id" Type="Int32" />
-         </UpdateParameters>
+
+
      </asp:SqlDataSource>
 </asp:Content>

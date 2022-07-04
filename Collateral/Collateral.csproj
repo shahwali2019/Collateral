@@ -73,6 +73,15 @@
       <HintPath>..\packages\ExcelPackage.1.0.0\lib\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="OfficeOpenXml.Extends, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\OfficeOpenXml.Extends.1.0.6.0\lib\net40\OfficeOpenXml.Extends.dll</HintPath>
     </Reference>
@@ -210,10 +219,18 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Insert_LAR.aspx" />
+    <Content Include="LAR.aspx" />
+    <Content Include="LAR_Update.aspx" />
     <Content Include="LCR__Pending___Records.aspx" />
     <Content Include="ldr_pending_records.aspx" />
     <Content Include="ldr_records.aspx" />
+    <Content Include="LLR_Approve_Pending.aspx" />
+    <Content Include="LLR_Insert.aspx" />
+    <Content Include="LLR_View.aspx" />
+    <Content Include="LL_Details.aspx" />
     <Content Include="loading.aspx" />
     <Content Include="loan.aspx" />
     <Content Include="Loan__Covenant___Records.aspx" />
@@ -221,14 +238,20 @@
     <Content Include="mcu_record.aspx" />
     <Content Include="MTR.aspx" />
     <Content Include="mtr_pending.aspx" />
+    <Content Include="new-records_obsr_loan_docs.aspx" />
     <Content Include="newLCR.aspx" />
     <Content Include="newLRD_records.aspx" />
     <Content Include="newmtr.aspx" />
     <Content Include="new_mcu_record.aspx" />
     <Content Include="new_rtd.aspx" />
     <Content Include="new_wak.aspx" />
+    <Content Include="obser_update.aspx" />
+    <Content Include="obsr_loan_docs.aspx" />
+    <Content Include="obsr_loan_docs_pending.aspx" />
     <Content Include="PendingRecords.aspx" />
+    <Content Include="Pending_LAR.aspx" />
     <Content Include="register.aspx" />
+    <Content Include="RegistrationTest.aspx" />
     <Content Include="RTDL.aspx" />
     <Content Include="RTD_pending.aspx" />
     <Content Include="SaveExcelToDB.aspx" />
@@ -262,6 +285,25 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="signout.aspx" />
     <Content Include="Site.Master" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test.aspx" />
+    <Content Include="test_columnspan.aspx" />
+    <Content Include="under_ntc_add.aspx" />
+    <Content Include="UNR.aspx" />
+    <Content Include="UNR_Pending.aspx" />
+    <Content Include="unr_update.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="wak.aspx" />
     <Content Include="wak_pending.aspx" />
@@ -362,6 +404,27 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Insert_LAR.aspx.cs">
+      <DependentUpon>Insert_LAR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Insert_LAR.aspx.designer.cs">
+      <DependentUpon>Insert_LAR.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LAR.aspx.cs">
+      <DependentUpon>LAR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LAR.aspx.designer.cs">
+      <DependentUpon>LAR.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LAR_Update.aspx.cs">
+      <DependentUpon>LAR_Update.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LAR_Update.aspx.designer.cs">
+      <DependentUpon>LAR_Update.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LCR__Pending___Records.aspx.cs">
       <DependentUpon>LCR__Pending___Records.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -382,6 +445,34 @@
     </Compile>
     <Compile Include="ldr_records.aspx.designer.cs">
       <DependentUpon>ldr_records.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LLR_Approve_Pending.aspx.cs">
+      <DependentUpon>LLR_Approve_Pending.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LLR_Approve_Pending.aspx.designer.cs">
+      <DependentUpon>LLR_Approve_Pending.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LLR_Insert.aspx.cs">
+      <DependentUpon>LLR_Insert.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LLR_Insert.aspx.designer.cs">
+      <DependentUpon>LLR_Insert.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LLR_View.aspx.cs">
+      <DependentUpon>LLR_View.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LLR_View.aspx.designer.cs">
+      <DependentUpon>LLR_View.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LL_Details.aspx.cs">
+      <DependentUpon>LL_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LL_Details.aspx.designer.cs">
+      <DependentUpon>LL_Details.aspx</DependentUpon>
     </Compile>
     <Compile Include="loading.aspx.cs">
       <DependentUpon>loading.aspx</DependentUpon>
@@ -432,6 +523,13 @@
     <Compile Include="mtr_pending.aspx.designer.cs">
       <DependentUpon>mtr_pending.aspx</DependentUpon>
     </Compile>
+    <Compile Include="new-records_obsr_loan_docs.aspx.cs">
+      <DependentUpon>new-records_obsr_loan_docs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="new-records_obsr_loan_docs.aspx.designer.cs">
+      <DependentUpon>new-records_obsr_loan_docs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="newLCR.aspx.cs">
       <DependentUpon>newLCR.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -474,12 +572,40 @@
     <Compile Include="new_wak.aspx.designer.cs">
       <DependentUpon>new_wak.aspx</DependentUpon>
     </Compile>
+    <Compile Include="obser_update.aspx.cs">
+      <DependentUpon>obser_update.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="obser_update.aspx.designer.cs">
+      <DependentUpon>obser_update.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="obsr_loan_docs.aspx.cs">
+      <DependentUpon>obsr_loan_docs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="obsr_loan_docs.aspx.designer.cs">
+      <DependentUpon>obsr_loan_docs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="obsr_loan_docs_pending.aspx.cs">
+      <DependentUpon>obsr_loan_docs_pending.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="obsr_loan_docs_pending.aspx.designer.cs">
+      <DependentUpon>obsr_loan_docs_pending.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PendingRecords.aspx.cs">
       <DependentUpon>PendingRecords.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="PendingRecords.aspx.designer.cs">
       <DependentUpon>PendingRecords.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pending_LAR.aspx.cs">
+      <DependentUpon>Pending_LAR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pending_LAR.aspx.designer.cs">
+      <DependentUpon>Pending_LAR.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="register.aspx.cs">
@@ -488,6 +614,13 @@
     </Compile>
     <Compile Include="register.aspx.designer.cs">
       <DependentUpon>register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrationTest.aspx.cs">
+      <DependentUpon>RegistrationTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistrationTest.aspx.designer.cs">
+      <DependentUpon>RegistrationTest.aspx</DependentUpon>
     </Compile>
     <Compile Include="RTDL.aspx.cs">
       <DependentUpon>RTDL.aspx</DependentUpon>
@@ -530,6 +663,49 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="test_columnspan.aspx.cs">
+      <DependentUpon>test_columnspan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test_columnspan.aspx.designer.cs">
+      <DependentUpon>test_columnspan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="under_ntc_add.aspx.cs">
+      <DependentUpon>under_ntc_add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="under_ntc_add.aspx.designer.cs">
+      <DependentUpon>under_ntc_add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UNR.aspx.cs">
+      <DependentUpon>UNR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UNR.aspx.designer.cs">
+      <DependentUpon>UNR.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UNR_Pending.aspx.cs">
+      <DependentUpon>UNR_Pending.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UNR_Pending.aspx.designer.cs">
+      <DependentUpon>UNR_Pending.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="unr_update.aspx.cs">
+      <DependentUpon>unr_update.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="unr_update.aspx.designer.cs">
+      <DependentUpon>unr_update.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

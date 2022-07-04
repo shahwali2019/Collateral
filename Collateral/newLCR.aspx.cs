@@ -33,13 +33,6 @@ namespace Collateral
                     Response.Redirect("NotAuthorize.aspx?ReturnPath=" + Server.UrlEncode(Request.Url.AbsoluteUri));
                 }
 
-                if (Access_role == null)
-                {
-                    Response.Redirect("Loging.aspx");
-                    Session.Remove("loading");
-                }
-
-
                 //----------------------------------------------
                 if (Session["lcr_id"] != null)
                 {
@@ -51,24 +44,21 @@ namespace Collateral
 
                     //--------------------------------------------------------------
                     // Session["id"].ToString();                                    
-                    txtCname.Text = Session["cm"].ToString();                       
-                    txtDueDate.Text = Session["duedate"].ToString();                
-                    txtAppName.Text = Session["appname"].ToString();                
-                    DropDownList1.SelectedValue = Session["constus"].ToString();   
-                    txtDoD.Text = Session["dod"].ToString();                             
-                    txtRemark.Text = Session["remark"].ToString();                  
-                    txtCondition.Text = Session["conds"].ToString();                
+                    txtCname.Text = Session["cm"].ToString();
+                    txtDueDate.Text = Session["duedate"].ToString();
+                    txtAppName.Text = Session["appname"].ToString();
+                    DropDownList1.SelectedValue = Session["constus"].ToString();
+                    txtDoD.Text = Session["dod"].ToString();
+                    txtRemark.Text = Session["remark"].ToString();
+                    txtCondition.Text = Session["conds"].ToString();
                     //LoanStatus = Session["LS"].ToString();                        
-                                                                                    
+
                     //DropDownList1.SelectedValue = LoanStatus;                     
                     //listCurrency.SelectedValue = currency;                        
-
-
 
                     //txtRemark.Text = Session["Remark"].ToString();
 
                     //Session["InsertedBy"].ToString();
-
 
                 }
             }
@@ -89,27 +79,26 @@ namespace Collateral
                     {
                         sqlCon2.Open();
                         string query = "INSERT INTO[dbo].[LCR_insert] " + // temp table for insertion
-                          " (" +
-                          "[Customer Name]" +
-                          " ,[Approval Name]" +
-                           ",[Date of Disbursement]" +
-                       ",[Conditions]" +
-                      ",[Due Date]" +
-                       ",[Condition Status]" +
-                      " ,[Remark]" +
-                       ",[Inserted By]" +
+                        " (" +
+                        "[Customer Name]" + 
+                        " ,[Approval Name]" + 
+                        ",[Date of Disbursement]" + 
+                        ",[Conditions]" + 
+                        ",[Due Date]" + 
+                        ",[Condition Status]" +
+                        " ,[Remark]" + 
+                        ",[Inserted By]" + 
                         ")" +
-                        " VALUES" +
-                        "(" +
+                        " VALUES" + 
+                        "(" + 
                         "@cm," +
-                        "@appname," +
+                        "@appname," + 
                         "@dod," +
                         "@conds," +
                         "@duedate," +
-                        "@constus," +
+                        "@constus," + 
                         "@remark," +
                         "@is)";
-
 
                         SqlCommand sqlcmd = new SqlCommand(query, sqlCon2);
                         sqlcmd.Parameters.AddWithValue("@cm", txtCname.Text);
@@ -120,10 +109,6 @@ namespace Collateral
                         sqlcmd.Parameters.AddWithValue("@constus", DropDownList1.SelectedValue);
                         sqlcmd.Parameters.AddWithValue("@remark", txtRemark.Text);
                         sqlcmd.Parameters.AddWithValue("@is", username);
-
-
-
-
 
                         sqlcmd.ExecuteNonQuery();
                         msg.Visible = true;
@@ -137,37 +122,35 @@ namespace Collateral
 
                         //==========================================
                     }
-                }// end of adding new WAK Record
+                } // end of adding new WAK Record
 
                 else
                 {
-
 
                     string connectionStringg = ConfigurationManager.ConnectionStrings["DBCon"].ConnectionString;
                     using (SqlConnection sqlConn = new SqlConnection(connectionStringg))
                     {
                         sqlConn.Open();
-                        string query = "INSERT INTO [dbo].[LCR_update]" +
-                      "(id" +
-                      ",[Customer Name]" +
-                      ",[Due Date]" +
-                       ",[Approval Name]" +
-                       ",[Condition Status]" +
-                      ",[Date of Disbursement]" +
-                       ",[Remark]" +
-                      " ,[Conditions]" +
-                       //",[Inserted By]" +
-                       ",[Updated By]" +
-                        ")" +
-                        " VALUES" +
-                        "(" +
-                        "@id," +
-                        "@cm," +
-                        "@duedate," +
-                        "@appname," +
-                        "@constus," +
+                        string query = "INSERT INTO [dbo].[LCR_update]" + 
+                            "(id" + 
+                            ",[Customer Name]" +
+                            ",[Due Date]" + 
+                            ",[Approval Name]" + 
+                            ",[Condition Status]" +
+                            ",[Date of Disbursement]" +
+                            ",[Remark]" +
+                            " ,[Conditions]" +
+                        //",[Inserted By]" +
+                        ",[Updated By]" + ")" + 
+                        " VALUES" + 
+                        "(" + 
+                        "@id," + 
+                        "@cm," + 
+                        "@duedate," + 
+                        "@appname," + 
+                        "@constus," + 
                         "@dod," +
-                        "@remark," +
+                        "@remark," + 
                         "@conds," +
                         //"@is," +
                         "@ub)";
@@ -202,7 +185,6 @@ namespace Collateral
         {
 
         }
-
 
     }
 }
